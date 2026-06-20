@@ -1,0 +1,11 @@
+<container
+  name="root"
+  flexDirection="column"
+  alignItems="center"
+  justifyContent="center"
+  padding={16}
+  backgroundColor="#000000cc"
+  borderRadius={12}
+>
+  <text name="count" fontSize={48} fontWeight="bold" color="#00ffff">3</text>
+</container>

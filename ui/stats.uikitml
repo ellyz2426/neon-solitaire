@@ -1,0 +1,25 @@
+<container
+  name="root"
+  flexDirection="column"
+  alignItems="center"
+  gap={4}
+  padding={16}
+  backgroundColor="#000000cc"
+  borderRadius={12}
+  width={400}
+>
+  <text fontSize={22} fontWeight="bold" color="#66ff66">STATISTICS</text>
+  <container flexDirection="row" gap={4} width="100%"><text fontSize={11} color="#668888" width={180}>Games Played</text><text name="s-games" fontSize={11} color="#ffffff">0</text></container>
+  <container flexDirection="row" gap={4} width="100%"><text fontSize={11} color="#668888" width={180}>Games Won</text><text name="s-wins" fontSize={11} color="#ffffff">0</text></container>
+  <container flexDirection="row" gap={4} width="100%"><text fontSize={11} color="#668888" width={180}>Win Rate</text><text name="s-winrate" fontSize={11} color="#ffffff">0%</text></container>
+  <container flexDirection="row" gap={4} width="100%"><text fontSize={11} color="#668888" width={180}>Best Score</text><text name="s-best" fontSize={11} color="#ffffff">0</text></container>
+  <container flexDirection="row" gap={4} width="100%"><text fontSize={11} color="#668888" width={180}>Best Time</text><text name="s-time" fontSize={11} color="#ffffff">-</text></container>
+  <container flexDirection="row" gap={4} width="100%"><text fontSize={11} color="#668888" width={180}>Fewest Moves Win</text><text name="s-moves" fontSize={11} color="#ffffff">-</text></container>
+  <container flexDirection="row" gap={4} width="100%"><text fontSize={11} color="#668888" width={180}>Total Moves</text><text name="s-totalmoves" fontSize={11} color="#ffffff">0</text></container>
+  <container flexDirection="row" gap={4} width="100%"><text fontSize={11} color="#668888" width={180}>Cards to Foundation</text><text name="s-foundation" fontSize={11} color="#ffffff">0</text></container>
+  <container flexDirection="row" gap={4} width="100%"><text fontSize={11} color="#668888" width={180}>Win Streak</text><text name="s-streak" fontSize={11} color="#ffffff">0</text></container>
+  <container flexDirection="row" gap={4} width="100%"><text fontSize={11} color="#668888" width={180}>Best Streak</text><text name="s-beststreak" fontSize={11} color="#ffffff">0</text></container>
+  <container flexDirection="row" gap={4} width="100%"><text fontSize={11} color="#668888" width={180}>Achievements</text><text name="s-achievements" fontSize={11} color="#ffffff">0/40</text></container>
+  <container flexDirection="row" gap={4} width="100%"><text fontSize={11} color="#668888" width={180}>Player Level</text><text name="s-level" fontSize={11} color="#ffffff">1</text></container>
+  <text name="btn-back" fontSize={16} color="#ff4444" backgroundColor="#330000" padding={8} borderRadius={6} width={160} textAlign="center" cursor="pointer" margin-top={8}>BACK</text>
+</container>

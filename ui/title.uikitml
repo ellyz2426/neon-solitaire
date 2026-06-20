@@ -1,0 +1,25 @@
+<container
+  name="root"
+  flexDirection="column"
+  alignItems="center"
+  justifyContent="center"
+  gap={12}
+  padding={16}
+  backgroundColor="#000000cc"
+  borderRadius={12}
+  width={420}
+>
+  <text name="title" fontSize={32} fontWeight="bold" color="#00ffff">NEON SOLITAIRE</text>
+  <text name="subtitle" fontSize={14} color="#00cccc">Holodeck Card Game</text>
+  <text name="level-display" fontSize={12} color="#66ffff">Level 1 - Novice</text>
+
+  <container flexDirection="column" gap={8} width="100%" alignItems="center" padding-top={8}>
+    <text name="btn-play" fontSize={18} color="#00ffff" backgroundColor="#003333" padding={8} borderRadius={6} width={260} textAlign="center" cursor="pointer">PLAY</text>
+    <text name="btn-scores" fontSize={18} color="#00ffcc" backgroundColor="#003333" padding={8} borderRadius={6} width={260} textAlign="center" cursor="pointer">LEADERBOARD</text>
+    <text name="btn-achievements" fontSize={18} color="#ffcc00" backgroundColor="#333300" padding={8} borderRadius={6} width={260} textAlign="center" cursor="pointer">ACHIEVEMENTS</text>
+    <text name="btn-stats" fontSize={18} color="#66ff66" backgroundColor="#003300" padding={8} borderRadius={6} width={260} textAlign="center" cursor="pointer">STATS</text>
+    <text name="btn-card-backs" fontSize={18} color="#ff66ff" backgroundColor="#330033" padding={8} borderRadius={6} width={260} textAlign="center" cursor="pointer">CARD BACKS</text>
+    <text name="btn-settings" fontSize={18} color="#aaaaaa" backgroundColor="#222222" padding={8} borderRadius={6} width={260} textAlign="center" cursor="pointer">SETTINGS</text>
+    <text name="btn-help" fontSize={18} color="#8888ff" backgroundColor="#222244" padding={8} borderRadius={6} width={260} textAlign="center" cursor="pointer">HELP</text>
+  </container>
+</container>

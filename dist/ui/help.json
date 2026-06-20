@@ -1,0 +1,568 @@
+{
+  "element": {
+    "sourceTag": "container",
+    "type": "custom",
+    "children": [
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
+          "HOW TO PLAY"
+        ],
+        "properties": {
+          "fontsize": "{22}",
+          "fontweight": "bold",
+          "color": "#8888ff"
+        },
+        "dataUid": "uid-2"
+      },
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
+          "GOAL: Move all 52 cards to the four foundation piles, building each suit from Ace to King."
+        ],
+        "properties": {
+          "fontsize": "{11}",
+          "color": "#cccccc",
+          "width": "100%"
+        },
+        "dataUid": "uid-3"
+      },
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
+          "TABLEAU: 7 columns. Build down in alternating colors (red on black). Move groups of face-up cards between columns. Empty columns accept any King."
+        ],
+        "properties": {
+          "fontsize": "{11}",
+          "color": "#cccccc",
+          "width": "100%"
+        },
+        "dataUid": "uid-4"
+      },
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
+          "FOUNDATION: 4 piles (top area). Build up by suit from Ace to King."
+        ],
+        "properties": {
+          "fontsize": "{11}",
+          "color": "#cccccc",
+          "width": "100%"
+        },
+        "dataUid": "uid-5"
+      },
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
+          "STOCK: Click to draw cards. Draw 1 or Draw 3 depending on mode."
+        ],
+        "properties": {
+          "fontsize": "{11}",
+          "color": "#cccccc",
+          "width": "100%"
+        },
+        "dataUid": "uid-6"
+      },
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
+          "BROWSER CONTROLS"
+        ],
+        "properties": {
+          "fontsize": "{13}",
+          "color": "#00ffff",
+          "paddingTop": "{4}"
+        },
+        "dataUid": "uid-7"
+      },
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
+          "Click card to select, click destination to move. ESC=pause, Z=undo, H=hint, R=new game."
+        ],
+        "properties": {
+          "fontsize": "{11}",
+          "color": "#cccccc",
+          "width": "100%"
+        },
+        "dataUid": "uid-8"
+      },
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
+          "VR CONTROLS"
+        ],
+        "properties": {
+          "fontsize": "{13}",
+          "color": "#00ffff",
+          "paddingTop": "{4}"
+        },
+        "dataUid": "uid-9"
+      },
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
+          "Trigger=select/place card, Grip=undo, B=pause, Thumbstick=navigate. Laser pointer for menus."
+        ],
+        "properties": {
+          "fontsize": "{11}",
+          "color": "#cccccc",
+          "width": "100%"
+        },
+        "dataUid": "uid-10"
+      },
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
+          "MODES"
+        ],
+        "properties": {
+          "fontsize": "{13}",
+          "color": "#ffcc00",
+          "paddingTop": "{4}"
+        },
+        "dataUid": "uid-11"
+      },
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
+          "Klondike Draw 1 - Classic, draw one card at a time"
+        ],
+        "properties": {
+          "fontsize": "{10}",
+          "color": "#cccccc",
+          "width": "100%"
+        },
+        "dataUid": "uid-12"
+      },
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
+          "Klondike Draw 3 - Harder, draw three cards at a time"
+        ],
+        "properties": {
+          "fontsize": "{10}",
+          "color": "#cccccc",
+          "width": "100%"
+        },
+        "dataUid": "uid-13"
+      },
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
+          "Timed - 5 minute limit, race to complete"
+        ],
+        "properties": {
+          "fontsize": "{10}",
+          "color": "#cccccc",
+          "width": "100%"
+        },
+        "dataUid": "uid-14"
+      },
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
+          "Vegas - Start at -$52, earn $5 per foundation card"
+        ],
+        "properties": {
+          "fontsize": "{10}",
+          "color": "#cccccc",
+          "width": "100%"
+        },
+        "dataUid": "uid-15"
+      },
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
+          "Daily - Same deal every day worldwide"
+        ],
+        "properties": {
+          "fontsize": "{10}",
+          "color": "#cccccc",
+          "width": "100%"
+        },
+        "dataUid": "uid-16"
+      },
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
+          "Speed - 2 minute blitz, score what you can"
+        ],
+        "properties": {
+          "fontsize": "{10}",
+          "color": "#cccccc",
+          "width": "100%"
+        },
+        "dataUid": "uid-17"
+      },
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
+          "Zen - No score, no timer, just relax"
+        ],
+        "properties": {
+          "fontsize": "{10}",
+          "color": "#cccccc",
+          "width": "100%"
+        },
+        "dataUid": "uid-18"
+      },
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
+          "Practice - Unlimited undo, hints always on"
+        ],
+        "properties": {
+          "fontsize": "{10}",
+          "color": "#cccccc",
+          "width": "100%"
+        },
+        "dataUid": "uid-19"
+      },
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
+          "SCORING"
+        ],
+        "properties": {
+          "fontsize": "{13}",
+          "color": "#66ff66",
+          "paddingTop": "{4}"
+        },
+        "dataUid": "uid-20"
+      },
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
+          "Waste to Tableau: 5 pts  |  Waste to Foundation: 10 pts"
+        ],
+        "properties": {
+          "fontsize": "{10}",
+          "color": "#cccccc",
+          "width": "100%"
+        },
+        "dataUid": "uid-21"
+      },
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
+          "Tableau to Foundation: 10 pts  |  Card flip: 5 pts"
+        ],
+        "properties": {
+          "fontsize": "{10}",
+          "color": "#cccccc",
+          "width": "100%"
+        },
+        "dataUid": "uid-22"
+      },
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
+          "Combo bonus: consecutive moves x2-x10 multiplier"
+        ],
+        "properties": {
+          "fontsize": "{10}",
+          "color": "#cccccc",
+          "width": "100%"
+        },
+        "dataUid": "uid-23"
+      },
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
+          "BACK"
+        ],
+        "properties": {
+          "name": "btn-back",
+          "fontsize": "{16}",
+          "color": "#ff4444",
+          "backgroundcolor": "#330000",
+          "padding": "{8}",
+          "borderradius": "{6}",
+          "width": "{160}",
+          "textalign": "center",
+          "cursor": "pointer",
+          "marginTop": "{8}"
+        },
+        "dataUid": "uid-24"
+      }
+    ],
+    "properties": {
+      "name": "root",
+      "flexdirection": "column",
+      "alignitems": "center",
+      "gap": "{6}",
+      "padding": "{16}",
+      "backgroundcolor": "#000000cc",
+      "borderradius": "{12}",
+      "width": "{440}"
+    },
+    "dataUid": "uid-1"
+  },
+  "classes": {},
+  "ranges": {
+    "uid-1": {
+      "start": {
+        "line": 0,
+        "column": 0
+      },
+      "end": {
+        "line": 33,
+        "column": 12
+      }
+    },
+    "uid-2": {
+      "start": {
+        "line": 10,
+        "column": 2
+      },
+      "end": {
+        "line": 10,
+        "column": 74
+      }
+    },
+    "uid-3": {
+      "start": {
+        "line": 11,
+        "column": 2
+      },
+      "end": {
+        "line": 11,
+        "column": 148
+      }
+    },
+    "uid-4": {
+      "start": {
+        "line": 12,
+        "column": 2
+      },
+      "end": {
+        "line": 12,
+        "column": 203
+      }
+    },
+    "uid-5": {
+      "start": {
+        "line": 13,
+        "column": 2
+      },
+      "end": {
+        "line": 13,
+        "column": 124
+      }
+    },
+    "uid-6": {
+      "start": {
+        "line": 14,
+        "column": 2
+      },
+      "end": {
+        "line": 14,
+        "column": 121
+      }
+    },
+    "uid-7": {
+      "start": {
+        "line": 15,
+        "column": 2
+      },
+      "end": {
+        "line": 15,
+        "column": 77
+      }
+    },
+    "uid-8": {
+      "start": {
+        "line": 16,
+        "column": 2
+      },
+      "end": {
+        "line": 16,
+        "column": 145
+      }
+    },
+    "uid-9": {
+      "start": {
+        "line": 17,
+        "column": 2
+      },
+      "end": {
+        "line": 17,
+        "column": 72
+      }
+    },
+    "uid-10": {
+      "start": {
+        "line": 18,
+        "column": 2
+      },
+      "end": {
+        "line": 18,
+        "column": 150
+      }
+    },
+    "uid-11": {
+      "start": {
+        "line": 19,
+        "column": 2
+      },
+      "end": {
+        "line": 19,
+        "column": 66
+      }
+    },
+    "uid-12": {
+      "start": {
+        "line": 20,
+        "column": 2
+      },
+      "end": {
+        "line": 20,
+        "column": 108
+      }
+    },
+    "uid-13": {
+      "start": {
+        "line": 21,
+        "column": 2
+      },
+      "end": {
+        "line": 21,
+        "column": 110
+      }
+    },
+    "uid-14": {
+      "start": {
+        "line": 22,
+        "column": 2
+      },
+      "end": {
+        "line": 22,
+        "column": 98
+      }
+    },
+    "uid-15": {
+      "start": {
+        "line": 23,
+        "column": 2
+      },
+      "end": {
+        "line": 23,
+        "column": 108
+      }
+    },
+    "uid-16": {
+      "start": {
+        "line": 24,
+        "column": 2
+      },
+      "end": {
+        "line": 24,
+        "column": 95
+      }
+    },
+    "uid-17": {
+      "start": {
+        "line": 25,
+        "column": 2
+      },
+      "end": {
+        "line": 25,
+        "column": 100
+      }
+    },
+    "uid-18": {
+      "start": {
+        "line": 26,
+        "column": 2
+      },
+      "end": {
+        "line": 26,
+        "column": 94
+      }
+    },
+    "uid-19": {
+      "start": {
+        "line": 27,
+        "column": 2
+      },
+      "end": {
+        "line": 27,
+        "column": 100
+      }
+    },
+    "uid-20": {
+      "start": {
+        "line": 28,
+        "column": 2
+      },
+      "end": {
+        "line": 28,
+        "column": 68
+      }
+    },
+    "uid-21": {
+      "start": {
+        "line": 29,
+        "column": 2
+      },
+      "end": {
+        "line": 29,
+        "column": 113
+      }
+    },
+    "uid-22": {
+      "start": {
+        "line": 30,
+        "column": 2
+      },
+      "end": {
+        "line": 30,
+        "column": 108
+      }
+    },
+    "uid-23": {
+      "start": {
+        "line": 31,
+        "column": 2
+      },
+      "end": {
+        "line": 31,
+        "column": 106
+      }
+    },
+    "uid-24": {
+      "start": {
+        "line": 32,
+        "column": 2
+      },
+      "end": {
+        "line": 32,
+        "column": 183
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+<container
+  name="root"
+  flexDirection="column"
+  alignItems="center"
+  gap={8}
+  padding={16}
+  backgroundColor="#000000cc"
+  borderRadius={12}
+  width={420}
+>
+  <text fontSize={24} fontWeight="bold" color="#00ffff">SELECT MODE</text>
+
+  <container flexDirection="column" gap={6} width="100%" alignItems="center" padding-top={8}>
+    <text name="btn-klondike1" fontSize={16} color="#00ffff" backgroundColor="#003333" padding={8} borderRadius={6} width={280} textAlign="center" cursor="pointer">KLONDIKE (Draw 1)</text>
+    <text name="btn-klondike3" fontSize={16} color="#00cccc" backgroundColor="#003333" padding={8} borderRadius={6} width={280} textAlign="center" cursor="pointer">KLONDIKE (Draw 3)</text>
+    <text name="btn-timed" fontSize={16} color="#ffcc00" backgroundColor="#333300" padding={8} borderRadius={6} width={280} textAlign="center" cursor="pointer">TIMED (5 min)</text>
+    <text name="btn-vegas" fontSize={16} color="#66ff66" backgroundColor="#003300" padding={8} borderRadius={6} width={280} textAlign="center" cursor="pointer">VEGAS SCORING</text>
+    <text name="btn-daily" fontSize={16} color="#ff8800" backgroundColor="#332200" padding={8} borderRadius={6} width={280} textAlign="center" cursor="pointer">DAILY CHALLENGE</text>
+    <text name="btn-speed" fontSize={16} color="#ff66ff" backgroundColor="#330033" padding={8} borderRadius={6} width={280} textAlign="center" cursor="pointer">SPEED ROUND</text>
+    <text name="btn-zen" fontSize={16} color="#88ff88" backgroundColor="#003300" padding={8} borderRadius={6} width={280} textAlign="center" cursor="pointer">ZEN (No Score)</text>
+    <text name="btn-practice" fontSize={16} color="#aaaaaa" backgroundColor="#222222" padding={8} borderRadius={6} width={280} textAlign="center" cursor="pointer">PRACTICE</text>
+  </container>
+
+  <text name="btn-back" fontSize={16} color="#ff4444" backgroundColor="#330000" padding={8} borderRadius={6} width={160} textAlign="center" cursor="pointer" margin-top={8}>BACK</text>
+</container>

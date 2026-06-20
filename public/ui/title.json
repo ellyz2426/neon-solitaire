@@ -1,0 +1,330 @@
+{
+  "element": {
+    "sourceTag": "container",
+    "type": "custom",
+    "children": [
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
+          "NEON SOLITAIRE"
+        ],
+        "properties": {
+          "name": "title",
+          "fontsize": "{32}",
+          "fontweight": "bold",
+          "color": "#00ffff"
+        },
+        "dataUid": "uid-2"
+      },
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
+          "Holodeck Card Game"
+        ],
+        "properties": {
+          "name": "subtitle",
+          "fontsize": "{14}",
+          "color": "#00cccc"
+        },
+        "dataUid": "uid-3"
+      },
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
+          "Level 1 - Novice"
+        ],
+        "properties": {
+          "name": "level-display",
+          "fontsize": "{12}",
+          "color": "#66ffff"
+        },
+        "dataUid": "uid-4"
+      },
+      {
+        "sourceTag": "container",
+        "type": "custom",
+        "children": [
+          {
+            "sourceTag": "text",
+            "type": "custom",
+            "children": [
+              "PLAY"
+            ],
+            "properties": {
+              "name": "btn-play",
+              "fontsize": "{18}",
+              "color": "#00ffff",
+              "backgroundcolor": "#003333",
+              "padding": "{8}",
+              "borderradius": "{6}",
+              "width": "{260}",
+              "textalign": "center",
+              "cursor": "pointer"
+            },
+            "dataUid": "uid-6"
+          },
+          {
+            "sourceTag": "text",
+            "type": "custom",
+            "children": [
+              "LEADERBOARD"
+            ],
+            "properties": {
+              "name": "btn-scores",
+              "fontsize": "{18}",
+              "color": "#00ffcc",
+              "backgroundcolor": "#003333",
+              "padding": "{8}",
+              "borderradius": "{6}",
+              "width": "{260}",
+              "textalign": "center",
+              "cursor": "pointer"
+            },
+            "dataUid": "uid-7"
+          },
+          {
+            "sourceTag": "text",
+            "type": "custom",
+            "children": [
+              "ACHIEVEMENTS"
+            ],
+            "properties": {
+              "name": "btn-achievements",
+              "fontsize": "{18}",
+              "color": "#ffcc00",
+              "backgroundcolor": "#333300",
+              "padding": "{8}",
+              "borderradius": "{6}",
+              "width": "{260}",
+              "textalign": "center",
+              "cursor": "pointer"
+            },
+            "dataUid": "uid-8"
+          },
+          {
+            "sourceTag": "text",
+            "type": "custom",
+            "children": [
+              "STATS"
+            ],
+            "properties": {
+              "name": "btn-stats",
+              "fontsize": "{18}",
+              "color": "#66ff66",
+              "backgroundcolor": "#003300",
+              "padding": "{8}",
+              "borderradius": "{6}",
+              "width": "{260}",
+              "textalign": "center",
+              "cursor": "pointer"
+            },
+            "dataUid": "uid-9"
+          },
+          {
+            "sourceTag": "text",
+            "type": "custom",
+            "children": [
+              "CARD BACKS"
+            ],
+            "properties": {
+              "name": "btn-card-backs",
+              "fontsize": "{18}",
+              "color": "#ff66ff",
+              "backgroundcolor": "#330033",
+              "padding": "{8}",
+              "borderradius": "{6}",
+              "width": "{260}",
+              "textalign": "center",
+              "cursor": "pointer"
+            },
+            "dataUid": "uid-10"
+          },
+          {
+            "sourceTag": "text",
+            "type": "custom",
+            "children": [
+              "SETTINGS"
+            ],
+            "properties": {
+              "name": "btn-settings",
+              "fontsize": "{18}",
+              "color": "#aaaaaa",
+              "backgroundcolor": "#222222",
+              "padding": "{8}",
+              "borderradius": "{6}",
+              "width": "{260}",
+              "textalign": "center",
+              "cursor": "pointer"
+            },
+            "dataUid": "uid-11"
+          },
+          {
+            "sourceTag": "text",
+            "type": "custom",
+            "children": [
+              "HELP"
+            ],
+            "properties": {
+              "name": "btn-help",
+              "fontsize": "{18}",
+              "color": "#8888ff",
+              "backgroundcolor": "#222244",
+              "padding": "{8}",
+              "borderradius": "{6}",
+              "width": "{260}",
+              "textalign": "center",
+              "cursor": "pointer"
+            },
+            "dataUid": "uid-12"
+          }
+        ],
+        "properties": {
+          "flexdirection": "column",
+          "gap": "{8}",
+          "width": "100%",
+          "alignitems": "center",
+          "paddingTop": "{8}"
+        },
+        "dataUid": "uid-5"
+      }
+    ],
+    "properties": {
+      "name": "root",
+      "flexdirection": "column",
+      "alignitems": "center",
+      "justifycontent": "center",
+      "gap": "{12}",
+      "padding": "{16}",
+      "backgroundcolor": "#000000cc",
+      "borderradius": "{12}",
+      "width": "{420}"
+    },
+    "dataUid": "uid-1"
+  },
+  "classes": {},
+  "ranges": {
+    "uid-1": {
+      "start": {
+        "line": 0,
+        "column": 0
+      },
+      "end": {
+        "line": 24,
+        "column": 12
+      }
+    },
+    "uid-2": {
+      "start": {
+        "line": 11,
+        "column": 2
+      },
+      "end": {
+        "line": 11,
+        "column": 90
+      }
+    },
+    "uid-3": {
+      "start": {
+        "line": 12,
+        "column": 2
+      },
+      "end": {
+        "line": 12,
+        "column": 79
+      }
+    },
+    "uid-4": {
+      "start": {
+        "line": 13,
+        "column": 2
+      },
+      "end": {
+        "line": 13,
+        "column": 82
+      }
+    },
+    "uid-5": {
+      "start": {
+        "line": 15,
+        "column": 2
+      },
+      "end": {
+        "line": 23,
+        "column": 14
+      }
+    },
+    "uid-6": {
+      "start": {
+        "line": 16,
+        "column": 4
+      },
+      "end": {
+        "line": 16,
+        "column": 170
+      }
+    },
+    "uid-7": {
+      "start": {
+        "line": 17,
+        "column": 4
+      },
+      "end": {
+        "line": 17,
+        "column": 179
+      }
+    },
+    "uid-8": {
+      "start": {
+        "line": 18,
+        "column": 4
+      },
+      "end": {
+        "line": 18,
+        "column": 186
+      }
+    },
+    "uid-9": {
+      "start": {
+        "line": 19,
+        "column": 4
+      },
+      "end": {
+        "line": 19,
+        "column": 172
+      }
+    },
+    "uid-10": {
+      "start": {
+        "line": 20,
+        "column": 4
+      },
+      "end": {
+        "line": 20,
+        "column": 182
+      }
+    },
+    "uid-11": {
+      "start": {
+        "line": 21,
+        "column": 4
+      },
+      "end": {
+        "line": 21,
+        "column": 178
+      }
+    },
+    "uid-12": {
+      "start": {
+        "line": 22,
+        "column": 4
+      },
+      "end": {
+        "line": 22,
+        "column": 170
+      }
+    }
+  }
+}

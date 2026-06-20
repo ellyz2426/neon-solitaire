@@ -1,0 +1,15 @@
+<container
+  name="root"
+  flexDirection="column"
+  alignItems="center"
+  gap={6}
+  padding={12}
+  backgroundColor="#000000cc"
+  borderRadius={8}
+  width={160}
+>
+  <text name="btn-undo" fontSize={14} color="#ffcc00" backgroundColor="#333300" padding={6} borderRadius={4} width={130} textAlign="center" cursor="pointer">UNDO</text>
+  <text name="btn-hint" fontSize={14} color="#66ff66" backgroundColor="#003300" padding={6} borderRadius={4} width={130} textAlign="center" cursor="pointer">HINT</text>
+  <text name="btn-autocomplete" fontSize={14} color="#00ffff" backgroundColor="#003333" padding={6} borderRadius={4} width={130} textAlign="center" cursor="pointer">AUTO</text>
+  <text name="btn-newgame" fontSize={14} color="#ff8800" backgroundColor="#332200" padding={6} borderRadius={4} width={130} textAlign="center" cursor="pointer">NEW GAME</text>
+</container>

@@ -1,0 +1,24 @@
+<container
+  name="root"
+  flexDirection="column"
+  alignItems="center"
+  gap={8}
+  padding={16}
+  backgroundColor="#000000cc"
+  borderRadius={12}
+  width={420}
+>
+  <text name="result-title" fontSize={24} fontWeight="bold" color="#00ffff">GAME COMPLETE!</text>
+  <container flexDirection="column" gap={4} width="100%" padding-top={4}>
+    <container flexDirection="row" gap={8}><text fontSize={12} color="#668888" width={120}>Mode:</text><text name="r-mode" fontSize={12} color="#ffffff">Klondike</text></container>
+    <container flexDirection="row" gap={8}><text fontSize={12} color="#668888" width={120}>Score:</text><text name="r-score" fontSize={12} color="#00ffff">0</text></container>
+    <container flexDirection="row" gap={8}><text fontSize={12} color="#668888" width={120}>Moves:</text><text name="r-moves" fontSize={12} color="#66ff66">0</text></container>
+    <container flexDirection="row" gap={8}><text fontSize={12} color="#668888" width={120}>Time:</text><text name="r-time" fontSize={12} color="#ffcc00">0:00</text></container>
+    <container flexDirection="row" gap={8}><text fontSize={12} color="#668888" width={120}>Combo Best:</text><text name="r-combo" fontSize={12} color="#ff8800">0</text></container>
+    <container flexDirection="row" gap={8}><text fontSize={12} color="#668888" width={120}>Foundations:</text><text name="r-foundations" fontSize={12} color="#ff66ff">0/4</text></container>
+  </container>
+  <container flexDirection="row" gap={8} padding-top={8}>
+    <text name="btn-rematch" fontSize={16} color="#00ffff" backgroundColor="#003333" padding={8} borderRadius={6} width={160} textAlign="center" cursor="pointer">NEW GAME</text>
+    <text name="btn-menu" fontSize={16} color="#ff4444" backgroundColor="#330000" padding={8} borderRadius={6} width={160} textAlign="center" cursor="pointer">MENU</text>
+  </container>
+</container>
