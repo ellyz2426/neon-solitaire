@@ -15,9 +15,10 @@ import {
   moveWasteToTableau, moveTableauToFoundation, moveTableauToTableau,
   moveFoundationToTableau, undo, canAutoComplete, autoCompleteStep,
   findHint, foundationTotal, findAllMoves,
+  canMoveToFoundation, canMoveToTableau,
 } from './solitaire';
 import { CardMesh, createCardMesh, updateCardFace, setCardHighlight, createPilePlaceholder, clearTexCache } from './cards';
-import { ACHIEVEMENTS, loadStats, saveStats, loadLeaderboard, saveLeaderboard, loadUnlocked, saveUnlocked, loadSettings } from './achievements';
+import { ACHIEVEMENTS, loadStats, saveStats, loadLeaderboard, saveLeaderboard, loadUnlocked, saveUnlocked, loadSettings, loadDailyProgress, saveDailyProgress, getTodayString, getYesterdayString } from './achievements';
 import { ParticleSystem } from './particles';
 import {
   sfxCardPlace, sfxCardSelect, sfxCardFlip, sfxDraw, sfxRecycle,
@@ -519,6 +520,69 @@ export class GameSystem extends createSystem({}) {
       const cm = this.cardMeshes.get(id);
       if (cm) setCardHighlight(cm, true, '#ffff00');
     }
+    // Highlight valid destinations
+    this.highlightValidTargets();
+  }
+
+  /** Highlight pile placeholders that are valid move destinations */
+  highlightValidTargets() {
+    // Reset all placeholders first
+    this.resetPlaceholderHighlights();
+    if (!this.selection || !this.gs) return;
+
+    const sel = this.selection;
+    const gs = this.gs;
+
+    // Determine the card being moved
+    let card: Card | null = null;
+    if (sel.pileType === PileType.Waste && gs.waste.length > 0) {
+      card = gs.waste[gs.waste.length - 1];
+    } else if (sel.pileType === PileType.Tableau) {
+      const col = gs.tableau[sel.pileIndex];
+      if (sel.cardIndex < col.length) card = col[sel.cardIndex];
+    } else if (sel.pileType === PileType.Foundation) {
+      const fPile = gs.foundations[sel.pileIndex];
+      if (fPile.length > 0) card = fPile[fPile.length - 1];
+    }
+    if (!card) return;
+
+    const theme = THEMES[this.settings.themeIndex];
+
+    // Check foundations
+    if (sel.cardIds.length === 1) {
+      for (let fi = 0; fi < 4; fi++) {
+        if (canMoveToFoundation(card, gs.foundations[fi])) {
+          const ph = this.pilePlaceholders[fi + 2]; // stock + waste offset
+          const mat = ph.material as MeshStandardMaterial;
+          mat.emissive.set('#00ff88');
+          mat.emissiveIntensity = 0.8;
+          mat.opacity = 0.9;
+        }
+      }
+    }
+
+    // Check tableau
+    for (let ti = 0; ti < 7; ti++) {
+      if (sel.pileType === PileType.Tableau && sel.pileIndex === ti) continue;
+      if (canMoveToTableau(card, gs.tableau[ti])) {
+        const ph = this.pilePlaceholders[ti + 6]; // stock + waste + 4 foundations
+        const mat = ph.material as MeshStandardMaterial;
+        mat.emissive.set('#00ff88');
+        mat.emissiveIntensity = 0.6;
+        mat.opacity = 0.8;
+      }
+    }
+  }
+
+  resetPlaceholderHighlights() {
+    const theme = THEMES[this.settings.themeIndex];
+    for (const ph of this.pilePlaceholders) {
+      const mat = ph.material as MeshStandardMaterial;
+      const isFoundation = ph.userData.pileType === PileType.Foundation;
+      mat.emissive.set(isFoundation ? '#004444' : '#222222');
+      mat.emissiveIntensity = 0.3;
+      mat.opacity = 0.6;
+    }
   }
 
   clearSelection() {
@@ -530,6 +594,7 @@ export class GameSystem extends createSystem({}) {
       this.selection = null;
     }
     this.clearHint();
+    this.resetPlaceholderHighlights();
   }
 
   findCard(cardId: number): { pileType: PileType; pileIndex: number; cardIndex: number } | null {
@@ -715,6 +780,25 @@ export class GameSystem extends createSystem({}) {
     saveLeaderboard(lb.slice(0, 10));
     this.checkAchievements();
 
+    // Daily challenge tracking
+    if (this.mode === 'daily') {
+      const today = getTodayString();
+      const daily = loadDailyProgress();
+      if (daily.lastDate !== today) {
+        // New day completion
+        if (daily.lastDate === getYesterdayString()) {
+          daily.streak++; // Continue streak
+        } else {
+          daily.streak = 1; // Reset streak
+        }
+        daily.lastDate = today;
+        daily.totalCompleted++;
+        if (gs.score > daily.bestScore) daily.bestScore = gs.score;
+        saveDailyProgress(daily);
+        this.showToast(`Daily streak: ${daily.streak} day${daily.streak > 1 ? 's' : ''}!`);
+      }
+    }
+
     // Win celebration particles
     const center = new Vector3(0, TABLE_Y + 0.2, -1.0);
     this.particles?.emitWinCelebration(center);
@@ -899,6 +983,24 @@ export class GameSystem extends createSystem({}) {
     for (const edge of this.tableEdges) {
       const mat = edge.material as MeshStandardMaterial;
       mat.emissiveIntensity = edgePulse;
+    }
+
+    // Foundation progress glow - piles pulse brighter as they fill
+    if (this.gs) {
+      const positions = this.getPilePositions();
+      for (let fi = 0; fi < 4; fi++) {
+        const foundLen = this.gs.foundations[fi].length;
+        if (foundLen > 0 && this.pilePlaceholders[fi + 2]) {
+          const ph = this.pilePlaceholders[fi + 2]; // offset by stock+waste
+          const mat = ph.material as MeshStandardMaterial;
+          const progress = foundLen / 13;
+          const pulse = 0.3 + progress * 0.6 + Math.sin(performance.now() * 0.003 + fi) * 0.1;
+          mat.emissiveIntensity = pulse;
+          const theme = THEMES[this.settings.themeIndex];
+          mat.emissive.set(theme.accent);
+          mat.opacity = 0.4 + progress * 0.4;
+        }
+      }
     }
 
     // Stalemate detection - check every few seconds

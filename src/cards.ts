@@ -63,6 +63,23 @@ function drawCardFace(suit: Suit, rank: Rank, theme: Theme): HTMLCanvasElement {
   ctx.fillText(SUIT_SYMBOLS[suit], c.width / 2, c.height / 2);
   ctx.shadowBlur = 0;
 
+  // Face card crown decoration
+  if (rank >= Rank.Jack) {
+    ctx.fillStyle = suitColor + '44';
+    ctx.font = '14px monospace';
+    const label = rank === Rank.Jack ? 'JACK' : rank === Rank.Queen ? 'QUEEN' : 'KING';
+    ctx.fillText(label, c.width / 2, c.height / 2 + 52);
+    // Decorative corners for face cards
+    ctx.strokeStyle = suitColor + '55';
+    ctx.lineWidth = 1;
+    const cornerR = 6;
+    for (const [cx2, cy2] of [[40, 100], [c.width - 40, 100], [40, c.height - 100], [c.width - 40, c.height - 100]]) {
+      ctx.beginPath();
+      ctx.arc(cx2, cy2, cornerR, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+  }
+
   // Bottom-right (rotated)
   ctx.save();
   ctx.translate(c.width - 16, c.height - 12);

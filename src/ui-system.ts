@@ -4,7 +4,7 @@ import {
 } from '@iwsdk/core';
 import { GameMode, THEMES, CARD_SKINS, TABLE_Y } from './types';
 import { GameSystem } from './game-system';
-import { ACHIEVEMENTS, loadSettings, saveSettings, loadLeaderboard, loadStats } from './achievements';
+import { ACHIEVEMENTS, loadSettings, saveSettings, loadLeaderboard, loadStats, loadDailyProgress, getTodayString } from './achievements';
 import { foundationTotal, canAutoComplete } from './solitaire';
 import { sfxMenuClick, sfxThemeChange, setVolumes } from './audio';
 import { setMusicVolume } from './music';
@@ -296,6 +296,7 @@ export class UISystem extends createSystem({
     const e = this.panels.stats; if (!e) return;
     const doc = getDoc(e); if (!doc) return;
     const s = loadStats();
+    const daily = loadDailyProgress();
     setText(doc, 's-games', String(s.gamesPlayed));
     setText(doc, 's-wins', String(s.gamesWon));
     setText(doc, 's-winrate', s.gamesPlayed > 0 ? `${Math.round(s.gamesWon / s.gamesPlayed * 100)}%` : '0%');
@@ -308,6 +309,7 @@ export class UISystem extends createSystem({
     setText(doc, 's-beststreak', String(s.bestStreak));
     setText(doc, 's-achievements', `${s.achievementsUnlocked}/${ACHIEVEMENTS.length}`);
     setText(doc, 's-level', String(s.playerLevel));
+    setText(doc, 's-daily', `${daily.streak} day streak (${daily.totalCompleted} total)`);
   }
 
   update(delta: number) {

@@ -55,6 +55,10 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'score_3000', name: 'Score Titan', desc: 'Score over 3000', check: (gs) => gs.score >= 3000 },
   { id: 'win_streak_7', name: 'Lucky Seven', desc: 'Win 7 games in a row', check: (_gs, st) => st.winStreak >= 7 },
   { id: 'level_100', name: 'Centurion', desc: 'Reach level 100', check: (_gs, st) => st.playerLevel >= 100 },
+  { id: 'speed_under_60', name: 'Speedrunner', desc: 'Win speed mode with 60+ seconds left', check: (gs) => gs.won && gs.elapsed < 60 },
+  { id: 'zen_master', name: 'Inner Peace', desc: 'Win in Zen mode', check: (gs) => gs.won },
+  { id: 'thousand_moves', name: 'Relentless', desc: '1000 total moves', check: (_gs, st) => st.totalMoves >= 1000 },
+  { id: 'five_thousand_moves', name: 'Tireless', desc: '5000 total moves', check: (_gs, st) => st.totalMoves >= 5000 },
 ];
 
 // -- Storage ----------------------------------------------------------
@@ -81,8 +85,33 @@ export function saveUnlocked(s: Set<string>): void { localStorage.setItem(ACH_KE
 
 export interface GameSettings { themeIndex: number; skinIndex: number; masterVol: number; sfxVol: number; musicVol: number; }
 
+export interface DailyProgress {
+  lastDate: string; // YYYY-MM-DD
+  streak: number;
+  totalCompleted: number;
+  bestScore: number;
+}
+
 export function loadSettings(): GameSettings {
   try { const r = localStorage.getItem(SETTINGS_KEY); if (r) return JSON.parse(r); } catch {}
   return { themeIndex: 0, skinIndex: 0, masterVol: 100, sfxVol: 100, musicVol: 100 };
 }
 export function saveSettings(s: GameSettings): void { localStorage.setItem(SETTINGS_KEY, JSON.stringify(s)); }
+
+const DAILY_KEY = 'neon_solitaire_daily';
+export function loadDailyProgress(): DailyProgress {
+  try { const r = localStorage.getItem(DAILY_KEY); if (r) return JSON.parse(r); } catch {}
+  return { lastDate: '', streak: 0, totalCompleted: 0, bestScore: 0 };
+}
+export function saveDailyProgress(d: DailyProgress): void { localStorage.setItem(DAILY_KEY, JSON.stringify(d)); }
+
+export function getTodayString(): string {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
+export function getYesterdayString(): string {
+  const d = new Date();
+  d.setDate(d.getDate() - 1);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
