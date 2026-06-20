@@ -81,6 +81,11 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'ten_thousand_moves', name: 'Marathon Runner', desc: '10000 total moves', check: (_gs, st) => st.totalMoves >= 10000 },
   { id: 'total_5000', name: 'Foundation Legend', desc: '5000 cards to foundations total', check: (_gs, st) => st.cardsToFoundation >= 5000 },
   { id: 'perfect_clear_fast', name: 'Surgical Clear', desc: 'Win under 50 moves in under 2 min', check: (gs) => gs.won && gs.moves < 50 && gs.elapsed < 120 },
+  { id: 'redo_master', name: 'Second Chance', desc: 'Win a game using redo', check: (gs) => gs.won },
+  { id: 'score_15000', name: 'Score Immortal', desc: 'Score over 15000', check: (gs) => gs.score >= 15000 },
+  { id: 'combo_25', name: 'Infinite Chain', desc: 'Get a 25x combo', check: (gs) => gs.bestCombo >= 25 },
+  { id: 'win_streak_20', name: 'Unbreakable', desc: 'Win 20 games in a row', check: (_gs, st) => st.winStreak >= 20 },
+  { id: 'thousand_wins', name: 'Millennium', desc: 'Win 1000 games', check: (_gs, st) => st.gamesWon >= 1000 },
 ];
 
 // -- Storage ----------------------------------------------------------

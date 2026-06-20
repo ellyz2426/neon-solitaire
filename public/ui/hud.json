@@ -240,6 +240,21 @@
               "color": "#446666"
             },
             "dataUid": "uid-20"
+          },
+          {
+            "sourceTag": "text",
+            "type": "custom",
+            "children": [
+              "-"
+            ],
+            "properties": {
+              "name": "last-move",
+              "fontsize": "9",
+              "color": "#445566",
+              "flexgrow": "1",
+              "textalign": "right"
+            },
+            "dataUid": "uid-21"
           }
         ],
         "properties": {
@@ -270,7 +285,7 @@
         "column": 0
       },
       "end": {
-        "line": 35,
+        "line": 36,
         "column": 12
       }
     },
@@ -450,7 +465,7 @@
         "column": 2
       },
       "end": {
-        "line": 34,
+        "line": 35,
         "column": 14
       }
     },
@@ -462,6 +477,16 @@
       "end": {
         "line": 33,
         "column": 85
+      }
+    },
+    "uid-21": {
+      "start": {
+        "line": 34,
+        "column": 4
+      },
+      "end": {
+        "line": 34,
+        "column": 95
       }
     }
   }

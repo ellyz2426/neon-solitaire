@@ -24,7 +24,7 @@ import { ACHIEVEMENTS, loadStats, saveStats, loadLeaderboard, saveLeaderboard, l
 import { ParticleSystem } from './particles';
 import {
   sfxCardPlace, sfxCardSelect, sfxCardFlip, sfxDraw, sfxRecycle,
-  sfxFoundation, sfxCombo, sfxInvalid, sfxUndo, sfxHint,
+  sfxFoundation, sfxCombo, sfxInvalid, sfxUndo, sfxRedo, sfxHint,
   sfxAutoComplete, sfxWin, sfxLoss, sfxDeal, setVolumes,
   getMusicGain, getMasterGain,
 } from './audio';
@@ -41,6 +41,9 @@ interface CardAnim {
   mesh: Group;
   targetPos: Vector3;
   speed: number;
+  arc: boolean;
+  arcPeak: number;
+  arcProgress: number;
 }
 
 interface ScorePopup {
@@ -148,6 +151,10 @@ export class GameSystem extends createSystem({}) {
 
   // Grid animation
   gridTime = 0;
+
+  // Move history (last 5 moves for display)
+  moveHistory: string[] = [];
+  lastMoveDesc = '';
 
   // Drag-and-drop state
   isDragging = false;
@@ -995,6 +1002,7 @@ export class GameSystem extends createSystem({}) {
     if (success) {
       if (toFoundation) {
         sfxFoundation(gs.combo);
+        this.recordMove(`-> Foundation ${destIndex + 1}`);
         if (gs.combo > 1) {
           sfxCombo(gs.combo);
           const positions = this.getPilePositions();
@@ -1019,6 +1027,7 @@ export class GameSystem extends createSystem({}) {
         }
       } else {
         sfxCardPlace();
+        this.recordMove(`-> Tableau ${destIndex + 1}`);
         // Score popup for tableau placements
         if (gs.combo > 0) {
           const pts = 5 * Math.min(gs.combo, 10);
@@ -1262,7 +1271,10 @@ export class GameSystem extends createSystem({}) {
 
   animateCard(group: Group, target: Vector3, bounce = false) {
     this.anims = this.anims.filter(a => a.mesh !== group);
-    this.anims.push({ mesh: group, targetPos: target, speed: 8 });
+    // Calculate if this is a long-distance move (use arc) vs short
+    const dist = group.position.distanceTo(target);
+    const useArc = dist > 0.1;
+    this.anims.push({ mesh: group, targetPos: target, speed: useArc ? 6 : 8, arc: useArc, arcPeak: useArc ? 0.06 : 0, arcProgress: 0 });
     if (bounce) {
       this.bounceAnims.push({ mesh: group, startTime: performance.now(), originalY: target.y });
     }
@@ -1280,7 +1292,7 @@ export class GameSystem extends createSystem({}) {
   doRedo() {
     this.resetIdleHint();
     if (this.gs && redo(this.gs)) {
-      sfxCardSelect();
+      sfxRedo();
       this.clearSelection();
       this.refreshCardPositions();
     }
@@ -1540,6 +1552,13 @@ export class GameSystem extends createSystem({}) {
     this.cameraShakeDecay = 0.4; // Duration in seconds
   }
 
+  /** Record a move description for history display */
+  recordMove(desc: string) {
+    this.moveHistory.push(desc);
+    if (this.moveHistory.length > 5) this.moveHistory.shift();
+    this.lastMoveDesc = desc;
+  }
+
   /** Reset the idle hint when user takes action */
   resetIdleHint() {
     this.idleTimer = 0;
@@ -1719,7 +1738,16 @@ export class GameSystem extends createSystem({}) {
       const diff = a.targetPos.clone().sub(a.mesh.position);
       const dist = diff.length();
       if (dist < 0.001) { a.mesh.position.copy(a.targetPos); this.anims.splice(i, 1); }
-      else { a.mesh.position.add(diff.normalize().multiplyScalar(Math.min(delta * a.speed, dist))); }
+      else {
+        const step = Math.min(delta * a.speed, dist);
+        a.mesh.position.add(diff.normalize().multiplyScalar(step));
+        // Arc: add Y offset based on progress through the animation
+        if (a.arc && a.arcPeak > 0) {
+          a.arcProgress += step / (dist + step);
+          const arcY = Math.sin(a.arcProgress * Math.PI) * a.arcPeak;
+          a.mesh.position.y += arcY;
+        }
+      }
     }
 
     // Bounce animations (card placement feedback)
@@ -1915,6 +1943,18 @@ export class GameSystem extends createSystem({}) {
       if (this.autoSaveTimer >= 10) {
         this.autoSaveTimer = 0;
         this.doAutoSave();
+      }
+    }
+
+    // Foundation placeholder pulse when empty (attract attention)
+    if (this.gs && this.phase === 'playing') {
+      for (let fi = 0; fi < 4; fi++) {
+        if (this.gs.foundations[fi].length === 0 && this.pilePlaceholders[fi + 2]) {
+          const ph = this.pilePlaceholders[fi + 2];
+          const mat = ph.material as MeshStandardMaterial;
+          const pulse = 0.2 + Math.sin(performance.now() * 0.002 + fi * 1.5) * 0.15;
+          mat.emissiveIntensity = pulse;
+        }
       }
     }
 

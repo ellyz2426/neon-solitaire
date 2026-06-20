@@ -19,8 +19,8 @@
       <text fontSize="12" color="#aabbcc">Drag: Move cards</text>
       <text fontSize="12" color="#aabbcc">Right-click: Foundation</text>
       <text fontSize="12" color="#aabbcc">Dbl-click: Auto-move</text>
-      <text fontSize="12" color="#aabbcc">Z: Undo  H: Hint</text>
-      <text fontSize="12" color="#aabbcc">ESC: Pause</text>
+      <text fontSize="12" color="#aabbcc">Z: Undo  Y: Redo</text>
+      <text fontSize="12" color="#aabbcc">H: Hint  ESC: Pause</text>
     </container>
     <container flexDirection="column" gap="4" alignItems="center">
       <text fontSize="14" color="#ffcc00" fontWeight="bold">VR Controller</text>
@@ -31,6 +31,6 @@
     </container>
   </container>
   <text fontSize="11" color="#667788" padding-top="4">Score points by moving cards to foundations</text>
-  <text fontSize="11" color="#667788">Build combos with consecutive foundation moves</text>
+  <text fontSize="11" color="#667788">Build combos for multipliers and camera shake!</text>
   <text name="btn-got-it" fontSize="16" fontWeight="bold" color="#000000" backgroundColor="#00cccc" padding="10" borderRadius="8" width="160" textAlign="center" cursor="pointer" margin-top="8">GOT IT!</text>
 </container>

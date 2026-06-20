@@ -181,6 +181,12 @@ export function sfxThemeChange(): void {
   setTimeout(() => playTone(880, 0.06, 'triangle', 0.04), 120);
 }
 
+/** Redo sound */
+export function sfxRedo(): void {
+  playTone(330, 0.06, 'sine', 0.06);
+  setTimeout(() => playTone(440, 0.08, 'sine', 0.06), 40);
+}
+
 /** Game start dealing */
 export function sfxDeal(index: number): void {
   playNoise(0.03, 0.02);

@@ -388,6 +388,8 @@ export class UISystem extends createSystem({
           let fTotal = 0;
           for (const f of g.foundations) fTotal += f.length;
           setText(hud, 'found-progress', `Foundations: ${fTotal}/52`);
+          // Last move
+          if (gs.lastMoveDesc) setText(hud, 'last-move', gs.lastMoveDesc);
         }
       }
     }

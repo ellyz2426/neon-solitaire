@@ -92,3 +92,21 @@
 2:02:53 PM [vite] (client) page reload src/cards.ts
 2:02:58 PM [vite] (client) page reload src/cards.ts
 2:03:04 PM [vite] (client) page reload src/game-system.ts
+2:04:57 PM [vite] (client) page reload src/audio.ts
+2:05:04 PM [vite] (client) page reload src/game-system.ts
+2:05:09 PM [vite] (client) page reload src/game-system.ts
+2:05:15 PM [vite] (client) page reload src/game-system.ts
+2:05:27 PM [vite] (client) page reload src/game-system.ts
+2:05:35 PM [vite] (client) page reload src/game-system.ts
+2:05:43 PM [vite] (client) page reload src/game-system.ts
+📝 UIKitML file change: ui/hud.uikitml
+✅ UIKitML file recompiled: hud.uikitml
+2:05:59 PM [vite] (client) page reload src/ui-system.ts
+2:06:09 PM [vite] (client) page reload src/achievements.ts
+2:06:20 PM [vite] (client) page reload src/particles.ts
+2:06:29 PM [vite] (client) page reload src/game-system.ts
+2:06:34 PM [vite] (client) page reload src/game-system.ts
+2:06:44 PM [vite] (client) page reload src/game-system.ts
+2:07:11 PM [vite] (client) page reload src/game-system.ts
+📝 UIKitML file change: ui/tutorial.uikitml
+✅ UIKitML file recompiled: tutorial.uikitml

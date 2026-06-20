@@ -32,5 +32,6 @@
   </container>
   <container flexDirection="row" gap="4" width="100%">
     <text name="found-progress" fontSize="9" color="#446666">Foundations: 0/52</text>
+    <text name="last-move" fontSize="9" color="#445566" flexGrow="1" textAlign="right">-</text>
   </container>
 </container>

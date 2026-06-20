@@ -76,16 +76,29 @@ export class ParticleSystem {
     this.emitSparkle(origin, color, count);
   }
 
-  /** Foundation complete - column of rising sparkles */
+  /** Foundation complete - column of rising sparkles with rainbow burst */
   emitFoundationComplete(origin: Vector3): void {
-    for (let i = 0; i < 20; i++) {
+    // Rising column
+    for (let i = 0; i < 25; i++) {
       const vel = new Vector3(
-        (Math.random() - 0.5) * 0.3,
-        0.5 + Math.random() * 1.0,
-        (Math.random() - 0.5) * 0.3,
+        (Math.random() - 0.5) * 0.4,
+        0.6 + Math.random() * 1.2,
+        (Math.random() - 0.5) * 0.4,
       );
       const c = new Color().setHSL(Math.random(), 1.0, 0.6);
-      this.addParticle(origin.clone(), vel, 1.0 + Math.random() * 0.5, 0.015, c);
+      this.addParticle(origin.clone(), vel, 1.2 + Math.random() * 0.6, 0.015, c);
+    }
+    // Ring burst outward
+    for (let i = 0; i < 16; i++) {
+      const angle = (i / 16) * Math.PI * 2;
+      const speed = 0.6 + Math.random() * 0.3;
+      const vel = new Vector3(
+        Math.cos(angle) * speed,
+        0.1 + Math.random() * 0.2,
+        Math.sin(angle) * speed,
+      );
+      const c = new Color().setHSL(i / 16, 1.0, 0.5);
+      this.addParticle(origin.clone(), vel, 0.8, 0.012, c);
     }
   }
 
