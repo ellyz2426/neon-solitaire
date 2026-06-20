@@ -110,3 +110,92 @@
 2:07:11 PM [vite] (client) page reload src/game-system.ts
 📝 UIKitML file change: ui/tutorial.uikitml
 ✅ UIKitML file recompiled: tutorial.uikitml
+📝 UIKitML file change: ui/modeselect.uikitml
+✅ UIKitML file recompiled: modeselect.uikitml
+2:09:27 PM [vite] (client) page reload src/achievements.ts
+2:09:34 PM [vite] (client) page reload src/game-system.ts
+2:09:44 PM [vite] (client) page reload src/game-system.ts
+2:09:54 PM [vite] (client) page reload src/game-system.ts
+2:10:02 PM [vite] (client) page reload src/game-system.ts
+2:10:07 PM [vite] (client) page reload src/game-system.ts
+2:10:17 PM [vite] (client) page reload src/game-system.ts
+📝 UIKitML file change: ui/title.uikitml
+✅ UIKitML file recompiled: title.uikitml
+2:10:34 PM [vite] (client) page reload src/ui-system.ts
+2:10:35 PM [vite] (client) Pre-transform error: Transform failed with 1 error:
+/home/hatch/workspace/neon-solitaire/src/ui-system.ts:107:12: ERROR: The symbol "gs2" has already been declared
+  Plugin: vite:esbuild
+  File: /home/hatch/workspace/neon-solitaire/src/ui-system.ts:107:12
+  
+  The symbol "gs2" has already been declared
+  105 |        if (resumeEl) (resumeEl as any).setProperties({ display: hasResume ? 'flex' : 'none' });
+  106 |        // Show tutorial for first-time players
+  107 |        const gs2 = g();
+      |              ^
+  108 |        if (!gs2.tutorialShown) {
+  109 |          this.show('tutorial');
+  
+2:10:35 PM [vite] Internal server error: Transform failed with 1 error:
+/home/hatch/workspace/neon-solitaire/src/ui-system.ts:107:12: ERROR: The symbol "gs2" has already been declared
+  Plugin: vite:esbuild
+  File: /home/hatch/workspace/neon-solitaire/src/ui-system.ts:107:12
+  
+  The symbol "gs2" has already been declared
+  105 |        if (resumeEl) (resumeEl as any).setProperties({ display: hasResume ? 'flex' : 'none' });
+  106 |        // Show tutorial for first-time players
+  107 |        const gs2 = g();
+      |              ^
+  108 |        if (!gs2.tutorialShown) {
+  109 |          this.show('tutorial');
+  
+      at failureErrorWithLog (/home/hatch/workspace/neon-solitaire/node_modules/esbuild/lib/main.js:1748:15)
+      at /home/hatch/workspace/neon-solitaire/node_modules/esbuild/lib/main.js:1017:50
+      at responseCallbacks.<computed> (/home/hatch/workspace/neon-solitaire/node_modules/esbuild/lib/main.js:884:9)
+      at handleIncomingPacket (/home/hatch/workspace/neon-solitaire/node_modules/esbuild/lib/main.js:939:12)
+      at Socket.readFromStdout (/home/hatch/workspace/neon-solitaire/node_modules/esbuild/lib/main.js:862:7)
+      at Socket.emit (node:events:524:28)
+      at addChunk (node:internal/streams/readable:561:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+      at Readable.push (node:internal/streams/readable:392:5)
+      at Pipe.onStreamRead (node:internal/stream_base_commons:191:23)
+[browser] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+2:10:42 PM [vite] (client) page reload src/ui-system.ts
+2:10:42 PM [vite] (client) Pre-transform error: Transform failed with 1 error:
+/home/hatch/workspace/neon-solitaire/src/ui-system.ts:107:12: ERROR: The symbol "gs2" has already been declared
+  Plugin: vite:esbuild
+  File: /home/hatch/workspace/neon-solitaire/src/ui-system.ts:107:12
+  
+  The symbol "gs2" has already been declared
+  105 |        if (resumeEl) (resumeEl as any).setProperties({ display: hasResume ? 'flex' : 'none' });
+  106 |        // Show tutorial for first-time players
+  107 |        const gs2 = g();
+      |              ^
+  108 |        if (!gs2.tutorialShown) {
+  109 |          this.show('tutorial');
+  
+2:10:42 PM [vite] Internal server error: Transform failed with 1 error:
+/home/hatch/workspace/neon-solitaire/src/ui-system.ts:107:12: ERROR: The symbol "gs2" has already been declared
+  Plugin: vite:esbuild
+  File: /home/hatch/workspace/neon-solitaire/src/ui-system.ts:107:12
+  
+  The symbol "gs2" has already been declared
+  105 |        if (resumeEl) (resumeEl as any).setProperties({ display: hasResume ? 'flex' : 'none' });
+  106 |        // Show tutorial for first-time players
+  107 |        const gs2 = g();
+      |              ^
+  108 |        if (!gs2.tutorialShown) {
+  109 |          this.show('tutorial');
+  
+      at failureErrorWithLog (/home/hatch/workspace/neon-solitaire/node_modules/esbuild/lib/main.js:1748:15)
+      at /home/hatch/workspace/neon-solitaire/node_modules/esbuild/lib/main.js:1017:50
+      at responseCallbacks.<computed> (/home/hatch/workspace/neon-solitaire/node_modules/esbuild/lib/main.js:884:9)
+      at handleIncomingPacket (/home/hatch/workspace/neon-solitaire/node_modules/esbuild/lib/main.js:939:12)
+      at Socket.readFromStdout (/home/hatch/workspace/neon-solitaire/node_modules/esbuild/lib/main.js:862:7)
+      at Socket.emit (node:events:524:28)
+      at addChunk (node:internal/streams/readable:561:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+      at Readable.push (node:internal/streams/readable:392:5)
+      at Pipe.onStreamRead (node:internal/stream_base_commons:191:23)
+[browser] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+2:11:24 PM [vite] (client) page reload src/ui-system.ts
+2:11:29 PM [vite] (client) page reload src/ui-system.ts

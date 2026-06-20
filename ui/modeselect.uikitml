@@ -12,21 +12,45 @@
   <text name="mode-desc" fontSize="11" color="#668888" padding-bottom="4">Choose your challenge</text>
 
   <container flexDirection="column" gap="5" width="100%" alignItems="center">
-    <container flexDirection="row" gap="8" width="340">
-      <text name="btn-klondike1" fontSize="15" color="#00ffff" backgroundColor="#003333" padding="8" borderRadius="6" flexGrow="1" textAlign="center" cursor="pointer">DRAW 1</text>
-      <text name="btn-klondike3" fontSize="15" color="#00bbbb" backgroundColor="#002828" padding="8" borderRadius="6" flexGrow="1" textAlign="center" cursor="pointer">DRAW 3</text>
+    <container flexDirection="row" gap="8" width="360">
+      <container flexDirection="column" gap="2" flexGrow="1" alignItems="center">
+        <text name="btn-klondike1" fontSize="15" color="#00ffff" backgroundColor="#003333" padding="8" borderRadius="6" width="100%" textAlign="center" cursor="pointer">DRAW 1</text>
+        <text fontSize="8" color="#446666">Classic</text>
+      </container>
+      <container flexDirection="column" gap="2" flexGrow="1" alignItems="center">
+        <text name="btn-klondike3" fontSize="15" color="#00bbbb" backgroundColor="#002828" padding="8" borderRadius="6" width="100%" textAlign="center" cursor="pointer">DRAW 3</text>
+        <text fontSize="8" color="#446666">Harder</text>
+      </container>
     </container>
-    <container flexDirection="row" gap="8" width="340">
-      <text name="btn-timed" fontSize="15" color="#ffcc00" backgroundColor="#332200" padding="8" borderRadius="6" flexGrow="1" textAlign="center" cursor="pointer">TIMED 5m</text>
-      <text name="btn-speed" fontSize="15" color="#ff66ff" backgroundColor="#2a0033" padding="8" borderRadius="6" flexGrow="1" textAlign="center" cursor="pointer">SPEED 2m</text>
+    <container flexDirection="row" gap="8" width="360">
+      <container flexDirection="column" gap="2" flexGrow="1" alignItems="center">
+        <text name="btn-timed" fontSize="15" color="#ffcc00" backgroundColor="#332200" padding="8" borderRadius="6" width="100%" textAlign="center" cursor="pointer">TIMED 5m</text>
+        <text fontSize="8" color="#446644">Beat the clock</text>
+      </container>
+      <container flexDirection="column" gap="2" flexGrow="1" alignItems="center">
+        <text name="btn-speed" fontSize="15" color="#ff66ff" backgroundColor="#2a0033" padding="8" borderRadius="6" width="100%" textAlign="center" cursor="pointer">SPEED 2m</text>
+        <text fontSize="8" color="#664466">Blitz mode</text>
+      </container>
     </container>
-    <container flexDirection="row" gap="8" width="340">
-      <text name="btn-vegas" fontSize="15" color="#66ff66" backgroundColor="#003300" padding="8" borderRadius="6" flexGrow="1" textAlign="center" cursor="pointer">VEGAS</text>
-      <text name="btn-daily" fontSize="15" color="#ff8800" backgroundColor="#332200" padding="8" borderRadius="6" flexGrow="1" textAlign="center" cursor="pointer">DAILY</text>
+    <container flexDirection="row" gap="8" width="360">
+      <container flexDirection="column" gap="2" flexGrow="1" alignItems="center">
+        <text name="btn-vegas" fontSize="15" color="#66ff66" backgroundColor="#003300" padding="8" borderRadius="6" width="100%" textAlign="center" cursor="pointer">VEGAS</text>
+        <text fontSize="8" color="#336633">$5 per card</text>
+      </container>
+      <container flexDirection="column" gap="2" flexGrow="1" alignItems="center">
+        <text name="btn-daily" fontSize="15" color="#ff8800" backgroundColor="#332200" padding="8" borderRadius="6" width="100%" textAlign="center" cursor="pointer">DAILY</text>
+        <text fontSize="8" color="#664422">Same deal globally</text>
+      </container>
     </container>
-    <container flexDirection="row" gap="8" width="340">
-      <text name="btn-zen" fontSize="15" color="#88ff88" backgroundColor="#002800" padding="8" borderRadius="6" flexGrow="1" textAlign="center" cursor="pointer">ZEN</text>
-      <text name="btn-practice" fontSize="15" color="#aaaaaa" backgroundColor="#222222" padding="8" borderRadius="6" flexGrow="1" textAlign="center" cursor="pointer">PRACTICE</text>
+    <container flexDirection="row" gap="8" width="360">
+      <container flexDirection="column" gap="2" flexGrow="1" alignItems="center">
+        <text name="btn-zen" fontSize="15" color="#88ff88" backgroundColor="#002800" padding="8" borderRadius="6" width="100%" textAlign="center" cursor="pointer">ZEN</text>
+        <text fontSize="8" color="#336633">No score, relax</text>
+      </container>
+      <container flexDirection="column" gap="2" flexGrow="1" alignItems="center">
+        <text name="btn-practice" fontSize="15" color="#aaaaaa" backgroundColor="#222222" padding="8" borderRadius="6" width="100%" textAlign="center" cursor="pointer">PRACTICE</text>
+        <text fontSize="8" color="#555555">Unlimited undo</text>
+      </container>
     </container>
   </container>
 

@@ -156,6 +156,13 @@ export class GameSystem extends createSystem({}) {
   moveHistory: string[] = [];
   lastMoveDesc = '';
 
+  // Combo flash
+  comboFlashLight: PointLight | null = null;
+  comboFlashIntensity = 0;
+
+  // Session timer
+  sessionTime = 0;
+
   // Drag-and-drop state
   isDragging = false;
   dragCardIds: number[] = [];
@@ -355,6 +362,11 @@ export class GameSystem extends createSystem({}) {
       pl.position.set(pos[0], pos[1], pos[2]);
       this.scene.add(pl);
     }
+
+    // Combo flash light (initially off)
+    this.comboFlashLight = new PointLight(new Color('#ffffff'), 0, 5);
+    this.comboFlashLight.position.set(0, TABLE_Y + 0.5, -1.0);
+    this.scene.add(this.comboFlashLight);
 
     // Particle system
     this.particles = new ParticleSystem();
@@ -1013,6 +1025,13 @@ export class GameSystem extends createSystem({}) {
           // Camera shake on big combos
           if (gs.combo >= 5) {
             this.triggerCameraShake(0.003 + (gs.combo - 5) * 0.001);
+          }
+          // Combo flash
+          if (gs.combo >= 3 && this.comboFlashLight) {
+            const colors = ['#00ffff', '#ffff00', '#ff00ff', '#00ff88', '#ff4400', '#4488ff'];
+            const c = colors[Math.min(gs.combo - 1, colors.length - 1)];
+            this.comboFlashLight.color.set(c);
+            this.comboFlashIntensity = 0.3 + gs.combo * 0.1;
           }
         } else {
           const positions = this.getPilePositions();
@@ -1989,5 +2008,15 @@ export class GameSystem extends createSystem({}) {
         }
       }
     });
+
+    // Combo flash decay
+    if (this.comboFlashIntensity > 0) {
+      this.comboFlashIntensity *= 0.92; // Quick decay
+      if (this.comboFlashIntensity < 0.01) this.comboFlashIntensity = 0;
+      if (this.comboFlashLight) this.comboFlashLight.intensity = this.comboFlashIntensity;
+    }
+
+    // Session timer
+    this.sessionTime += delta;
   }
 }

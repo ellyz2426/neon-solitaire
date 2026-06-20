@@ -86,6 +86,12 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'combo_25', name: 'Infinite Chain', desc: 'Get a 25x combo', check: (gs) => gs.bestCombo >= 25 },
   { id: 'win_streak_20', name: 'Unbreakable', desc: 'Win 20 games in a row', check: (_gs, st) => st.winStreak >= 20 },
   { id: 'thousand_wins', name: 'Millennium', desc: 'Win 1000 games', check: (_gs, st) => st.gamesWon >= 1000 },
+  // Round 9 additions
+  { id: 'level_200', name: 'Sage', desc: 'Reach level 200', check: (_gs, st) => st.playerLevel >= 200 },
+  { id: 'perfect_game', name: 'Flawless', desc: 'Win without undo in under 3 minutes', check: (gs) => gs.won && gs.undoStack.length >= gs.moves && gs.elapsed < 180 },
+  { id: 'king_rush', name: 'King Rush', desc: 'Complete all 4 foundations in under 5 min', check: (gs) => gs.won && gs.elapsed < 300 },
+  { id: 'total_moves_20k', name: 'Veteran', desc: '20000 total moves', check: (_gs, st) => st.totalMoves >= 20000 },
+  { id: 'three_hundred_games', name: 'Dedicated', desc: 'Play 300 games', check: (_gs, st) => st.gamesPlayed >= 300 },
 ];
 
 // -- Storage ----------------------------------------------------------

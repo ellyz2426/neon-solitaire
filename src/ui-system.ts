@@ -78,6 +78,11 @@ export class UISystem extends createSystem({
       setText(doc, 'level-display', `Level ${stats.playerLevel}`);
       setText(doc, 'wins-display', `${stats.gamesWon} Wins`);
       setText(doc, 'streak-display', `${stats.bestStreak} Best Streak`);
+      // Session time
+      const gsSession = g();
+      const sMin = Math.floor(gsSession.sessionTime / 60);
+      const sSec = Math.floor(gsSession.sessionTime % 60);
+      setText(doc, 'session-display', `Session: ${sMin}:${String(sSec).padStart(2, '0')}`);
       onClick(doc, 'btn-play', () => { sfxMenuClick(); this.show('modeselect'); });
       onClick(doc, 'btn-resume', () => {
         sfxMenuClick();
@@ -99,8 +104,8 @@ export class UISystem extends createSystem({
       const resumeEl = doc.getElementById('btn-resume');
       if (resumeEl) (resumeEl as any).setProperties({ display: hasResume ? 'flex' : 'none' });
       // Show tutorial for first-time players
-      const gs2 = g();
-      if (!gs2.tutorialShown) {
+      const gsTutorial = g();
+      if (!gsTutorial.tutorialShown) {
         this.show('tutorial');
       }
     });
@@ -410,7 +415,21 @@ export class UISystem extends createSystem({
       else if (gs.phase === 'gameover') { this.refreshGameOver(gs); this.show('gameover'); }
     }
 
-    if (this.counter % 30 === 0) this.syncVis();
+    if (this.counter % 30 === 0) {
+      this.syncVis();
+      // Update session timer on title screen
+      if (gs && this.activePanel === 'title') {
+        const titleE = this.panels.title;
+        if (titleE) {
+          const titleDoc = getDoc(titleE);
+          if (titleDoc) {
+            const sMin = Math.floor(gs.sessionTime / 60);
+            const sSec = Math.floor(gs.sessionTime % 60);
+            setText(titleDoc, 'session-display', `Session: ${sMin}:${String(sSec).padStart(2, '0')}`);
+          }
+        }
+      }
+    }
   }
 
   refreshGameOver(gs: GameSystem) {

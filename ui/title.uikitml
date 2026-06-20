@@ -15,6 +15,7 @@
     <text name="level-display" fontSize="11" color="#aa66ff">Level 1</text>
     <text name="wins-display" fontSize="11" color="#66ff66">0 Wins</text>
     <text name="streak-display" fontSize="11" color="#ffcc00">0 Streak</text>
+    <text name="session-display" fontSize="11" color="#556677">Session: 0:00</text>
   </container>
 
   <container flexDirection="column" gap="7" width="100%" alignItems="center">
