@@ -85,7 +85,7 @@
         "sourceTag": "text",
         "type": "custom",
         "children": [
-          "Click card to select, click destination to move. ESC=pause, Z=undo, H=hint, R=new game."
+          "Click card to select, click destination to move. Drag cards for direct placement. Right-click to auto-send to foundation. Double-click for auto-move. ESC=pause, Z=undo, H=hint, R=new game."
         ],
         "properties": {
           "fontsize": "11",
@@ -111,7 +111,7 @@
         "sourceTag": "text",
         "type": "custom",
         "children": [
-          "Trigger=select/place card, Grip=undo, B=pause, Thumbstick=navigate. Laser pointer for menus."
+          "Trigger=select/place card, A=undo, B=hint, Thumbstick=pause. Laser pointer for menus and card interaction."
         ],
         "properties": {
           "fontsize": "11",
@@ -293,6 +293,19 @@
         "sourceTag": "text",
         "type": "custom",
         "children": [
+          "Time bonus: up to 500 pts for winning under 5 min"
+        ],
+        "properties": {
+          "fontsize": "10",
+          "color": "#cccccc",
+          "width": "100%"
+        },
+        "dataUid": "uid-24"
+      },
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
           "BACK"
         ],
         "properties": {
@@ -307,7 +320,7 @@
           "cursor": "pointer",
           "marginTop": "8"
         },
-        "dataUid": "uid-24"
+        "dataUid": "uid-25"
       }
     ],
     "properties": {
@@ -330,7 +343,7 @@
         "column": 0
       },
       "end": {
-        "line": 33,
+        "line": 34,
         "column": 12
       }
     },
@@ -401,7 +414,7 @@
       },
       "end": {
         "line": 16,
-        "column": 145
+        "column": 246
       }
     },
     "uid-9": {
@@ -421,7 +434,7 @@
       },
       "end": {
         "line": 18,
-        "column": 150
+        "column": 164
       }
     },
     "uid-11": {
@@ -561,6 +574,16 @@
       },
       "end": {
         "line": 32,
+        "column": 107
+      }
+    },
+    "uid-25": {
+      "start": {
+        "line": 33,
+        "column": 2
+      },
+      "end": {
+        "line": 33,
         "column": 183
       }
     }

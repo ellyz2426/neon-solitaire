@@ -9,3 +9,26 @@
 
   ➜  Local:   http://localhost:5173/
   ➜  Network: http://198.19.0.2:5173/
+12:03:32 PM [vite] (client) page reload src/index.ts
+12:03:44 PM [vite] (client) page reload src/game-system.ts
+12:04:47 PM [vite] (client) page reload src/game-system.ts
+12:05:26 PM [vite] (client) page reload src/game-system.ts
+12:05:38 PM [vite] (client) page reload src/game-system.ts
+12:05:53 PM [vite] (client) page reload src/ui-system.ts
+📝 UIKitML file change: ui/gameover.uikitml
+✅ UIKitML file recompiled: gameover.uikitml
+📝 UIKitML file change: ui/hud.uikitml
+✅ UIKitML file recompiled: hud.uikitml
+12:06:27 PM [vite] (client) page reload src/ui-system.ts
+12:06:38 PM [vite] (client) page reload src/achievements.ts
+12:06:51 PM [vite] (client) page reload src/game-system.ts
+📝 UIKitML file change: ui/help.uikitml
+✅ UIKitML file recompiled: help.uikitml
+📝 UIKitML file change: ui/help.uikitml
+✅ UIKitML file recompiled: help.uikitml
+📝 UIKitML file change: ui/help.uikitml
+✅ UIKitML file recompiled: help.uikitml
+📝 UIKitML file change: ui/tutorial.uikitml
+✅ UIKitML file recompiled: tutorial.uikitml
+12:08:05 PM [vite] (client) page reload src/index.ts
+12:09:57 PM [vite] (client) page reload src/game-system.ts

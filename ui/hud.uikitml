@@ -25,6 +25,7 @@
   <container flexDirection="row" gap="8" width="100%">
     <text name="mode" fontSize="10" color="#888888" flexGrow="1">Klondike</text>
     <text name="stock-count" fontSize="10" color="#557777">Stock: 24</text>
+    <text name="undo-count" fontSize="10" color="#556677">Undos: 0</text>
     <text name="combo" fontSize="11" fontWeight="bold" color="#ff8800">-</text>
     <text name="level" fontSize="10" color="#aa66ff">Lv.1</text>
   </container>

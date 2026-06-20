@@ -14,9 +14,9 @@
   <text fontSize="11" color="#cccccc" width="100%">FOUNDATION: 4 piles (top area). Build up by suit from Ace to King.</text>
   <text fontSize="11" color="#cccccc" width="100%">STOCK: Click to draw cards. Draw 1 or Draw 3 depending on mode.</text>
   <text fontSize="13" color="#00ffff" padding-top="4">BROWSER CONTROLS</text>
-  <text fontSize="11" color="#cccccc" width="100%">Click card to select, click destination to move. ESC=pause, Z=undo, H=hint, R=new game.</text>
+  <text fontSize="11" color="#cccccc" width="100%">Click card to select, click destination to move. Drag cards for direct placement. Right-click to auto-send to foundation. Double-click for auto-move. ESC=pause, Z=undo, H=hint, R=new game.</text>
   <text fontSize="13" color="#00ffff" padding-top="4">VR CONTROLS</text>
-  <text fontSize="11" color="#cccccc" width="100%">Trigger=select/place card, Grip=undo, B=pause, Thumbstick=navigate. Laser pointer for menus.</text>
+  <text fontSize="11" color="#cccccc" width="100%">Trigger=select/place card, A=undo, B=hint, Thumbstick=pause. Laser pointer for menus and card interaction.</text>
   <text fontSize="13" color="#ffcc00" padding-top="4">MODES</text>
   <text fontSize="10" color="#cccccc" width="100%">Klondike Draw 1 - Classic, draw one card at a time</text>
   <text fontSize="10" color="#cccccc" width="100%">Klondike Draw 3 - Harder, draw three cards at a time</text>
@@ -30,5 +30,6 @@
   <text fontSize="10" color="#cccccc" width="100%">Waste to Tableau: 5 pts  |  Waste to Foundation: 10 pts</text>
   <text fontSize="10" color="#cccccc" width="100%">Tableau to Foundation: 10 pts  |  Card flip: 5 pts</text>
   <text fontSize="10" color="#cccccc" width="100%">Combo bonus: consecutive moves x2-x10 multiplier</text>
+  <text fontSize="10" color="#cccccc" width="100%">Time bonus: up to 500 pts for winning under 5 min</text>
   <text name="btn-back" fontSize="16" color="#ff4444" backgroundColor="#330000" padding="8" borderRadius="6" width="160" textAlign="center" cursor="pointer" margin-top="8">BACK</text>
 </container>

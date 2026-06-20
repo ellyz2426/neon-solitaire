@@ -365,6 +365,7 @@ export class UISystem extends createSystem({
           setText(hud, 'combo', g.combo > 1 ? `${g.combo}x combo` : '-');
           setText(hud, 'level', `Lv.${gs.stats.playerLevel}`);
           setText(hud, 'stock-count', `Stock: ${g.stock.length}`);
+          setText(hud, 'undo-count', `Undos: ${g.undoStack.length}`);
         }
       }
     }
@@ -402,6 +403,8 @@ export class UISystem extends createSystem({
     setText(doc, 'r-streak', String(gs.stats.winStreak));
     const xpGained = g.won ? Math.floor(g.score / 10) + 50 : 0;
     setText(doc, 'r-xp', g.won ? `+${xpGained}` : '-');
+    setText(doc, 'r-timebonus', g.won && gs.timeBonus > 0 ? `+${gs.timeBonus}` : '-');
+    setText(doc, 'r-undos', String(g.undoStack.length));
   }
 
   refreshModeStats() {

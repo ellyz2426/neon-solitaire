@@ -167,6 +167,19 @@
             "sourceTag": "text",
             "type": "custom",
             "children": [
+              "Undos: 0"
+            ],
+            "properties": {
+              "name": "undo-count",
+              "fontsize": "10",
+              "color": "#556677"
+            },
+            "dataUid": "uid-15"
+          },
+          {
+            "sourceTag": "text",
+            "type": "custom",
+            "children": [
               "-"
             ],
             "properties": {
@@ -175,7 +188,7 @@
               "fontweight": "bold",
               "color": "#ff8800"
             },
-            "dataUid": "uid-15"
+            "dataUid": "uid-16"
           },
           {
             "sourceTag": "text",
@@ -188,7 +201,7 @@
               "fontsize": "10",
               "color": "#aa66ff"
             },
-            "dataUid": "uid-16"
+            "dataUid": "uid-17"
           }
         ],
         "properties": {
@@ -219,7 +232,7 @@
         "column": 0
       },
       "end": {
-        "line": 30,
+        "line": 31,
         "column": 12
       }
     },
@@ -329,7 +342,7 @@
         "column": 2
       },
       "end": {
-        "line": 29,
+        "line": 30,
         "column": 14
       }
     },
@@ -360,7 +373,7 @@
       },
       "end": {
         "line": 27,
-        "column": 79
+        "column": 73
       }
     },
     "uid-16": {
@@ -370,6 +383,16 @@
       },
       "end": {
         "line": 28,
+        "column": 79
+      }
+    },
+    "uid-17": {
+      "start": {
+        "line": 29,
+        "column": 4
+      },
+      "end": {
+        "line": 29,
         "column": 64
       }
     }

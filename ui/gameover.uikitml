@@ -17,6 +17,8 @@
     <container flexDirection="row" gap="8"><text fontSize="12" color="#668888" width="120">Combo Best:</text><text name="r-combo" fontSize="12" color="#ff8800">0</text></container>
     <container flexDirection="row" gap="8"><text fontSize="12" color="#668888" width="120">Foundations:</text><text name="r-foundations" fontSize="12" color="#ff66ff">0/52</text></container>
     <container flexDirection="row" gap="8"><text fontSize="12" color="#668888" width="120">Win Streak:</text><text name="r-streak" fontSize="12" color="#ffcc00">0</text></container>
+    <container flexDirection="row" gap="8"><text fontSize="12" color="#668888" width="120">Time Bonus:</text><text name="r-timebonus" fontSize="12" color="#44ffaa">-</text></container>
+    <container flexDirection="row" gap="8"><text fontSize="12" color="#668888" width="120">Undos Used:</text><text name="r-undos" fontSize="12" color="#8888aa">0</text></container>
     <container flexDirection="row" gap="8"><text fontSize="12" color="#668888" width="120">XP Earned:</text><text name="r-xp" fontSize="12" color="#aa66ff">+0</text></container>
   </container>
   <container flexDirection="row" gap="8" padding-top="8">

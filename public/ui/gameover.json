@@ -288,7 +288,7 @@
                 "sourceTag": "text",
                 "type": "custom",
                 "children": [
-                  "XP Earned:"
+                  "Time Bonus:"
                 ],
                 "properties": {
                   "fontsize": "12",
@@ -301,12 +301,12 @@
                 "sourceTag": "text",
                 "type": "custom",
                 "children": [
-                  "+0"
+                  "-"
                 ],
                 "properties": {
-                  "name": "r-xp",
+                  "name": "r-timebonus",
                   "fontsize": "12",
-                  "color": "#aa66ff"
+                  "color": "#44ffaa"
                 },
                 "dataUid": "uid-27"
               }
@@ -316,6 +316,80 @@
               "gap": "8"
             },
             "dataUid": "uid-25"
+          },
+          {
+            "sourceTag": "container",
+            "type": "custom",
+            "children": [
+              {
+                "sourceTag": "text",
+                "type": "custom",
+                "children": [
+                  "Undos Used:"
+                ],
+                "properties": {
+                  "fontsize": "12",
+                  "color": "#668888",
+                  "width": "120"
+                },
+                "dataUid": "uid-29"
+              },
+              {
+                "sourceTag": "text",
+                "type": "custom",
+                "children": [
+                  "0"
+                ],
+                "properties": {
+                  "name": "r-undos",
+                  "fontsize": "12",
+                  "color": "#8888aa"
+                },
+                "dataUid": "uid-30"
+              }
+            ],
+            "properties": {
+              "flexdirection": "row",
+              "gap": "8"
+            },
+            "dataUid": "uid-28"
+          },
+          {
+            "sourceTag": "container",
+            "type": "custom",
+            "children": [
+              {
+                "sourceTag": "text",
+                "type": "custom",
+                "children": [
+                  "XP Earned:"
+                ],
+                "properties": {
+                  "fontsize": "12",
+                  "color": "#668888",
+                  "width": "120"
+                },
+                "dataUid": "uid-32"
+              },
+              {
+                "sourceTag": "text",
+                "type": "custom",
+                "children": [
+                  "+0"
+                ],
+                "properties": {
+                  "name": "r-xp",
+                  "fontsize": "12",
+                  "color": "#aa66ff"
+                },
+                "dataUid": "uid-33"
+              }
+            ],
+            "properties": {
+              "flexdirection": "row",
+              "gap": "8"
+            },
+            "dataUid": "uid-31"
           }
         ],
         "properties": {
@@ -347,7 +421,7 @@
               "textalign": "center",
               "cursor": "pointer"
             },
-            "dataUid": "uid-29"
+            "dataUid": "uid-35"
           },
           {
             "sourceTag": "text",
@@ -366,7 +440,7 @@
               "textalign": "center",
               "cursor": "pointer"
             },
-            "dataUid": "uid-30"
+            "dataUid": "uid-36"
           }
         ],
         "properties": {
@@ -374,7 +448,7 @@
           "gap": "8",
           "paddingTop": "8"
         },
-        "dataUid": "uid-28"
+        "dataUid": "uid-34"
       }
     ],
     "properties": {
@@ -397,7 +471,7 @@
         "column": 0
       },
       "end": {
-        "line": 25,
+        "line": 27,
         "column": 12
       }
     },
@@ -417,7 +491,7 @@
         "column": 2
       },
       "end": {
-        "line": 20,
+        "line": 22,
         "column": 14
       }
     },
@@ -638,7 +712,7 @@
       },
       "end": {
         "line": 19,
-        "column": 177
+        "column": 184
       }
     },
     "uid-26": {
@@ -648,46 +722,106 @@
       },
       "end": {
         "line": 19,
-        "column": 108
+        "column": 109
       }
     },
     "uid-27": {
       "start": {
         "line": 19,
-        "column": 108
+        "column": 109
       },
       "end": {
         "line": 19,
-        "column": 165
+        "column": 172
       }
     },
     "uid-28": {
       "start": {
-        "line": 21,
-        "column": 2
+        "line": 20,
+        "column": 4
       },
       "end": {
-        "line": 24,
-        "column": 14
+        "line": 20,
+        "column": 180
       }
     },
     "uid-29": {
       "start": {
-        "line": 22,
-        "column": 4
+        "line": 20,
+        "column": 43
       },
       "end": {
-        "line": 22,
-        "column": 177
+        "line": 20,
+        "column": 109
       }
     },
     "uid-30": {
       "start": {
-        "line": 23,
+        "line": 20,
+        "column": 109
+      },
+      "end": {
+        "line": 20,
+        "column": 168
+      }
+    },
+    "uid-31": {
+      "start": {
+        "line": 21,
         "column": 4
       },
       "end": {
+        "line": 21,
+        "column": 177
+      }
+    },
+    "uid-32": {
+      "start": {
+        "line": 21,
+        "column": 43
+      },
+      "end": {
+        "line": 21,
+        "column": 108
+      }
+    },
+    "uid-33": {
+      "start": {
+        "line": 21,
+        "column": 108
+      },
+      "end": {
+        "line": 21,
+        "column": 165
+      }
+    },
+    "uid-34": {
+      "start": {
         "line": 23,
+        "column": 2
+      },
+      "end": {
+        "line": 26,
+        "column": 14
+      }
+    },
+    "uid-35": {
+      "start": {
+        "line": 24,
+        "column": 4
+      },
+      "end": {
+        "line": 24,
+        "column": 177
+      }
+    },
+    "uid-36": {
+      "start": {
+        "line": 25,
+        "column": 4
+      },
+      "end": {
+        "line": 25,
         "column": 170
       }
     }

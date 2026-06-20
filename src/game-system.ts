@@ -117,6 +117,28 @@ export class GameSystem extends createSystem({}) {
   tutorialShown = false;
   tutorialStep = 0;
 
+  // Drag-and-drop state
+  isDragging = false;
+  dragCardIds: number[] = [];
+  dragPileType: PileType = PileType.Stock;
+  dragPileIndex = 0;
+  dragCardIndex = 0;
+  dragStartMouse = new Vector2();
+  dragPlane = new Vector3(); // Y-plane intersection point
+  dragOffsets: Map<number, Vector3> = new Map(); // Original offsets from drag origin
+  dragThreshold = 0.008; // Min distance before drag starts
+  dragPending = false; // True between mousedown and drag-start/click
+  dragStartTime = 0;
+
+  // Win cascade animation
+  winCascadeCards: { mesh: Group; vel: Vector3; rotVel: Vector3; active: boolean }[] = [];
+  winCascadeTimer = 0;
+  winCascadeIndex = 0;
+  isWinCascade = false;
+
+  // Time bonus
+  timeBonus = 0;
+
   init() {
     this.buildEnvironment();
     this.setupInput();
@@ -295,14 +317,89 @@ export class GameSystem extends createSystem({}) {
       const rect = canvas.getBoundingClientRect();
       this.mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
       this.mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+      // Handle drag
+      if (this.dragPending && this.phase === 'playing') {
+        const dx = this.mouse.x - this.dragStartMouse.x;
+        const dy = this.mouse.y - this.dragStartMouse.y;
+        if (Math.sqrt(dx * dx + dy * dy) > this.dragThreshold) {
+          this.startDrag();
+        }
+      }
+      if (this.isDragging) {
+        this.updateDrag();
+      }
     });
     canvas.addEventListener('pointerdown', (e: PointerEvent) => {
+      if (e.button === 2) return; // Right-click handled separately
       if (e.button !== 0) return;
       if (this.phase !== 'playing' && this.phase !== 'autocomplete') return;
-      this.handleClick();
+
+      // Initiate potential drag
+      this.dragStartMouse.copy(this.mouse);
+      this.dragStartTime = performance.now();
+
+      // Check what we clicked on
+      this.raycaster.setFromCamera(this.mouse, this.camera);
+      const cardObjects: Object3D[] = [];
+      this.cardMeshes.forEach(cm => cardObjects.push(cm.mesh));
+      const cardHits = this.raycaster.intersectObjects(cardObjects, false);
+
+      if (cardHits.length > 0) {
+        const cardId = cardHits[0].object.parent?.userData.cardId as number | undefined;
+        if (cardId !== undefined) {
+          const loc = this.findCard(cardId);
+          if (loc && this.canDragCard(loc)) {
+            // Prepare for potential drag
+            this.dragPending = true;
+            this.dragPileType = loc.pileType;
+            this.dragPileIndex = loc.pileIndex;
+            this.dragCardIndex = loc.cardIndex;
+
+            // Build the list of card IDs to drag
+            if (loc.pileType === PileType.Tableau) {
+              const col = this.gs!.tableau[loc.pileIndex];
+              this.dragCardIds = col.slice(loc.cardIndex).map(c => c.id);
+            } else {
+              this.dragCardIds = [cardId];
+            }
+          }
+        }
+      }
+    });
+    canvas.addEventListener('pointerup', (e: PointerEvent) => {
+      if (e.button === 2) return;
+      if (e.button !== 0) return;
+
+      if (this.isDragging) {
+        this.endDrag();
+      } else if (this.dragPending) {
+        // Didn't drag far enough -- treat as click
+        this.dragPending = false;
+        this.dragCardIds = [];
+        if (this.phase === 'playing' || this.phase === 'autocomplete') {
+          this.handleClick();
+        }
+      }
+    });
+    // Right-click auto-move to foundation
+    canvas.addEventListener('contextmenu', (e: Event) => {
+      e.preventDefault();
+      if (this.phase !== 'playing') return;
+      this.raycaster.setFromCamera(this.mouse, this.camera);
+      const cardObjects: Object3D[] = [];
+      this.cardMeshes.forEach(cm => cardObjects.push(cm.mesh));
+      const hits = this.raycaster.intersectObjects(cardObjects, false);
+      if (hits.length > 0) {
+        const cardId = hits[0].object.parent?.userData.cardId as number | undefined;
+        if (cardId !== undefined) {
+          this.autoMoveToFoundation(cardId);
+        }
+      }
     });
     window.addEventListener('keydown', (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
+        if (this.isDragging) { this.cancelDrag(); return; }
         if (this.phase === 'playing') this.phase = 'paused';
         else if (this.phase === 'paused') this.phase = 'playing';
       }
@@ -312,6 +409,288 @@ export class GameSystem extends createSystem({}) {
         if (this.phase === 'playing' || this.phase === 'gameover') this.startGame(this.mode);
       }
     });
+  }
+
+  /** Check if a card at the given location can be dragged */
+  canDragCard(loc: { pileType: PileType; pileIndex: number; cardIndex: number }): boolean {
+    const gs = this.gs!;
+    if (loc.pileType === PileType.Waste) {
+      return loc.cardIndex === gs.waste.length - 1;
+    }
+    if (loc.pileType === PileType.Foundation) {
+      return loc.cardIndex === gs.foundations[loc.pileIndex].length - 1;
+    }
+    if (loc.pileType === PileType.Tableau) {
+      return gs.tableau[loc.pileIndex][loc.cardIndex]?.faceUp === true;
+    }
+    return false;
+  }
+
+  /** Start a drag operation */
+  startDrag() {
+    if (!this.dragPending || this.dragCardIds.length === 0) return;
+    this.dragPending = false;
+    this.isDragging = true;
+    this.clearSelection();
+
+    // Compute initial world positions of dragged cards
+    this.dragOffsets.clear();
+    const firstCm = this.cardMeshes.get(this.dragCardIds[0]);
+    if (!firstCm) { this.isDragging = false; return; }
+
+    const origin = firstCm.group.position.clone();
+    for (const id of this.dragCardIds) {
+      const cm = this.cardMeshes.get(id);
+      if (cm) {
+        const offset = cm.group.position.clone().sub(origin);
+        this.dragOffsets.set(id, offset);
+        // Highlight dragged cards
+        setCardHighlight(cm, true, '#ffff00');
+        // Lift cards above table
+        cm.group.position.y += 0.03;
+      }
+    }
+
+    // Cancel any existing animations for dragged cards
+    this.anims = this.anims.filter(a => {
+      const cardId = a.mesh.userData.cardId;
+      return !this.dragCardIds.includes(cardId);
+    });
+
+    // Highlight valid drop targets
+    this.highlightDragTargets();
+  }
+
+  /** Update drag positions based on mouse */
+  updateDrag() {
+    if (!this.isDragging || this.dragCardIds.length === 0) return;
+
+    // Raycast to get world position on the table plane
+    this.raycaster.setFromCamera(this.mouse, this.camera);
+    const planeY = TABLE_Y + 0.03;
+    const ray = this.raycaster.ray;
+    const t = (planeY - ray.origin.y) / ray.direction.y;
+    if (t <= 0) return;
+
+    const worldPos = new Vector3();
+    ray.at(t, worldPos);
+
+    // Move all dragged cards relative to worldPos
+    for (const id of this.dragCardIds) {
+      const cm = this.cardMeshes.get(id);
+      const offset = this.dragOffsets.get(id);
+      if (cm && offset) {
+        cm.group.position.set(
+          worldPos.x + offset.x,
+          planeY + offset.y,
+          worldPos.z + offset.z,
+        );
+      }
+    }
+  }
+
+  /** End drag - try to place cards */
+  endDrag() {
+    if (!this.isDragging) return;
+    this.isDragging = false;
+
+    // Find the closest valid drop target
+    this.raycaster.setFromCamera(this.mouse, this.camera);
+    const phHits = this.raycaster.intersectObjects(this.pilePlaceholders, false);
+
+    // Also check for card drops (drop on top of a tableau column)
+    const cardObjects: Object3D[] = [];
+    this.cardMeshes.forEach(cm => {
+      if (!this.dragCardIds.includes(cm.cardId)) {
+        cardObjects.push(cm.mesh);
+      }
+    });
+    const cardHits = this.raycaster.intersectObjects(cardObjects, false);
+
+    let dropTarget: { pileType: PileType; pileIndex: number } | null = null;
+
+    // Check placeholder hits
+    if (phHits.length > 0) {
+      const ph = phHits[0].object;
+      dropTarget = { pileType: ph.userData.pileType as PileType, pileIndex: ph.userData.pileIndex as number };
+    }
+    // Check card-on-card hits (for tableau columns with cards)
+    if (!dropTarget && cardHits.length > 0) {
+      const hitCardId = cardHits[0].object.parent?.userData.cardId as number | undefined;
+      if (hitCardId !== undefined) {
+        const loc = this.findCard(hitCardId);
+        if (loc && (loc.pileType === PileType.Tableau || loc.pileType === PileType.Foundation)) {
+          dropTarget = { pileType: loc.pileType, pileIndex: loc.pileIndex };
+        }
+      }
+    }
+
+    // Try to execute the move
+    let moved = false;
+    if (dropTarget) {
+      const gs = this.gs!;
+      if (this.dragPileType === PileType.Waste) {
+        if (dropTarget.pileType === PileType.Foundation) {
+          if (moveWasteToFoundation(gs, dropTarget.pileIndex)) {
+            moved = true;
+            sfxFoundation(gs.combo);
+            const positions = this.getPilePositions();
+            this.particles?.emitSparkle(positions.foundations[dropTarget.pileIndex], THEMES[this.settings.themeIndex].accent);
+          }
+        } else if (dropTarget.pileType === PileType.Tableau) {
+          if (moveWasteToTableau(gs, dropTarget.pileIndex)) {
+            moved = true;
+            sfxCardPlace();
+          }
+        }
+      } else if (this.dragPileType === PileType.Tableau) {
+        if (dropTarget.pileType === PileType.Foundation) {
+          if (moveTableauToFoundation(gs, this.dragPileIndex, dropTarget.pileIndex)) {
+            moved = true;
+            sfxFoundation(gs.combo);
+            const positions = this.getPilePositions();
+            this.particles?.emitSparkle(positions.foundations[dropTarget.pileIndex], THEMES[this.settings.themeIndex].accent);
+            if (gs.foundations[dropTarget.pileIndex].length === 13) {
+              this.particles?.emitFoundationComplete(positions.foundations[dropTarget.pileIndex]);
+            }
+          }
+        } else if (dropTarget.pileType === PileType.Tableau && dropTarget.pileIndex !== this.dragPileIndex) {
+          if (moveTableauToTableau(gs, this.dragPileIndex, this.dragCardIndex, dropTarget.pileIndex)) {
+            moved = true;
+            sfxCardPlace();
+          }
+        }
+      } else if (this.dragPileType === PileType.Foundation) {
+        if (dropTarget.pileType === PileType.Tableau) {
+          if (moveFoundationToTableau(gs, this.dragPileIndex, dropTarget.pileIndex)) {
+            moved = true;
+            sfxCardPlace();
+          }
+        }
+      }
+
+      if (moved) {
+        this.checkAchievements();
+        if (gs.won) this.handleWin();
+        else if (canAutoComplete(gs)) { this.phase = 'autocomplete'; this.autoCompleteTimer = 0; }
+      }
+    }
+
+    // Reset drag highlight
+    for (const id of this.dragCardIds) {
+      const cm = this.cardMeshes.get(id);
+      if (cm) setCardHighlight(cm, false);
+    }
+
+    if (!moved) sfxInvalid();
+
+    // Refresh card positions (snaps cards back or to new position)
+    this.refreshCardPositions();
+    this.resetPlaceholderHighlights();
+    this.dragCardIds = [];
+    this.dragOffsets.clear();
+  }
+
+  /** Cancel drag - return cards to original positions */
+  cancelDrag() {
+    if (!this.isDragging) return;
+    this.isDragging = false;
+    this.dragPending = false;
+    for (const id of this.dragCardIds) {
+      const cm = this.cardMeshes.get(id);
+      if (cm) setCardHighlight(cm, false);
+    }
+    this.refreshCardPositions();
+    this.resetPlaceholderHighlights();
+    this.dragCardIds = [];
+    this.dragOffsets.clear();
+  }
+
+  /** Highlight valid drop targets during drag */
+  highlightDragTargets() {
+    this.resetPlaceholderHighlights();
+    const gs = this.gs!;
+    if (this.dragCardIds.length === 0) return;
+
+    // Get the lead card
+    let card: Card | null = null;
+    if (this.dragPileType === PileType.Waste && gs.waste.length > 0) {
+      card = gs.waste[gs.waste.length - 1];
+    } else if (this.dragPileType === PileType.Tableau) {
+      const col = gs.tableau[this.dragPileIndex];
+      if (this.dragCardIndex < col.length) card = col[this.dragCardIndex];
+    } else if (this.dragPileType === PileType.Foundation) {
+      const fPile = gs.foundations[this.dragPileIndex];
+      if (fPile.length > 0) card = fPile[fPile.length - 1];
+    }
+    if (!card) return;
+
+    // Highlight valid foundation targets (single card only)
+    if (this.dragCardIds.length === 1 && this.dragPileType !== PileType.Foundation) {
+      for (let fi = 0; fi < 4; fi++) {
+        if (canMoveToFoundation(card, gs.foundations[fi])) {
+          const ph = this.pilePlaceholders[fi + 2];
+          const mat = ph.material as MeshStandardMaterial;
+          mat.emissive.set('#00ff88');
+          mat.emissiveIntensity = 0.8;
+          mat.opacity = 0.9;
+        }
+      }
+    }
+
+    // Highlight valid tableau targets
+    for (let ti = 0; ti < 7; ti++) {
+      if (this.dragPileType === PileType.Tableau && this.dragPileIndex === ti) continue;
+      if (canMoveToTableau(card, gs.tableau[ti])) {
+        const ph = this.pilePlaceholders[ti + 6];
+        const mat = ph.material as MeshStandardMaterial;
+        mat.emissive.set('#00ff88');
+        mat.emissiveIntensity = 0.6;
+        mat.opacity = 0.8;
+      }
+    }
+  }
+
+  /** Right-click auto-move a card to foundation */
+  autoMoveToFoundation(cardId: number) {
+    const gs = this.gs!;
+    const loc = this.findCard(cardId);
+    if (!loc) return;
+
+    let card: Card | null = null;
+    if (loc.pileType === PileType.Waste && loc.cardIndex === gs.waste.length - 1) {
+      card = gs.waste[gs.waste.length - 1];
+    } else if (loc.pileType === PileType.Tableau) {
+      const col = gs.tableau[loc.pileIndex];
+      if (loc.cardIndex === col.length - 1 && col[loc.cardIndex].faceUp) {
+        card = col[loc.cardIndex];
+      }
+    }
+    if (!card) return;
+
+    for (let fi = 0; fi < 4; fi++) {
+      let success = false;
+      if (loc.pileType === PileType.Waste) {
+        if (moveWasteToFoundation(gs, fi)) success = true;
+      } else if (loc.pileType === PileType.Tableau) {
+        if (moveTableauToFoundation(gs, loc.pileIndex, fi)) success = true;
+      }
+      if (success) {
+        this.clearSelection();
+        sfxFoundation(gs.combo);
+        const positions = this.getPilePositions();
+        this.particles?.emitSparkle(positions.foundations[fi], THEMES[this.settings.themeIndex].accent);
+        if (gs.foundations[fi].length === 13) {
+          this.particles?.emitFoundationComplete(positions.foundations[fi]);
+        }
+        this.refreshCardPositions();
+        this.checkAchievements();
+        if (gs.won) this.handleWin();
+        else if (canAutoComplete(gs)) { this.phase = 'autocomplete'; this.autoCompleteTimer = 0; }
+        return;
+      }
+    }
+    sfxInvalid();
   }
 
   handleClick() {
@@ -787,6 +1166,16 @@ export class GameSystem extends createSystem({}) {
     this.phase = 'gameover';
     const gs = this.gs!;
     sfxWin();
+
+    // Calculate time bonus: faster = more points, max 500 for under 60s
+    const maxBonus = 500;
+    if (gs.elapsed < 300) {
+      this.timeBonus = Math.floor(maxBonus * Math.max(0, 1 - gs.elapsed / 300));
+      gs.score += this.timeBonus;
+    } else {
+      this.timeBonus = 0;
+    }
+
     this.stats.gamesPlayed++;
     this.stats.gamesWon++;
     this.stats.winStreak++;
@@ -810,11 +1199,10 @@ export class GameSystem extends createSystem({}) {
       const today = getTodayString();
       const daily = loadDailyProgress();
       if (daily.lastDate !== today) {
-        // New day completion
         if (daily.lastDate === getYesterdayString()) {
-          daily.streak++; // Continue streak
+          daily.streak++;
         } else {
-          daily.streak = 1; // Reset streak
+          daily.streak = 1;
         }
         daily.lastDate = today;
         daily.totalCompleted++;
@@ -828,6 +1216,9 @@ export class GameSystem extends createSystem({}) {
     const center = new Vector3(0, TABLE_Y + 0.2, -1.0);
     this.particles?.emitWinCelebration(center);
 
+    // Start card cascade win animation
+    this.startWinCascade();
+
     // Per-mode stats
     if (!this.modeStats[this.mode]) {
       this.modeStats[this.mode] = { played: 0, won: 0, bestScore: 0, bestTime: 0 };
@@ -839,6 +1230,88 @@ export class GameSystem extends createSystem({}) {
       this.modeStats[this.mode].bestTime = gs.elapsed;
     }
     saveModeStats(this.modeStats);
+  }
+
+  /** Start the card cascade/waterfall win animation */
+  startWinCascade() {
+    this.winCascadeCards = [];
+    this.winCascadeTimer = 0;
+    this.winCascadeIndex = 0;
+    this.isWinCascade = true;
+  }
+
+  /** Update win cascade - launch cards one by one in an arc */
+  updateWinCascade(delta: number) {
+    if (!this.isWinCascade) return;
+
+    // Launch new cards at intervals
+    this.winCascadeTimer -= delta;
+    if (this.winCascadeTimer <= 0 && this.winCascadeIndex < 52) {
+      this.winCascadeTimer = 0.04;
+
+      // Find a card mesh from foundations
+      const gs = this.gs!;
+      const fi = this.winCascadeIndex % 4;
+      const ci = Math.floor(this.winCascadeIndex / 4);
+      if (fi < gs.foundations.length && ci < gs.foundations[fi].length) {
+        const card = gs.foundations[fi][ci];
+        const cm = this.cardMeshes.get(card.id);
+        if (cm) {
+          // Launch in a random arc direction
+          const angle = (this.winCascadeIndex / 52) * Math.PI * 4 + (Math.random() - 0.5) * 0.5;
+          const speed = 0.8 + Math.random() * 0.5;
+          const vel = new Vector3(
+            Math.cos(angle) * speed,
+            1.5 + Math.random() * 0.8,
+            Math.sin(angle) * speed * 0.5 - 0.3,
+          );
+          const rotVel = new Vector3(
+            (Math.random() - 0.5) * 8,
+            (Math.random() - 0.5) * 8,
+            (Math.random() - 0.5) * 8,
+          );
+          this.winCascadeCards.push({ mesh: cm.group, vel, rotVel, active: true });
+        }
+      }
+      this.winCascadeIndex++;
+    }
+
+    // Animate active cascade cards
+    const gravity = -3.0;
+    for (const c of this.winCascadeCards) {
+      if (!c.active) continue;
+      c.vel.y += gravity * delta;
+      c.mesh.position.x += c.vel.x * delta;
+      c.mesh.position.y += c.vel.y * delta;
+      c.mesh.position.z += c.vel.z * delta;
+      c.mesh.rotation.x += c.rotVel.x * delta;
+      c.mesh.rotation.y += c.rotVel.y * delta;
+      c.mesh.rotation.z += c.rotVel.z * delta;
+
+      // Bounce off floor
+      if (c.mesh.position.y < 0.01) {
+        c.mesh.position.y = 0.01;
+        c.vel.y = Math.abs(c.vel.y) * 0.5;
+        c.vel.x *= 0.8;
+        c.vel.z *= 0.8;
+        c.rotVel.multiplyScalar(0.7);
+        if (Math.abs(c.vel.y) < 0.05) {
+          c.active = false;
+        }
+      }
+
+      // Trail particles
+      if (Math.random() > 0.7 && this.particles) {
+        const hue = (this.winCascadeIndex * 7 + Math.random() * 50) % 360;
+        const color = new Color().setHSL(hue / 360, 1.0, 0.6);
+        this.particles.emitCardTrail(c.mesh.position.clone(), '#' + color.getHexString());
+      }
+    }
+
+    // End cascade when all done
+    if (this.winCascadeIndex >= 52 && this.winCascadeCards.every(c => !c.active)) {
+      this.isWinCascade = false;
+    }
   }
 
   handleLoss() {
@@ -863,11 +1336,22 @@ export class GameSystem extends createSystem({}) {
     const gs = this.gs!;
     let newCount = 0;
     for (const ach of ACHIEVEMENTS) {
-      if (!this.unlocked.has(ach.id) && ach.check(gs, this.stats)) {
+      if (this.unlocked.has(ach.id)) continue;
+      // Special achievements that need extra context
+      let unlocked = false;
+      if (ach.id === 'time_bonus_100') unlocked = this.timeBonus >= 100;
+      else if (ach.id === 'time_bonus_300') unlocked = this.timeBonus >= 300;
+      else if (ach.id === 'time_bonus_max') unlocked = this.timeBonus >= 400;
+      else if (ach.id === 'all_modes') {
+        const modes = ['klondike1', 'klondike3', 'timed', 'vegas', 'daily', 'speed', 'zen', 'practice'];
+        unlocked = modes.every(m => this.modeStats[m]?.won > 0);
+      }
+      else unlocked = ach.check(gs, this.stats);
+
+      if (unlocked) {
         this.unlocked.add(ach.id);
         newCount++;
         this.showToast(`Achievement: ${ach.name}!`);
-        // Achievement sparkle
         this.particles?.emitAchievement(new Vector3(0, TABLE_Y + 0.3, -1.0));
       }
     }
@@ -1193,5 +1677,8 @@ export class GameSystem extends createSystem({}) {
         this.flippingCards.splice(i, 1);
       }
     }
+
+    // Win cascade animation
+    this.updateWinCascade(delta);
   }
 }

@@ -9,10 +9,10 @@ async function main() {
   const container = document.getElementById('app') as HTMLDivElement;
   if (!container) throw new Error('No #app element');
 
-  const world = await (World.create as any)(container, {
+  const world = await World.create(container, {
     xr: { offer: 'once' },
     browserControls: true,
-  });
+  } as Parameters<typeof World.create>[1]);
 
   // World-space panels (menu screens, gameover, pause, toolbar, countdown, tutorial, modestats)
   const worldPanelNames = [

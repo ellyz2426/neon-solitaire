@@ -16,6 +16,8 @@
     <container flexDirection="column" gap="4" alignItems="center">
       <text fontSize="14" color="#ffcc00" fontWeight="bold">Browser</text>
       <text fontSize="12" color="#aabbcc">Click: Select card</text>
+      <text fontSize="12" color="#aabbcc">Drag: Move cards</text>
+      <text fontSize="12" color="#aabbcc">Right-click: Foundation</text>
       <text fontSize="12" color="#aabbcc">Dbl-click: Auto-move</text>
       <text fontSize="12" color="#aabbcc">Z: Undo  H: Hint</text>
       <text fontSize="12" color="#aabbcc">ESC: Pause</text>

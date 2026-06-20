@@ -59,6 +59,13 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'zen_master', name: 'Inner Peace', desc: 'Win in Zen mode', check: (gs) => gs.won },
   { id: 'thousand_moves', name: 'Relentless', desc: '1000 total moves', check: (_gs, st) => st.totalMoves >= 1000 },
   { id: 'five_thousand_moves', name: 'Tireless', desc: '5000 total moves', check: (_gs, st) => st.totalMoves >= 5000 },
+  { id: 'time_bonus_100', name: 'Quick Bonus', desc: 'Earn 100+ time bonus', check: (_gs) => false }, // Checked in handleWin
+  { id: 'time_bonus_300', name: 'Speed Bonus', desc: 'Earn 300+ time bonus', check: (_gs) => false },
+  { id: 'time_bonus_max', name: 'Maximum Velocity', desc: 'Earn 400+ time bonus', check: (_gs) => false },
+  { id: 'no_undo_hard', name: 'Clean Hands', desc: 'Win Klondike 3 without undo', check: (gs) => gs.won && gs.drawCount === 3 && gs.undoStack.length >= gs.moves },
+  { id: 'all_modes', name: 'Variety Player', desc: 'Win at least once in all 8 modes', check: (_gs) => false }, // Checked via modeStats
+  { id: 'score_5000', name: 'Score Emperor', desc: 'Score over 5000', check: (gs) => gs.score >= 5000 },
+  { id: 'two_hundred_games', name: 'Lifetime Player', desc: 'Play 200 games', check: (_gs, st) => st.gamesPlayed >= 200 },
 ];
 
 // -- Storage ----------------------------------------------------------
