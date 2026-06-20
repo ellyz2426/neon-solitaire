@@ -73,6 +73,14 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'no_hints', name: 'Solo Navigator', desc: 'Win without using hints', check: (gs) => gs.won },
   { id: 'hundred_wins', name: 'Triple Digit', desc: 'Win 100 games', check: (_gs, st) => st.gamesWon >= 100 },
   { id: 'score_10000', name: 'Score Overlord', desc: 'Score over 10000', check: (gs) => gs.score >= 10000 },
+  // Round 7 additions
+  { id: 'combo_20', name: 'Combo God', desc: 'Get a 20x combo', check: (gs) => gs.bestCombo >= 20 },
+  { id: 'five_hundred_wins', name: 'Half Thousand', desc: 'Win 500 games', check: (_gs, st) => st.gamesWon >= 500 },
+  { id: 'efficiency_a_plus', name: 'Perfect Play', desc: 'Earn an A+ efficiency grade', check: (gs) => gs.won && gs.moves < 65 && gs.elapsed < 120 },
+  { id: 'streak_15', name: 'Domination', desc: 'Win 15 games in a row', check: (_gs, st) => st.winStreak >= 15 },
+  { id: 'ten_thousand_moves', name: 'Marathon Runner', desc: '10000 total moves', check: (_gs, st) => st.totalMoves >= 10000 },
+  { id: 'total_5000', name: 'Foundation Legend', desc: '5000 cards to foundations total', check: (_gs, st) => st.cardsToFoundation >= 5000 },
+  { id: 'perfect_clear_fast', name: 'Surgical Clear', desc: 'Win under 50 moves in under 2 min', check: (gs) => gs.won && gs.moves < 50 && gs.elapsed < 120 },
 ];
 
 // -- Storage ----------------------------------------------------------

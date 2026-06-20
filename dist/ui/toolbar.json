@@ -26,6 +26,25 @@
         "sourceTag": "text",
         "type": "custom",
         "children": [
+          "REDO"
+        ],
+        "properties": {
+          "name": "btn-redo",
+          "fontsize": "14",
+          "color": "#ccaa00",
+          "backgroundcolor": "#2a2a00",
+          "padding": "6",
+          "borderradius": "4",
+          "width": "130",
+          "textalign": "center",
+          "cursor": "pointer"
+        },
+        "dataUid": "uid-3"
+      },
+      {
+        "sourceTag": "text",
+        "type": "custom",
+        "children": [
           "HINT"
         ],
         "properties": {
@@ -39,7 +58,7 @@
           "textalign": "center",
           "cursor": "pointer"
         },
-        "dataUid": "uid-3"
+        "dataUid": "uid-4"
       },
       {
         "sourceTag": "text",
@@ -58,7 +77,7 @@
           "textalign": "center",
           "cursor": "pointer"
         },
-        "dataUid": "uid-4"
+        "dataUid": "uid-5"
       },
       {
         "sourceTag": "text",
@@ -77,7 +96,7 @@
           "textalign": "center",
           "cursor": "pointer"
         },
-        "dataUid": "uid-5"
+        "dataUid": "uid-6"
       }
     ],
     "properties": {
@@ -100,7 +119,7 @@
         "column": 0
       },
       "end": {
-        "line": 14,
+        "line": 15,
         "column": 12
       }
     },
@@ -131,7 +150,7 @@
       },
       "end": {
         "line": 12,
-        "column": 176
+        "column": 168
       }
     },
     "uid-5": {
@@ -141,6 +160,16 @@
       },
       "end": {
         "line": 13,
+        "column": 176
+      }
+    },
+    "uid-6": {
+      "start": {
+        "line": 14,
+        "column": 2
+      },
+      "end": {
+        "line": 14,
         "column": 175
       }
     }

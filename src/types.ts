@@ -31,7 +31,25 @@ export interface GameState {
   won: boolean;
   started: boolean;
   undoStack: string[];   // JSON snapshots
+  redoStack: string[];   // Redo snapshots
   recycleCount: number;
+}
+
+// -- Efficiency grading -----------------------------------------------
+export function getEfficiencyGrade(moves: number, elapsed: number, won: boolean): { grade: string; color: string } {
+  if (!won) return { grade: 'F', color: '#ff3333' };
+  // Score based on moves (lower = better) and time (faster = better)
+  const moveScore = Math.max(0, 100 - (moves - 50) * 0.8);
+  const timeScore = Math.max(0, 100 - (elapsed - 60) * 0.25);
+  const total = moveScore * 0.6 + timeScore * 0.4;
+  if (total >= 95) return { grade: 'A+', color: '#00ffcc' };
+  if (total >= 85) return { grade: 'A', color: '#00ff88' };
+  if (total >= 75) return { grade: 'B+', color: '#44ff44' };
+  if (total >= 65) return { grade: 'B', color: '#88ff00' };
+  if (total >= 55) return { grade: 'C+', color: '#ffff00' };
+  if (total >= 45) return { grade: 'C', color: '#ffcc00' };
+  if (total >= 35) return { grade: 'D', color: '#ff8800' };
+  return { grade: 'D-', color: '#ff4400' };
 }
 
 // -- Game mode --------------------------------------------------------
@@ -104,6 +122,9 @@ export const THEMES: Theme[] = [
   { name: 'Matrix Green', bg: '#050f05', floor: '#0a1a0a', grid: '#00ff44', table: '#0d1a0d', accent: '#00ff44', cardFace: '#0a150a', cardBorder: '#00cc33', redSuit: '#ff4444', blackSuit: '#ccffcc' },
   { name: 'Void Purple', bg: '#0a050f', floor: '#140a1a', grid: '#8800ff', table: '#120a1a', accent: '#aa44ff', cardFace: '#0f0a15', cardBorder: '#7700cc', redSuit: '#ff44aa', blackSuit: '#ddccff' },
   { name: 'Frost Blue', bg: '#050a10', floor: '#0a1420', grid: '#4488ff', table: '#0a1222', accent: '#4488ff', cardFace: '#0a1020', cardBorder: '#3366cc', redSuit: '#ff4466', blackSuit: '#ccddff' },
+  { name: 'Digital Ocean', bg: '#020f14', floor: '#041a22', grid: '#00ccaa', table: '#061820', accent: '#00ddbb', cardFace: '#071520', cardBorder: '#00aa88', redSuit: '#ff5566', blackSuit: '#bbffee' },
+  { name: 'Ember Glow', bg: '#120804', floor: '#1e0e06', grid: '#ff8833', table: '#1a0e08', accent: '#ffaa44', cardFace: '#160c06', cardBorder: '#cc7722', redSuit: '#ff6633', blackSuit: '#ffe8cc' },
+  { name: 'Midnight Rose', bg: '#0c040a', floor: '#18080f', grid: '#ff4488', table: '#140810', accent: '#ff6699', cardFace: '#120610', cardBorder: '#cc3366', redSuit: '#ff6699', blackSuit: '#ffccdd' },
 ];
 
 // -- Card back skins --------------------------------------------------

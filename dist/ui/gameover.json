@@ -177,7 +177,7 @@
                 "sourceTag": "text",
                 "type": "custom",
                 "children": [
-                  "Combo Best:"
+                  "Grade:"
                 ],
                 "properties": {
                   "fontsize": "12",
@@ -190,12 +190,13 @@
                 "sourceTag": "text",
                 "type": "custom",
                 "children": [
-                  "0"
+                  "-"
                 ],
                 "properties": {
-                  "name": "r-combo",
-                  "fontsize": "12",
-                  "color": "#ff8800"
+                  "name": "r-grade",
+                  "fontsize": "14",
+                  "fontweight": "bold",
+                  "color": "#00ffcc"
                 },
                 "dataUid": "uid-18"
               }
@@ -214,7 +215,7 @@
                 "sourceTag": "text",
                 "type": "custom",
                 "children": [
-                  "Foundations:"
+                  "Combo Best:"
                 ],
                 "properties": {
                   "fontsize": "12",
@@ -227,12 +228,12 @@
                 "sourceTag": "text",
                 "type": "custom",
                 "children": [
-                  "0/52"
+                  "0"
                 ],
                 "properties": {
-                  "name": "r-foundations",
+                  "name": "r-combo",
                   "fontsize": "12",
-                  "color": "#ff66ff"
+                  "color": "#ff8800"
                 },
                 "dataUid": "uid-21"
               }
@@ -251,7 +252,7 @@
                 "sourceTag": "text",
                 "type": "custom",
                 "children": [
-                  "Win Streak:"
+                  "Foundations:"
                 ],
                 "properties": {
                   "fontsize": "12",
@@ -264,12 +265,12 @@
                 "sourceTag": "text",
                 "type": "custom",
                 "children": [
-                  "0"
+                  "0/52"
                 ],
                 "properties": {
-                  "name": "r-streak",
+                  "name": "r-foundations",
                   "fontsize": "12",
-                  "color": "#ffcc00"
+                  "color": "#ff66ff"
                 },
                 "dataUid": "uid-24"
               }
@@ -288,7 +289,7 @@
                 "sourceTag": "text",
                 "type": "custom",
                 "children": [
-                  "Time Bonus:"
+                  "Win Streak:"
                 ],
                 "properties": {
                   "fontsize": "12",
@@ -301,12 +302,12 @@
                 "sourceTag": "text",
                 "type": "custom",
                 "children": [
-                  "-"
+                  "0"
                 ],
                 "properties": {
-                  "name": "r-timebonus",
+                  "name": "r-streak",
                   "fontsize": "12",
-                  "color": "#44ffaa"
+                  "color": "#ffcc00"
                 },
                 "dataUid": "uid-27"
               }
@@ -325,7 +326,7 @@
                 "sourceTag": "text",
                 "type": "custom",
                 "children": [
-                  "Undos Used:"
+                  "Time Bonus:"
                 ],
                 "properties": {
                   "fontsize": "12",
@@ -338,12 +339,12 @@
                 "sourceTag": "text",
                 "type": "custom",
                 "children": [
-                  "0"
+                  "-"
                 ],
                 "properties": {
-                  "name": "r-undos",
+                  "name": "r-timebonus",
                   "fontsize": "12",
-                  "color": "#8888aa"
+                  "color": "#44ffaa"
                 },
                 "dataUid": "uid-30"
               }
@@ -362,7 +363,7 @@
                 "sourceTag": "text",
                 "type": "custom",
                 "children": [
-                  "XP Earned:"
+                  "Streak Bonus:"
                 ],
                 "properties": {
                   "fontsize": "12",
@@ -375,12 +376,12 @@
                 "sourceTag": "text",
                 "type": "custom",
                 "children": [
-                  "+0"
+                  "-"
                 ],
                 "properties": {
-                  "name": "r-xp",
+                  "name": "r-streak-bonus",
                   "fontsize": "12",
-                  "color": "#aa66ff"
+                  "color": "#ffaa44"
                 },
                 "dataUid": "uid-33"
               }
@@ -390,6 +391,80 @@
               "gap": "8"
             },
             "dataUid": "uid-31"
+          },
+          {
+            "sourceTag": "container",
+            "type": "custom",
+            "children": [
+              {
+                "sourceTag": "text",
+                "type": "custom",
+                "children": [
+                  "Undos Used:"
+                ],
+                "properties": {
+                  "fontsize": "12",
+                  "color": "#668888",
+                  "width": "120"
+                },
+                "dataUid": "uid-35"
+              },
+              {
+                "sourceTag": "text",
+                "type": "custom",
+                "children": [
+                  "0"
+                ],
+                "properties": {
+                  "name": "r-undos",
+                  "fontsize": "12",
+                  "color": "#8888aa"
+                },
+                "dataUid": "uid-36"
+              }
+            ],
+            "properties": {
+              "flexdirection": "row",
+              "gap": "8"
+            },
+            "dataUid": "uid-34"
+          },
+          {
+            "sourceTag": "container",
+            "type": "custom",
+            "children": [
+              {
+                "sourceTag": "text",
+                "type": "custom",
+                "children": [
+                  "XP Earned:"
+                ],
+                "properties": {
+                  "fontsize": "12",
+                  "color": "#668888",
+                  "width": "120"
+                },
+                "dataUid": "uid-38"
+              },
+              {
+                "sourceTag": "text",
+                "type": "custom",
+                "children": [
+                  "+0"
+                ],
+                "properties": {
+                  "name": "r-xp",
+                  "fontsize": "12",
+                  "color": "#aa66ff"
+                },
+                "dataUid": "uid-39"
+              }
+            ],
+            "properties": {
+              "flexdirection": "row",
+              "gap": "8"
+            },
+            "dataUid": "uid-37"
           }
         ],
         "properties": {
@@ -421,7 +496,7 @@
               "textalign": "center",
               "cursor": "pointer"
             },
-            "dataUid": "uid-35"
+            "dataUid": "uid-41"
           },
           {
             "sourceTag": "text",
@@ -440,7 +515,7 @@
               "textalign": "center",
               "cursor": "pointer"
             },
-            "dataUid": "uid-36"
+            "dataUid": "uid-42"
           }
         ],
         "properties": {
@@ -448,7 +523,7 @@
           "gap": "8",
           "paddingTop": "8"
         },
-        "dataUid": "uid-34"
+        "dataUid": "uid-40"
       }
     ],
     "properties": {
@@ -471,7 +546,7 @@
         "column": 0
       },
       "end": {
-        "line": 27,
+        "line": 29,
         "column": 12
       }
     },
@@ -491,7 +566,7 @@
         "column": 2
       },
       "end": {
-        "line": 22,
+        "line": 24,
         "column": 14
       }
     },
@@ -622,7 +697,7 @@
       },
       "end": {
         "line": 16,
-        "column": 180
+        "column": 193
       }
     },
     "uid-17": {
@@ -632,17 +707,17 @@
       },
       "end": {
         "line": 16,
-        "column": 109
+        "column": 104
       }
     },
     "uid-18": {
       "start": {
         "line": 16,
-        "column": 109
+        "column": 104
       },
       "end": {
         "line": 16,
-        "column": 168
+        "column": 181
       }
     },
     "uid-19": {
@@ -652,7 +727,7 @@
       },
       "end": {
         "line": 17,
-        "column": 190
+        "column": 180
       }
     },
     "uid-20": {
@@ -662,17 +737,17 @@
       },
       "end": {
         "line": 17,
-        "column": 110
+        "column": 109
       }
     },
     "uid-21": {
       "start": {
         "line": 17,
-        "column": 110
+        "column": 109
       },
       "end": {
         "line": 17,
-        "column": 178
+        "column": 168
       }
     },
     "uid-22": {
@@ -682,7 +757,7 @@
       },
       "end": {
         "line": 18,
-        "column": 181
+        "column": 190
       }
     },
     "uid-23": {
@@ -692,17 +767,17 @@
       },
       "end": {
         "line": 18,
-        "column": 109
+        "column": 110
       }
     },
     "uid-24": {
       "start": {
         "line": 18,
-        "column": 109
+        "column": 110
       },
       "end": {
         "line": 18,
-        "column": 169
+        "column": 178
       }
     },
     "uid-25": {
@@ -712,7 +787,7 @@
       },
       "end": {
         "line": 19,
-        "column": 184
+        "column": 181
       }
     },
     "uid-26": {
@@ -732,7 +807,7 @@
       },
       "end": {
         "line": 19,
-        "column": 172
+        "column": 169
       }
     },
     "uid-28": {
@@ -742,7 +817,7 @@
       },
       "end": {
         "line": 20,
-        "column": 180
+        "column": 184
       }
     },
     "uid-29": {
@@ -762,7 +837,7 @@
       },
       "end": {
         "line": 20,
-        "column": 168
+        "column": 172
       }
     },
     "uid-31": {
@@ -772,7 +847,7 @@
       },
       "end": {
         "line": 21,
-        "column": 177
+        "column": 189
       }
     },
     "uid-32": {
@@ -782,46 +857,106 @@
       },
       "end": {
         "line": 21,
-        "column": 108
+        "column": 111
       }
     },
     "uid-33": {
       "start": {
         "line": 21,
-        "column": 108
+        "column": 111
       },
       "end": {
         "line": 21,
-        "column": 165
+        "column": 177
       }
     },
     "uid-34": {
       "start": {
-        "line": 23,
-        "column": 2
+        "line": 22,
+        "column": 4
       },
       "end": {
-        "line": 26,
-        "column": 14
+        "line": 22,
+        "column": 180
       }
     },
     "uid-35": {
       "start": {
-        "line": 24,
-        "column": 4
+        "line": 22,
+        "column": 43
       },
       "end": {
-        "line": 24,
-        "column": 177
+        "line": 22,
+        "column": 109
       }
     },
     "uid-36": {
       "start": {
-        "line": 25,
+        "line": 22,
+        "column": 109
+      },
+      "end": {
+        "line": 22,
+        "column": 168
+      }
+    },
+    "uid-37": {
+      "start": {
+        "line": 23,
         "column": 4
       },
       "end": {
+        "line": 23,
+        "column": 177
+      }
+    },
+    "uid-38": {
+      "start": {
+        "line": 23,
+        "column": 43
+      },
+      "end": {
+        "line": 23,
+        "column": 108
+      }
+    },
+    "uid-39": {
+      "start": {
+        "line": 23,
+        "column": 108
+      },
+      "end": {
+        "line": 23,
+        "column": 165
+      }
+    },
+    "uid-40": {
+      "start": {
         "line": 25,
+        "column": 2
+      },
+      "end": {
+        "line": 28,
+        "column": 14
+      }
+    },
+    "uid-41": {
+      "start": {
+        "line": 26,
+        "column": 4
+      },
+      "end": {
+        "line": 26,
+        "column": 177
+      }
+    },
+    "uid-42": {
+      "start": {
+        "line": 27,
+        "column": 4
+      },
+      "end": {
+        "line": 27,
         "column": 170
       }
     }

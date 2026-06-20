@@ -6,7 +6,7 @@
   padding="10"
   backgroundColor="#000000bb"
   borderRadius="8"
-  width="360"
+  width="380"
 >
   <container flexDirection="row" gap="16" width="100%">
     <container flexDirection="column" gap="2" alignItems="center" flexGrow="1">
@@ -22,11 +22,15 @@
       <text name="time" fontSize="20" fontWeight="bold" color="#ffcc00">0:00</text>
     </container>
   </container>
-  <container flexDirection="row" gap="8" width="100%">
+  <container flexDirection="row" gap="6" width="100%">
     <text name="mode" fontSize="10" color="#888888" flexGrow="1">Klondike</text>
     <text name="stock-count" fontSize="10" color="#557777">Stock: 24</text>
     <text name="undo-count" fontSize="10" color="#556677">Undos: 0</text>
+    <text name="redo-count" fontSize="10" color="#555566">Redo: 0</text>
     <text name="combo" fontSize="11" fontWeight="bold" color="#ff8800">-</text>
     <text name="level" fontSize="10" color="#aa66ff">Lv.1</text>
+  </container>
+  <container flexDirection="row" gap="4" width="100%">
+    <text name="found-progress" fontSize="9" color="#446666">Foundations: 0/52</text>
   </container>
 </container>

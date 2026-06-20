@@ -1,6 +1,7 @@
 import {
   Mesh, BoxGeometry, MeshStandardMaterial, CanvasTexture, Group,
-  DoubleSide, Color, type Object3D
+  DoubleSide, Color, type Object3D,
+  SpriteMaterial, Sprite,
 } from '@iwsdk/core';
 import {
   Card, Suit, Rank, RANK_NAMES, SUIT_SYMBOLS, isRed,
@@ -342,7 +343,7 @@ export function setCardHighlight(cm: CardMesh, highlight: boolean, color: string
 }
 
 // -- Empty pile placeholder -------------------------------------------
-export function createPilePlaceholder(theme: Theme, isFoundation: boolean): Mesh {
+export function createPilePlaceholder(theme: Theme, isFoundation: boolean, suitIndex?: number): Mesh {
   const geo = new BoxGeometry(CARD_W, 0.001, CARD_H);
   const mat = new MeshStandardMaterial({
     color: new Color(theme.table),
@@ -352,5 +353,29 @@ export function createPilePlaceholder(theme: Theme, isFoundation: boolean): Mesh
     opacity: 0.6,
   });
   const m = new Mesh(geo, mat);
+
+  // Add suit symbol texture to foundation placeholders
+  if (isFoundation && suitIndex !== undefined && suitIndex >= 0 && suitIndex < 4) {
+    const canvas = document.createElement('canvas');
+    canvas.width = 64; canvas.height = 64;
+    const ctx = canvas.getContext('2d')!;
+    ctx.clearRect(0, 0, 64, 64);
+    const symbols = ['\u2663', '\u2666', '\u2665', '\u2660'];
+    const colors = [theme.blackSuit + '44', theme.redSuit + '44', theme.redSuit + '44', theme.blackSuit + '44'];
+    ctx.font = '36px monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = colors[suitIndex];
+    ctx.fillText(symbols[suitIndex], 32, 32);
+
+    const tex = new CanvasTexture(canvas);
+    const labelMat = new SpriteMaterial({ map: tex, transparent: true, opacity: 0.5 });
+    const label = new Sprite(labelMat);
+    label.scale.set(0.03, 0.03, 1);
+    label.position.set(0, 0.005, 0);
+    label.rotation.x = -Math.PI / 2;
+    m.add(label);
+  }
+
   return m;
 }

@@ -10,12 +10,12 @@ import {
   GameState, GameMode, ModeConfig, getModeConfig, PileType,
   CARD_W, CARD_H, COL_SPACING, CASCADE_DOWN, CASCADE_UP, STACK_Y,
   TABLE_Y, TOP_ROW_Z, TABLEAU_START_Z, THEMES, CARD_SKINS,
-  Card,
+  Card, getEfficiencyGrade,
 } from './types';
 import {
   deal, drawFromStock, recycleWaste, moveWasteToFoundation,
   moveWasteToTableau, moveTableauToFoundation, moveTableauToTableau,
-  moveFoundationToTableau, undo, canAutoComplete, autoCompleteStep,
+  moveFoundationToTableau, undo, redo, canAutoComplete, autoCompleteStep,
   findHint, foundationTotal, findAllMoves,
   canMoveToFoundation, canMoveToTableau,
 } from './solitaire';
@@ -140,6 +140,15 @@ export class GameSystem extends createSystem({}) {
   // Resume state
   hasResumeData = false;
 
+  // Camera shake
+  cameraShakeIntensity = 0;
+  cameraShakeDecay = 0;
+  cameraOriginalPos = new Vector3();
+  cameraShakeActive = false;
+
+  // Grid animation
+  gridTime = 0;
+
   // Drag-and-drop state
   isDragging = false;
   dragCardIds: number[] = [];
@@ -215,7 +224,7 @@ export class GameSystem extends createSystem({}) {
   doAutoSave() {
     if (!this.gs || this.phase !== 'playing') return;
     saveGameState({
-      gameState: JSON.parse(JSON.stringify({ ...this.gs, undoStack: this.gs.undoStack.slice(-5) })),
+      gameState: JSON.parse(JSON.stringify({ ...this.gs, undoStack: this.gs.undoStack.slice(-5), redoStack: this.gs.redoStack.slice(-5) })),
       mode: this.mode,
       phase: this.phase,
       savedAt: Date.now(),
@@ -392,7 +401,7 @@ export class GameSystem extends createSystem({}) {
 
     // Foundations
     for (let i = 0; i < 4; i++) {
-      const fPh = createPilePlaceholder(theme, true);
+      const fPh = createPilePlaceholder(theme, true, i);
       fPh.position.copy(positions.foundations[i]);
       fPh.userData.pileType = PileType.Foundation;
       fPh.userData.pileIndex = i;
@@ -514,6 +523,7 @@ export class GameSystem extends createSystem({}) {
         else if (this.phase === 'paused') this.phase = 'playing';
       }
       if (e.key === 'z' || e.key === 'Z') { if (this.phase === 'playing') this.doUndo(); }
+      if (e.key === 'y' || e.key === 'Y') { if (this.phase === 'playing') this.doRedo(); }
       if (e.key === 'h' || e.key === 'H') { if (this.phase === 'playing') this.doHint(); }
       if (e.key === 'r' || e.key === 'R') {
         if (this.phase === 'playing' || this.phase === 'gameover') this.startGame(this.mode);
@@ -992,6 +1002,10 @@ export class GameSystem extends createSystem({}) {
           // Score popup with combo multiplier
           const pts = 10 * Math.min(gs.combo, 10);
           this.spawnScorePopup(`+${pts}`, positions.foundations[destIndex], '#ffff00');
+          // Camera shake on big combos
+          if (gs.combo >= 5) {
+            this.triggerCameraShake(0.003 + (gs.combo - 5) * 0.001);
+          }
         } else {
           const positions = this.getPilePositions();
           this.particles?.emitSparkle(positions.foundations[destIndex], THEMES[this.settings.themeIndex].accent, 5);
@@ -1263,6 +1277,15 @@ export class GameSystem extends createSystem({}) {
     }
   }
 
+  doRedo() {
+    this.resetIdleHint();
+    if (this.gs && redo(this.gs)) {
+      sfxCardSelect();
+      this.clearSelection();
+      this.refreshCardPositions();
+    }
+  }
+
   doHint() {
     this.resetIdleHint();
     const gs = this.gs!;
@@ -1318,6 +1341,9 @@ export class GameSystem extends createSystem({}) {
     if (this.stats.bestTime === 0 || gs.elapsed < this.stats.bestTime) this.stats.bestTime = gs.elapsed;
     if (this.stats.fewestMoves === 0 || gs.moves < this.stats.fewestMoves) this.stats.fewestMoves = gs.moves;
     this.stats.xp += Math.floor(gs.score / 10) + 50;
+    // Win streak bonus XP: +10 per consecutive win
+    const streakBonus = Math.min(this.stats.winStreak, 20) * 10;
+    this.stats.xp += streakBonus;
     this.stats.playerLevel = Math.floor(this.stats.xp / 200) + 1;
     saveStats(this.stats);
     const lb = loadLeaderboard();
@@ -1502,6 +1528,16 @@ export class GameSystem extends createSystem({}) {
   showToast(msg: string) {
     this.toastTimer = 3;
     this.toastMsg = msg;
+  }
+
+  /** Trigger camera shake effect for big combos */
+  triggerCameraShake(intensity: number) {
+    if (!this.cameraShakeActive) {
+      this.cameraOriginalPos.copy(this.camera.position);
+      this.cameraShakeActive = true;
+    }
+    this.cameraShakeIntensity = Math.max(this.cameraShakeIntensity, intensity);
+    this.cameraShakeDecay = 0.4; // Duration in seconds
   }
 
   /** Reset the idle hint when user takes action */
@@ -1884,5 +1920,34 @@ export class GameSystem extends createSystem({}) {
 
     // Win cascade animation
     this.updateWinCascade(delta);
+
+    // Camera shake animation
+    if (this.cameraShakeActive) {
+      this.cameraShakeDecay -= delta;
+      if (this.cameraShakeDecay <= 0) {
+        this.camera.position.copy(this.cameraOriginalPos);
+        this.cameraShakeActive = false;
+        this.cameraShakeIntensity = 0;
+      } else {
+        const fade = this.cameraShakeDecay / 0.4;
+        const shake = this.cameraShakeIntensity * fade;
+        this.camera.position.set(
+          this.cameraOriginalPos.x + (Math.random() - 0.5) * shake * 2,
+          this.cameraOriginalPos.y + (Math.random() - 0.5) * shake,
+          this.cameraOriginalPos.z + (Math.random() - 0.5) * shake,
+        );
+      }
+    }
+
+    // Animated grid pulsing
+    this.gridTime += delta;
+    this.scene.traverse(obj => {
+      if (obj instanceof GridHelper) {
+        const mat = obj.material as any;
+        if (mat.opacity !== undefined) {
+          mat.opacity = 0.06 + Math.sin(this.gridTime * 0.5) * 0.03;
+        }
+      }
+    });
   }
 }

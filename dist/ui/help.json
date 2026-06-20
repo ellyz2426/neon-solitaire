@@ -85,7 +85,7 @@
         "sourceTag": "text",
         "type": "custom",
         "children": [
-          "Click card to select, click destination to move. Drag cards for direct placement. Right-click to auto-send to foundation. Double-click for auto-move. ESC=pause, Z=undo, H=hint, R=new game."
+          "Click card to select, click destination to move. Drag cards for direct placement. Right-click to auto-send to foundation. Double-click for auto-move. ESC=pause, Z=undo, Y=redo, H=hint, R=new game."
         ],
         "properties": {
           "fontsize": "11",
@@ -137,7 +137,7 @@
         "sourceTag": "text",
         "type": "custom",
         "children": [
-          "AUTO-SAVE"
+          "FEATURES"
         ],
         "properties": {
           "fontsize": "13",
@@ -150,7 +150,7 @@
         "sourceTag": "text",
         "type": "custom",
         "children": [
-          "Your game is auto-saved every 10 seconds. If you close the browser, use Resume Game on the title screen to continue."
+          "Auto-save every 10s. Resume from title screen if you close the browser."
         ],
         "properties": {
           "fontsize": "10",
@@ -163,12 +163,12 @@
         "sourceTag": "text",
         "type": "custom",
         "children": [
-          "MODES"
+          "Undo/Redo: Full undo history with redo support. New moves clear redo."
         ],
         "properties": {
-          "fontsize": "13",
-          "color": "#ffcc00",
-          "paddingTop": "4"
+          "fontsize": "10",
+          "color": "#cccccc",
+          "width": "100%"
         },
         "dataUid": "uid-14"
       },
@@ -176,7 +176,7 @@
         "sourceTag": "text",
         "type": "custom",
         "children": [
-          "Klondike Draw 1 - Classic, draw one card at a time"
+          "Efficiency grade: A+ to F rating based on moves and time."
         ],
         "properties": {
           "fontsize": "10",
@@ -189,7 +189,7 @@
         "sourceTag": "text",
         "type": "custom",
         "children": [
-          "Klondike Draw 3 - Harder, draw three cards at a time"
+          "Win streak bonus: Consecutive wins earn escalating XP."
         ],
         "properties": {
           "fontsize": "10",
@@ -202,12 +202,12 @@
         "sourceTag": "text",
         "type": "custom",
         "children": [
-          "Timed - 5 minute limit, race to complete"
+          "MODES"
         ],
         "properties": {
-          "fontsize": "10",
-          "color": "#cccccc",
-          "width": "100%"
+          "fontsize": "13",
+          "color": "#ffcc00",
+          "paddingTop": "4"
         },
         "dataUid": "uid-17"
       },
@@ -215,7 +215,7 @@
         "sourceTag": "text",
         "type": "custom",
         "children": [
-          "Vegas - Start at -$52, earn $5 per foundation card"
+          "Klondike 1 / Klondike 3 / Timed (5m) / Vegas ($)"
         ],
         "properties": {
           "fontsize": "10",
@@ -228,7 +228,7 @@
         "sourceTag": "text",
         "type": "custom",
         "children": [
-          "Daily - Same deal every day worldwide"
+          "Daily / Speed (2m) / Zen (no score) / Practice (unlimited undo)"
         ],
         "properties": {
           "fontsize": "10",
@@ -241,12 +241,12 @@
         "sourceTag": "text",
         "type": "custom",
         "children": [
-          "Speed - 2 minute blitz, score what you can"
+          "SCORING"
         ],
         "properties": {
-          "fontsize": "10",
-          "color": "#cccccc",
-          "width": "100%"
+          "fontsize": "13",
+          "color": "#66ff66",
+          "paddingTop": "4"
         },
         "dataUid": "uid-20"
       },
@@ -254,7 +254,7 @@
         "sourceTag": "text",
         "type": "custom",
         "children": [
-          "Zen - No score, no timer, just relax"
+          "Foundation: 10 pts  |  Tableau: 5 pts  |  Card flip: 5 pts"
         ],
         "properties": {
           "fontsize": "10",
@@ -267,7 +267,7 @@
         "sourceTag": "text",
         "type": "custom",
         "children": [
-          "Practice - Unlimited undo, hints always on"
+          "Combo x2-x10  |  Time bonus: up to 500 pts (win under 5m)"
         ],
         "properties": {
           "fontsize": "10",
@@ -280,66 +280,14 @@
         "sourceTag": "text",
         "type": "custom",
         "children": [
-          "SCORING"
+          "Win streak bonus: +10 XP per consecutive win (max +200)"
         ],
         "properties": {
-          "fontsize": "13",
-          "color": "#66ff66",
-          "paddingTop": "4"
+          "fontsize": "10",
+          "color": "#cccccc",
+          "width": "100%"
         },
         "dataUid": "uid-23"
-      },
-      {
-        "sourceTag": "text",
-        "type": "custom",
-        "children": [
-          "Waste to Tableau: 5 pts  |  Waste to Foundation: 10 pts"
-        ],
-        "properties": {
-          "fontsize": "10",
-          "color": "#cccccc",
-          "width": "100%"
-        },
-        "dataUid": "uid-24"
-      },
-      {
-        "sourceTag": "text",
-        "type": "custom",
-        "children": [
-          "Tableau to Foundation: 10 pts  |  Card flip: 5 pts"
-        ],
-        "properties": {
-          "fontsize": "10",
-          "color": "#cccccc",
-          "width": "100%"
-        },
-        "dataUid": "uid-25"
-      },
-      {
-        "sourceTag": "text",
-        "type": "custom",
-        "children": [
-          "Combo bonus: consecutive moves x2-x10 multiplier"
-        ],
-        "properties": {
-          "fontsize": "10",
-          "color": "#cccccc",
-          "width": "100%"
-        },
-        "dataUid": "uid-26"
-      },
-      {
-        "sourceTag": "text",
-        "type": "custom",
-        "children": [
-          "Time bonus: up to 500 pts for winning under 5 min"
-        ],
-        "properties": {
-          "fontsize": "10",
-          "color": "#cccccc",
-          "width": "100%"
-        },
-        "dataUid": "uid-27"
       },
       {
         "sourceTag": "text",
@@ -359,7 +307,7 @@
           "cursor": "pointer",
           "marginTop": "8"
         },
-        "dataUid": "uid-28"
+        "dataUid": "uid-24"
       }
     ],
     "properties": {
@@ -382,7 +330,7 @@
         "column": 0
       },
       "end": {
-        "line": 37,
+        "line": 33,
         "column": 12
       }
     },
@@ -453,7 +401,7 @@
       },
       "end": {
         "line": 16,
-        "column": 246
+        "column": 254
       }
     },
     "uid-9": {
@@ -493,7 +441,7 @@
       },
       "end": {
         "line": 20,
-        "column": 70
+        "column": 69
       }
     },
     "uid-13": {
@@ -503,7 +451,7 @@
       },
       "end": {
         "line": 21,
-        "column": 174
+        "column": 129
       }
     },
     "uid-14": {
@@ -513,7 +461,7 @@
       },
       "end": {
         "line": 22,
-        "column": 66
+        "column": 127
       }
     },
     "uid-15": {
@@ -523,7 +471,7 @@
       },
       "end": {
         "line": 23,
-        "column": 108
+        "column": 115
       }
     },
     "uid-16": {
@@ -533,7 +481,7 @@
       },
       "end": {
         "line": 24,
-        "column": 110
+        "column": 112
       }
     },
     "uid-17": {
@@ -543,7 +491,7 @@
       },
       "end": {
         "line": 25,
-        "column": 98
+        "column": 66
       }
     },
     "uid-18": {
@@ -553,7 +501,7 @@
       },
       "end": {
         "line": 26,
-        "column": 108
+        "column": 106
       }
     },
     "uid-19": {
@@ -563,7 +511,7 @@
       },
       "end": {
         "line": 27,
-        "column": 95
+        "column": 121
       }
     },
     "uid-20": {
@@ -573,7 +521,7 @@
       },
       "end": {
         "line": 28,
-        "column": 100
+        "column": 68
       }
     },
     "uid-21": {
@@ -583,7 +531,7 @@
       },
       "end": {
         "line": 29,
-        "column": 94
+        "column": 116
       }
     },
     "uid-22": {
@@ -593,7 +541,7 @@
       },
       "end": {
         "line": 30,
-        "column": 100
+        "column": 115
       }
     },
     "uid-23": {
@@ -603,7 +551,7 @@
       },
       "end": {
         "line": 31,
-        "column": 68
+        "column": 113
       }
     },
     "uid-24": {
@@ -613,46 +561,6 @@
       },
       "end": {
         "line": 32,
-        "column": 113
-      }
-    },
-    "uid-25": {
-      "start": {
-        "line": 33,
-        "column": 2
-      },
-      "end": {
-        "line": 33,
-        "column": 108
-      }
-    },
-    "uid-26": {
-      "start": {
-        "line": 34,
-        "column": 2
-      },
-      "end": {
-        "line": 34,
-        "column": 106
-      }
-    },
-    "uid-27": {
-      "start": {
-        "line": 35,
-        "column": 2
-      },
-      "end": {
-        "line": 35,
-        "column": 107
-      }
-    },
-    "uid-28": {
-      "start": {
-        "line": 36,
-        "column": 2
-      },
-      "end": {
-        "line": 36,
         "column": 183
       }
     }

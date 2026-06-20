@@ -47,19 +47,20 @@ export function deal(config: ModeConfig): GameState {
     stock, waste: [], foundations: [[], [], [], []], tableau,
     drawCount: config.drawCount, moves: 0, score: config.scoring === 'vegas' ? -52 : 0,
     combo: 0, bestCombo: 0, elapsed: 0, lastMoveTime: 0,
-    won: false, started: false, undoStack: [], recycleCount: 0,
+    won: false, started: false, undoStack: [], redoStack: [], recycleCount: 0,
   };
 }
 
 // -- Snapshot for undo ------------------------------------------------
 export function snapshot(gs: GameState): string {
-  const { undoStack, ...rest } = gs;
+  const { undoStack, redoStack, ...rest } = gs;
   return JSON.stringify(rest);
 }
 
-export function restoreSnapshot(json: string, undoStack: string[]): GameState {
+export function restoreSnapshot(json: string, undoStack: string[], redoStack: string[]): GameState {
   const obj = JSON.parse(json);
   obj.undoStack = undoStack;
+  obj.redoStack = redoStack;
   return obj as GameState;
 }
 
@@ -152,6 +153,7 @@ export function findAllMoves(gs: GameState): MoveDesc[] {
 // -- Execute moves ----------------------------------------------------
 export function drawFromStock(gs: GameState): { flipped: Card[] } {
   gs.undoStack.push(snapshot(gs));
+  gs.redoStack = [];
   const count = Math.min(gs.drawCount, gs.stock.length);
   const flipped: Card[] = [];
   for (let i = 0; i < count; i++) {
@@ -168,6 +170,7 @@ export function drawFromStock(gs: GameState): { flipped: Card[] } {
 
 export function recycleWaste(gs: GameState): void {
   gs.undoStack.push(snapshot(gs));
+  gs.redoStack = [];
   while (gs.waste.length > 0) {
     const c = gs.waste.pop()!;
     c.faceUp = false;
@@ -185,6 +188,7 @@ export function moveWasteToFoundation(gs: GameState, fi: number): { card: Card; 
   const card = gs.waste[gs.waste.length - 1];
   if (!canMoveToFoundation(card, gs.foundations[fi])) return null;
   gs.undoStack.push(snapshot(gs));
+  gs.redoStack = [];
   gs.waste.pop();
   gs.foundations[fi].push(card);
   gs.combo++;
@@ -202,6 +206,7 @@ export function moveWasteToTableau(gs: GameState, ti: number): { card: Card; poi
   const card = gs.waste[gs.waste.length - 1];
   if (!canMoveToTableau(card, gs.tableau[ti])) return null;
   gs.undoStack.push(snapshot(gs));
+  gs.redoStack = [];
   gs.waste.pop();
   gs.tableau[ti].push(card);
   gs.combo++;
@@ -220,6 +225,7 @@ export function moveTableauToFoundation(gs: GameState, fromCol: number, fi: numb
   if (!card.faceUp) return null;
   if (!canMoveToFoundation(card, gs.foundations[fi])) return null;
   gs.undoStack.push(snapshot(gs));
+  gs.redoStack = [];
   col.pop();
   gs.foundations[fi].push(card);
   let flipped: Card | null = null;
@@ -245,6 +251,7 @@ export function moveTableauToTableau(gs: GameState, fromCol: number, startIdx: n
   if (!card.faceUp) return null;
   if (!canMoveToTableau(card, gs.tableau[toCol])) return null;
   gs.undoStack.push(snapshot(gs));
+  gs.redoStack = [];
   const moved = srcCol.splice(startIdx);
   gs.tableau[toCol].push(...moved);
   let flipped: Card | null = null;
@@ -267,6 +274,7 @@ export function moveFoundationToTableau(gs: GameState, fi: number, ti: number): 
   const card = found[found.length - 1];
   if (!canMoveToTableau(card, gs.tableau[ti])) return null;
   gs.undoStack.push(snapshot(gs));
+  gs.redoStack = [];
   found.pop();
   gs.tableau[ti].push(card);
   gs.score -= 15;
@@ -277,8 +285,19 @@ export function moveFoundationToTableau(gs: GameState, fi: number, ti: number): 
 
 export function undo(gs: GameState): boolean {
   if (gs.undoStack.length === 0) return false;
+  // Save current state to redo stack before undoing
+  gs.redoStack.push(snapshot(gs));
   const prev = gs.undoStack.pop()!;
-  const restored = restoreSnapshot(prev, gs.undoStack);
+  const restored = restoreSnapshot(prev, gs.undoStack, gs.redoStack);
+  Object.assign(gs, restored);
+  return true;
+}
+
+export function redo(gs: GameState): boolean {
+  if (gs.redoStack.length === 0) return false;
+  gs.undoStack.push(snapshot(gs));
+  const next = gs.redoStack.pop()!;
+  const restored = restoreSnapshot(next, gs.undoStack, gs.redoStack);
   Object.assign(gs, restored);
   return true;
 }

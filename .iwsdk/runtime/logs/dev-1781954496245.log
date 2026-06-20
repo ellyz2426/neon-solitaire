@@ -59,3 +59,36 @@
 📝 UIKitML file change: ui/help.uikitml
 ✅ UIKitML file recompiled: help.uikitml
 1:05:49 PM [vite] (client) page reload src/cards.ts
+1:58:10 PM [vite] (client) page reload src/types.ts
+1:58:19 PM [vite] (client) page reload src/types.ts
+1:58:24 PM [vite] (client) page reload src/solitaire.ts
+1:58:29 PM [vite] (client) page reload src/solitaire.ts
+1:58:36 PM [vite] (client) page reload src/solitaire.ts
+1:58:45 PM [vite] (client) page reload src/solitaire.ts
+1:59:02 PM [vite] (client) page reload src/solitaire.ts
+1:59:10 PM [vite] (client) page reload src/game-system.ts
+1:59:16 PM [vite] (client) page reload src/game-system.ts
+1:59:22 PM [vite] (client) page reload src/game-system.ts
+1:59:28 PM [vite] (client) page reload src/game-system.ts
+1:59:35 PM [vite] (client) page reload src/game-system.ts
+1:59:45 PM [vite] (client) page reload src/game-system.ts
+1:59:53 PM [vite] (client) page reload src/game-system.ts
+2:00:03 PM [vite] (client) page reload src/game-system.ts
+2:00:09 PM [vite] (client) page reload src/game-system.ts
+2:00:20 PM [vite] (client) page reload src/achievements.ts
+2:00:25 PM [vite] (client) page reload src/ui-system.ts
+2:00:32 PM [vite] (client) page reload src/ui-system.ts
+2:00:48 PM [vite] (client) page reload src/ui-system.ts
+📝 UIKitML file change: ui/toolbar.uikitml
+✅ UIKitML file recompiled: toolbar.uikitml
+📝 UIKitML file change: ui/gameover.uikitml
+✅ UIKitML file recompiled: gameover.uikitml
+📝 UIKitML file change: ui/help.uikitml
+✅ UIKitML file recompiled: help.uikitml
+📝 UIKitML file change: ui/hud.uikitml
+✅ UIKitML file recompiled: hud.uikitml
+2:02:00 PM [vite] (client) page reload src/ui-system.ts
+2:02:05 PM [vite] (client) page reload src/game-system.ts
+2:02:53 PM [vite] (client) page reload src/cards.ts
+2:02:58 PM [vite] (client) page reload src/cards.ts
+2:03:04 PM [vite] (client) page reload src/game-system.ts

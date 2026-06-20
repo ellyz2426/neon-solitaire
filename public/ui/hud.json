@@ -180,6 +180,19 @@
             "sourceTag": "text",
             "type": "custom",
             "children": [
+              "Redo: 0"
+            ],
+            "properties": {
+              "name": "redo-count",
+              "fontsize": "10",
+              "color": "#555566"
+            },
+            "dataUid": "uid-16"
+          },
+          {
+            "sourceTag": "text",
+            "type": "custom",
+            "children": [
               "-"
             ],
             "properties": {
@@ -188,7 +201,7 @@
               "fontweight": "bold",
               "color": "#ff8800"
             },
-            "dataUid": "uid-16"
+            "dataUid": "uid-17"
           },
           {
             "sourceTag": "text",
@@ -201,15 +214,40 @@
               "fontsize": "10",
               "color": "#aa66ff"
             },
-            "dataUid": "uid-17"
+            "dataUid": "uid-18"
           }
         ],
         "properties": {
           "flexdirection": "row",
-          "gap": "8",
+          "gap": "6",
           "width": "100%"
         },
         "dataUid": "uid-12"
+      },
+      {
+        "sourceTag": "container",
+        "type": "custom",
+        "children": [
+          {
+            "sourceTag": "text",
+            "type": "custom",
+            "children": [
+              "Foundations: 0/52"
+            ],
+            "properties": {
+              "name": "found-progress",
+              "fontsize": "9",
+              "color": "#446666"
+            },
+            "dataUid": "uid-20"
+          }
+        ],
+        "properties": {
+          "flexdirection": "row",
+          "gap": "4",
+          "width": "100%"
+        },
+        "dataUid": "uid-19"
       }
     ],
     "properties": {
@@ -220,7 +258,7 @@
       "padding": "10",
       "backgroundcolor": "#000000bb",
       "borderradius": "8",
-      "width": "360"
+      "width": "380"
     },
     "dataUid": "uid-1"
   },
@@ -232,7 +270,7 @@
         "column": 0
       },
       "end": {
-        "line": 31,
+        "line": 35,
         "column": 12
       }
     },
@@ -342,7 +380,7 @@
         "column": 2
       },
       "end": {
-        "line": 30,
+        "line": 31,
         "column": 14
       }
     },
@@ -383,7 +421,7 @@
       },
       "end": {
         "line": 28,
-        "column": 79
+        "column": 72
       }
     },
     "uid-17": {
@@ -393,7 +431,37 @@
       },
       "end": {
         "line": 29,
+        "column": 79
+      }
+    },
+    "uid-18": {
+      "start": {
+        "line": 30,
+        "column": 4
+      },
+      "end": {
+        "line": 30,
         "column": 64
+      }
+    },
+    "uid-19": {
+      "start": {
+        "line": 32,
+        "column": 2
+      },
+      "end": {
+        "line": 34,
+        "column": 14
+      }
+    },
+    "uid-20": {
+      "start": {
+        "line": 33,
+        "column": 4
+      },
+      "end": {
+        "line": 33,
+        "column": 85
       }
     }
   }

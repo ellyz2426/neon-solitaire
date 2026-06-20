@@ -14,10 +14,12 @@
     <container flexDirection="row" gap="8"><text fontSize="12" color="#668888" width="120">Score:</text><text name="r-score" fontSize="12" color="#00ffff">0</text></container>
     <container flexDirection="row" gap="8"><text fontSize="12" color="#668888" width="120">Moves:</text><text name="r-moves" fontSize="12" color="#66ff66">0</text></container>
     <container flexDirection="row" gap="8"><text fontSize="12" color="#668888" width="120">Time:</text><text name="r-time" fontSize="12" color="#ffcc00">0:00</text></container>
+    <container flexDirection="row" gap="8"><text fontSize="12" color="#668888" width="120">Grade:</text><text name="r-grade" fontSize="14" fontWeight="bold" color="#00ffcc">-</text></container>
     <container flexDirection="row" gap="8"><text fontSize="12" color="#668888" width="120">Combo Best:</text><text name="r-combo" fontSize="12" color="#ff8800">0</text></container>
     <container flexDirection="row" gap="8"><text fontSize="12" color="#668888" width="120">Foundations:</text><text name="r-foundations" fontSize="12" color="#ff66ff">0/52</text></container>
     <container flexDirection="row" gap="8"><text fontSize="12" color="#668888" width="120">Win Streak:</text><text name="r-streak" fontSize="12" color="#ffcc00">0</text></container>
     <container flexDirection="row" gap="8"><text fontSize="12" color="#668888" width="120">Time Bonus:</text><text name="r-timebonus" fontSize="12" color="#44ffaa">-</text></container>
+    <container flexDirection="row" gap="8"><text fontSize="12" color="#668888" width="120">Streak Bonus:</text><text name="r-streak-bonus" fontSize="12" color="#ffaa44">-</text></container>
     <container flexDirection="row" gap="8"><text fontSize="12" color="#668888" width="120">Undos Used:</text><text name="r-undos" fontSize="12" color="#8888aa">0</text></container>
     <container flexDirection="row" gap="8"><text fontSize="12" color="#668888" width="120">XP Earned:</text><text name="r-xp" fontSize="12" color="#aa66ff">+0</text></container>
   </container>

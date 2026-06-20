@@ -2,7 +2,7 @@ import {
   createSystem, PanelUI, PanelDocument, UIKitDocument, Follower, eq,
   Entity,
 } from '@iwsdk/core';
-import { GameMode, THEMES, CARD_SKINS, TABLE_Y } from './types';
+import { getEfficiencyGrade, GameMode, THEMES, CARD_SKINS, TABLE_Y } from './types';
 import { GameSystem } from './game-system';
 import { ACHIEVEMENTS, loadSettings, saveSettings, loadLeaderboard, loadStats, loadDailyProgress, getTodayString, loadModeStats, loadGameState } from './achievements';
 import { foundationTotal, canAutoComplete } from './solitaire';
@@ -136,6 +136,7 @@ export class UISystem extends createSystem({
     bindPanel('toolbar', this.queries.toolbar, (e: Entity) => {
       const doc = getDoc(e); if (!doc) return;
       onClick(doc, 'btn-undo', () => g().doUndo());
+      onClick(doc, 'btn-redo', () => g().doRedo());
       onClick(doc, 'btn-hint', () => g().doHint());
       onClick(doc, 'btn-autocomplete', () => {
         const gs = g().gs;
@@ -382,6 +383,11 @@ export class UISystem extends createSystem({
           setText(hud, 'level', `Lv.${gs.stats.playerLevel}`);
           setText(hud, 'stock-count', `Stock: ${g.stock.length}`);
           setText(hud, 'undo-count', `Undos: ${g.undoStack.length}`);
+          setText(hud, 'redo-count', `Redo: ${g.redoStack.length}`);
+          // Foundation progress
+          let fTotal = 0;
+          for (const f of g.foundations) fTotal += f.length;
+          setText(hud, 'found-progress', `Foundations: ${fTotal}/52`);
         }
       }
     }
@@ -410,6 +416,7 @@ export class UISystem extends createSystem({
     const doc = getDoc(e); if (!doc) return;
     const g = gs.gs;
     const isVegas = gs.mode === 'vegas';
+    const grade = getEfficiencyGrade(g.moves, g.elapsed, g.won);
     setText(doc, 'result-title', g.won ? 'YOU WIN!' : 'GAME OVER');
     setText(doc, 'r-mode', gs.mode);
     setText(doc, 'r-score', isVegas ? `$${g.score}` : String(g.score));
@@ -419,9 +426,12 @@ export class UISystem extends createSystem({
     setText(doc, 'r-foundations', `${foundationTotal(g)}/52`);
     setText(doc, 'r-streak', String(gs.stats.winStreak));
     const xpGained = g.won ? Math.floor(g.score / 10) + 50 : 0;
-    setText(doc, 'r-xp', g.won ? `+${xpGained}` : '-');
+    const streakBonus = g.won ? Math.min(gs.stats.winStreak, 20) * 10 : 0;
+    setText(doc, 'r-xp', g.won ? `+${xpGained + streakBonus}` : '-');
     setText(doc, 'r-timebonus', g.won && gs.timeBonus > 0 ? `+${gs.timeBonus}` : '-');
     setText(doc, 'r-undos', String(g.undoStack.length));
+    setText(doc, 'r-grade', grade.grade);
+    setText(doc, 'r-streak-bonus', g.won && streakBonus > 0 ? `+${streakBonus} XP` : '-');
   }
 
   refreshModeStats() {
