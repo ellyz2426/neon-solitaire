@@ -66,6 +66,13 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'all_modes', name: 'Variety Player', desc: 'Win at least once in all 8 modes', check: (_gs) => false }, // Checked via modeStats
   { id: 'score_5000', name: 'Score Emperor', desc: 'Score over 5000', check: (gs) => gs.score >= 5000 },
   { id: 'two_hundred_games', name: 'Lifetime Player', desc: 'Play 200 games', check: (_gs, st) => st.gamesPlayed >= 200 },
+  { id: 'daily_streak_3', name: 'Three Day Streak', desc: '3-day daily challenge streak', check: (_gs) => false }, // Checked via dailyProgress
+  { id: 'daily_streak_7', name: 'Weekly Warrior', desc: '7-day daily challenge streak', check: (_gs) => false },
+  { id: 'daily_streak_30', name: 'Monthly Devotion', desc: '30-day daily challenge streak', check: (_gs) => false },
+  { id: 'fast_foundation', name: 'Quick Stack', desc: 'Complete a foundation in under 2 min', check: (gs) => gs.foundations.some(f => f.length === 13) && gs.elapsed < 120 },
+  { id: 'no_hints', name: 'Solo Navigator', desc: 'Win without using hints', check: (gs) => gs.won },
+  { id: 'hundred_wins', name: 'Triple Digit', desc: 'Win 100 games', check: (_gs, st) => st.gamesWon >= 100 },
+  { id: 'score_10000', name: 'Score Overlord', desc: 'Score over 10000', check: (gs) => gs.score >= 10000 },
 ];
 
 // -- Storage ----------------------------------------------------------
@@ -147,4 +154,32 @@ export function loadTutorialSeen(): boolean {
 }
 export function saveTutorialSeen(): void {
   localStorage.setItem(TUTORIAL_KEY, 'true');
+}
+
+// -- Auto-save game state ---------------------------------------------
+const AUTOSAVE_KEY = 'neon_solitaire_autosave';
+export interface AutoSaveData {
+  gameState: any;       // Serialized GameState
+  mode: string;
+  phase: string;
+  savedAt: number;      // timestamp
+  settingsSnapshot: GameSettings;
+}
+export function saveGameState(data: AutoSaveData): void {
+  try { localStorage.setItem(AUTOSAVE_KEY, JSON.stringify(data)); } catch {}
+}
+export function loadGameState(): AutoSaveData | null {
+  try {
+    const r = localStorage.getItem(AUTOSAVE_KEY);
+    if (r) {
+      const data = JSON.parse(r);
+      // Expire after 24 hours
+      if (Date.now() - data.savedAt > 86400000) { clearGameState(); return null; }
+      return data;
+    }
+  } catch {}
+  return null;
+}
+export function clearGameState(): void {
+  try { localStorage.removeItem(AUTOSAVE_KEY); } catch {}
 }

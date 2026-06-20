@@ -4,7 +4,7 @@ import {
 } from '@iwsdk/core';
 import { GameMode, THEMES, CARD_SKINS, TABLE_Y } from './types';
 import { GameSystem } from './game-system';
-import { ACHIEVEMENTS, loadSettings, saveSettings, loadLeaderboard, loadStats, loadDailyProgress, getTodayString, loadModeStats } from './achievements';
+import { ACHIEVEMENTS, loadSettings, saveSettings, loadLeaderboard, loadStats, loadDailyProgress, getTodayString, loadModeStats, loadGameState } from './achievements';
 import { foundationTotal, canAutoComplete } from './solitaire';
 import { sfxMenuClick, sfxThemeChange, setVolumes } from './audio';
 import { setMusicVolume } from './music';
@@ -79,12 +79,25 @@ export class UISystem extends createSystem({
       setText(doc, 'wins-display', `${stats.gamesWon} Wins`);
       setText(doc, 'streak-display', `${stats.bestStreak} Best Streak`);
       onClick(doc, 'btn-play', () => { sfxMenuClick(); this.show('modeselect'); });
+      onClick(doc, 'btn-resume', () => {
+        sfxMenuClick();
+        const gs2 = g();
+        if (gs2.resumeGame()) {
+          this.show('_playing');
+        } else {
+          gs2.showToast('No saved game');
+        }
+      });
       onClick(doc, 'btn-scores', () => { sfxMenuClick(); this.refreshLB(); this.show('leaderboard'); });
       onClick(doc, 'btn-achievements', () => { sfxMenuClick(); this.refreshAch(); this.show('achievements'); });
       onClick(doc, 'btn-stats', () => { sfxMenuClick(); this.refreshStats(); this.show('stats'); });
       onClick(doc, 'btn-card-backs', () => { sfxMenuClick(); this.show('skins'); });
       onClick(doc, 'btn-settings', () => { sfxMenuClick(); this.show('settings'); });
       onClick(doc, 'btn-help', () => { sfxMenuClick(); this.show('help'); });
+      // Show/hide resume button based on saved game existence
+      const hasResume = loadGameState() !== null;
+      const resumeEl = doc.getElementById('btn-resume');
+      if (resumeEl) (resumeEl as any).setProperties({ display: hasResume ? 'flex' : 'none' });
       // Show tutorial for first-time players
       const gs2 = g();
       if (!gs2.tutorialShown) {
@@ -357,7 +370,10 @@ export class UISystem extends createSystem({
       if (hudE) {
         const hud = getDoc(hudE);
         if (hud) {
-          if (g.score !== this.lastScore) { setText(hud, 'score', String(g.score)); this.lastScore = g.score; }
+          // Vegas mode shows $ amounts
+          const isVegas = gs.mode === 'vegas';
+          const scoreStr = isVegas ? `$${g.score}` : String(g.score);
+          if (g.score !== this.lastScore) { setText(hud, 'score', scoreStr); this.lastScore = g.score; }
           if (g.moves !== this.lastMoves) { setText(hud, 'moves', String(g.moves)); this.lastMoves = g.moves; }
           const t = `${Math.floor(g.elapsed / 60)}:${Math.floor(g.elapsed % 60).toString().padStart(2, '0')}`;
           if (t !== this.lastTime) { setText(hud, 'time', t); this.lastTime = t; }
@@ -393,9 +409,10 @@ export class UISystem extends createSystem({
     const e = this.panels.gameover; if (!e || !gs.gs) return;
     const doc = getDoc(e); if (!doc) return;
     const g = gs.gs;
+    const isVegas = gs.mode === 'vegas';
     setText(doc, 'result-title', g.won ? 'YOU WIN!' : 'GAME OVER');
     setText(doc, 'r-mode', gs.mode);
-    setText(doc, 'r-score', String(g.score));
+    setText(doc, 'r-score', isVegas ? `$${g.score}` : String(g.score));
     setText(doc, 'r-moves', String(g.moves));
     setText(doc, 'r-time', `${Math.floor(g.elapsed / 60)}:${Math.floor(g.elapsed % 60).toString().padStart(2, '0')}`);
     setText(doc, 'r-combo', String(g.bestCombo));

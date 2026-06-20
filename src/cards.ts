@@ -11,6 +11,20 @@ const CARD_TEX_W = 256;
 const CARD_TEX_H = 358;
 
 // -- Card face texture ------------------------------------------------
+/** Pip layout positions for each rank (normalized 0-1 within card area) */
+const PIP_LAYOUTS: Record<number, [number, number][]> = {
+  0: [[0.5, 0.5]], // Ace: one large center
+  1: [[0.5, 0.28], [0.5, 0.72]], // 2
+  2: [[0.5, 0.22], [0.5, 0.5], [0.5, 0.78]], // 3
+  3: [[0.32, 0.22], [0.68, 0.22], [0.32, 0.78], [0.68, 0.78]], // 4
+  4: [[0.32, 0.22], [0.68, 0.22], [0.5, 0.5], [0.32, 0.78], [0.68, 0.78]], // 5
+  5: [[0.32, 0.22], [0.68, 0.22], [0.32, 0.5], [0.68, 0.5], [0.32, 0.78], [0.68, 0.78]], // 6
+  6: [[0.32, 0.22], [0.68, 0.22], [0.5, 0.35], [0.32, 0.5], [0.68, 0.5], [0.32, 0.78], [0.68, 0.78]], // 7
+  7: [[0.32, 0.2], [0.68, 0.2], [0.5, 0.32], [0.32, 0.44], [0.68, 0.44], [0.5, 0.58], [0.32, 0.76], [0.68, 0.76]], // 8
+  8: [[0.32, 0.18], [0.68, 0.18], [0.32, 0.38], [0.68, 0.38], [0.5, 0.5], [0.32, 0.62], [0.68, 0.62], [0.32, 0.82], [0.68, 0.82]], // 9
+  9: [[0.32, 0.18], [0.68, 0.18], [0.5, 0.28], [0.32, 0.38], [0.68, 0.38], [0.32, 0.62], [0.68, 0.62], [0.5, 0.72], [0.32, 0.82], [0.68, 0.82]], // 10
+};
+
 function drawCardFace(suit: Suit, rank: Rank, theme: Theme): HTMLCanvasElement {
   const c = document.createElement('canvas');
   c.width = CARD_TEX_W; c.height = CARD_TEX_H;
@@ -54,17 +68,46 @@ function drawCardFace(suit: Suit, rank: Rank, theme: Theme): HTMLCanvasElement {
   ctx.font = '28px monospace';
   ctx.fillText(SUIT_SYMBOLS[suit], 18, 74);
 
-  // Center suit symbol large with glow
-  ctx.shadowColor = suitColor;
-  ctx.shadowBlur = 12;
-  ctx.font = '80px monospace';
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.fillText(SUIT_SYMBOLS[suit], c.width / 2, c.height / 2);
-  ctx.shadowBlur = 0;
+  // Center area for pips or face card decoration
+  const pipLayout = PIP_LAYOUTS[rank];
+  if (pipLayout && rank <= Rank.Ten) {
+    // Number cards: draw pip layout
+    const areaX = 30; const areaW = c.width - 60;
+    const areaY = 85; const areaH = c.height - 170;
+    const pipSize = rank === Rank.Ace ? 50 : 26;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
 
-  // Face card crown decoration
-  if (rank >= Rank.Jack) {
+    for (const [px, py] of pipLayout) {
+      const x = areaX + px * areaW;
+      const y = areaY + py * areaH;
+      // Pips in the bottom half are drawn upside down (traditional layout)
+      ctx.save();
+      if (py > 0.55 && rank !== Rank.Ace) {
+        ctx.translate(x, y);
+        ctx.rotate(Math.PI);
+        ctx.translate(-x, -y);
+      }
+      ctx.shadowColor = suitColor;
+      ctx.shadowBlur = rank === Rank.Ace ? 16 : 4;
+      ctx.font = `${pipSize}px monospace`;
+      ctx.fillStyle = suitColor;
+      ctx.fillText(SUIT_SYMBOLS[suit], x, y);
+      ctx.shadowBlur = 0;
+      ctx.restore();
+    }
+  } else {
+    // Face cards (J/Q/K) -- large center suit symbol with glow + decoration
+    ctx.shadowColor = suitColor;
+    ctx.shadowBlur = 12;
+    ctx.font = '80px monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = suitColor;
+    ctx.fillText(SUIT_SYMBOLS[suit], c.width / 2, c.height / 2);
+    ctx.shadowBlur = 0;
+
+    // Face card crown decoration
     ctx.fillStyle = suitColor + '44';
     ctx.font = '14px monospace';
     const label = rank === Rank.Jack ? 'JACK' : rank === Rank.Queen ? 'QUEEN' : 'KING';
@@ -78,6 +121,18 @@ function drawCardFace(suit: Suit, rank: Rank, theme: Theme): HTMLCanvasElement {
       ctx.arc(cx2, cy2, cornerR, 0, Math.PI * 2);
       ctx.stroke();
     }
+
+    // Crown/decorative lines for face cards
+    ctx.strokeStyle = suitColor + '33';
+    ctx.lineWidth = 0.8;
+    ctx.beginPath();
+    ctx.moveTo(c.width * 0.25, c.height * 0.28);
+    ctx.lineTo(c.width * 0.75, c.height * 0.28);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(c.width * 0.25, c.height * 0.72);
+    ctx.lineTo(c.width * 0.75, c.height * 0.72);
+    ctx.stroke();
   }
 
   // Bottom-right (rotated)
@@ -86,6 +141,7 @@ function drawCardFace(suit: Suit, rank: Rank, theme: Theme): HTMLCanvasElement {
   ctx.rotate(Math.PI);
   ctx.font = 'bold 36px monospace';
   ctx.textAlign = 'left';
+  ctx.fillStyle = suitColor;
   ctx.fillText(RANK_NAMES[rank], 0, 32);
   ctx.font = '28px monospace';
   ctx.fillText(SUIT_SYMBOLS[suit], 2, 62);

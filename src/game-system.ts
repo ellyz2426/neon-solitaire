@@ -4,6 +4,7 @@ import {
   GridHelper, PlaneGeometry, MeshStandardMaterial,
   AmbientLight, DirectionalLight, PointLight,
   InputComponent,
+  SpriteMaterial, Sprite, CanvasTexture,
 } from '@iwsdk/core';
 import {
   GameState, GameMode, ModeConfig, getModeConfig, PileType,
@@ -19,7 +20,7 @@ import {
   canMoveToFoundation, canMoveToTableau,
 } from './solitaire';
 import { CardMesh, createCardMesh, updateCardFace, setCardHighlight, createPilePlaceholder, clearTexCache } from './cards';
-import { ACHIEVEMENTS, loadStats, saveStats, loadLeaderboard, saveLeaderboard, loadUnlocked, saveUnlocked, loadSettings, loadDailyProgress, saveDailyProgress, getTodayString, getYesterdayString, loadModeStats, saveModeStats, loadTutorialSeen, saveTutorialSeen } from './achievements';
+import { ACHIEVEMENTS, loadStats, saveStats, loadLeaderboard, saveLeaderboard, loadUnlocked, saveUnlocked, loadSettings, loadDailyProgress, saveDailyProgress, getTodayString, getYesterdayString, loadModeStats, saveModeStats, loadTutorialSeen, saveTutorialSeen, saveGameState, loadGameState, clearGameState } from './achievements';
 import { ParticleSystem } from './particles';
 import {
   sfxCardPlace, sfxCardSelect, sfxCardFlip, sfxDraw, sfxRecycle,
@@ -40,6 +41,14 @@ interface CardAnim {
   mesh: Group;
   targetPos: Vector3;
   speed: number;
+}
+
+interface ScorePopup {
+  mesh: Mesh;
+  pos: Vector3;
+  vel: Vector3;
+  life: number;
+  maxLife: number;
 }
 
 export class GameSystem extends createSystem({}) {
@@ -117,6 +126,20 @@ export class GameSystem extends createSystem({}) {
   tutorialShown = false;
   tutorialStep = 0;
 
+  // Score popup system
+  scorePopups: ScorePopup[] = [];
+
+  // Auto-hint idle timer
+  idleTimer = 0;
+  idleHintActive = false;
+  idleHintCardId = -1;
+
+  // Auto-save timer
+  autoSaveTimer = 0;
+
+  // Resume state
+  hasResumeData = false;
+
   // Drag-and-drop state
   isDragging = false;
   dragCardIds: number[] = [];
@@ -149,6 +172,93 @@ export class GameSystem extends createSystem({}) {
     this.modeStats = loadModeStats();
     // Load tutorial state
     this.tutorialShown = loadTutorialSeen();
+    // Check for resume data
+    this.hasResumeData = loadGameState() !== null;
+    // Setup keyboard mode shortcuts
+    this.setupModeShortcuts();
+  }
+
+  /** Create a floating score popup at a position */
+  spawnScorePopup(text: string, position: Vector3, color: string = '#00ffff') {
+    const canvas = document.createElement('canvas');
+    canvas.width = 128; canvas.height = 64;
+    const ctx = canvas.getContext('2d')!;
+    ctx.clearRect(0, 0, 128, 64);
+    ctx.font = 'bold 36px monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    // Glow
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 8;
+    ctx.fillStyle = color;
+    ctx.fillText(text, 64, 32);
+    ctx.shadowBlur = 0;
+
+    const tex = new CanvasTexture(canvas);
+    const mat = new SpriteMaterial({ map: tex, transparent: true, opacity: 1 });
+    const sprite = new Sprite(mat);
+    sprite.scale.set(0.08, 0.04, 1);
+    sprite.position.copy(position);
+    sprite.position.y += 0.04;
+    this.scene.add(sprite);
+
+    this.scorePopups.push({
+      mesh: sprite as unknown as Mesh,
+      pos: sprite.position.clone(),
+      vel: new Vector3(0, 0.15, 0),
+      life: 1.2,
+      maxLife: 1.2,
+    });
+  }
+
+  /** Auto-save current game state */
+  doAutoSave() {
+    if (!this.gs || this.phase !== 'playing') return;
+    saveGameState({
+      gameState: JSON.parse(JSON.stringify({ ...this.gs, undoStack: this.gs.undoStack.slice(-5) })),
+      mode: this.mode,
+      phase: this.phase,
+      savedAt: Date.now(),
+      settingsSnapshot: this.settings,
+    });
+  }
+
+  /** Resume a saved game */
+  resumeGame(): boolean {
+    const data = loadGameState();
+    if (!data) return false;
+    this.mode = data.mode as GameMode;
+    this.modeConfig = getModeConfig(this.mode);
+    this.gs = data.gameState;
+    this.phase = 'playing';
+    this.selection = null;
+    this.stalemateWarned = false;
+    this.stalemateCheckTimer = 3;
+    this.rebuildCardMeshes();
+    this.refreshCardPositions();
+    clearGameState();
+    this.hasResumeData = false;
+    if (!this.musicStarted) {
+      this.musicStarted = true;
+      startMusic();
+    }
+    this.showToast('Game resumed!');
+    return true;
+  }
+
+  /** Setup keyboard shortcuts for mode select */
+  setupModeShortcuts() {
+    window.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (this.phase !== 'menu') return;
+      const modeMap: Record<string, GameMode> = {
+        '1': 'klondike1', '2': 'klondike3', '3': 'timed', '4': 'vegas',
+        '5': 'daily', '6': 'speed', '7': 'zen', '8': 'practice',
+      };
+      const mode = modeMap[e.key];
+      if (mode) {
+        this.startGame(mode);
+      }
+    });
   }
 
   buildEnvironment() {
@@ -536,6 +646,8 @@ export class GameSystem extends createSystem({}) {
             sfxFoundation(gs.combo);
             const positions = this.getPilePositions();
             this.particles?.emitSparkle(positions.foundations[dropTarget.pileIndex], THEMES[this.settings.themeIndex].accent);
+            const pts = 10 * Math.min(gs.combo, 10);
+            this.spawnScorePopup(`+${pts}`, positions.foundations[dropTarget.pileIndex], gs.combo > 1 ? '#ffff00' : '#00ffff');
           }
         } else if (dropTarget.pileType === PileType.Tableau) {
           if (moveWasteToTableau(gs, dropTarget.pileIndex)) {
@@ -550,8 +662,11 @@ export class GameSystem extends createSystem({}) {
             sfxFoundation(gs.combo);
             const positions = this.getPilePositions();
             this.particles?.emitSparkle(positions.foundations[dropTarget.pileIndex], THEMES[this.settings.themeIndex].accent);
+            const pts = 10 * Math.min(gs.combo, 10);
+            this.spawnScorePopup(`+${pts}`, positions.foundations[dropTarget.pileIndex], gs.combo > 1 ? '#ffff00' : '#00ffff');
             if (gs.foundations[dropTarget.pileIndex].length === 13) {
               this.particles?.emitFoundationComplete(positions.foundations[dropTarget.pileIndex]);
+              this.spawnScorePopup('COMPLETE!', positions.foundations[dropTarget.pileIndex], '#00ff88');
             }
           }
         } else if (dropTarget.pileType === PileType.Tableau && dropTarget.pileIndex !== this.dragPileIndex) {
@@ -694,6 +809,8 @@ export class GameSystem extends createSystem({}) {
   }
 
   handleClick() {
+    // Reset idle hint
+    this.resetIdleHint();
     this.raycaster.setFromCamera(this.mouse, this.camera);
     const cardObjects: Object3D[] = [];
     this.cardMeshes.forEach(cm => cardObjects.push(cm.mesh));
@@ -872,17 +989,29 @@ export class GameSystem extends createSystem({}) {
           sfxCombo(gs.combo);
           const positions = this.getPilePositions();
           this.particles?.emitCombo(positions.foundations[destIndex], gs.combo);
+          // Score popup with combo multiplier
+          const pts = 10 * Math.min(gs.combo, 10);
+          this.spawnScorePopup(`+${pts}`, positions.foundations[destIndex], '#ffff00');
         } else {
           const positions = this.getPilePositions();
           this.particles?.emitSparkle(positions.foundations[destIndex], THEMES[this.settings.themeIndex].accent, 5);
+          this.spawnScorePopup('+10', positions.foundations[destIndex]);
         }
         // Check if foundation just completed
         if (gs.foundations[destIndex].length === 13) {
           const positions = this.getPilePositions();
           this.particles?.emitFoundationComplete(positions.foundations[destIndex]);
+          this.spawnScorePopup('COMPLETE!', positions.foundations[destIndex], '#00ff88');
         }
       } else {
         sfxCardPlace();
+        // Score popup for tableau placements
+        if (gs.combo > 0) {
+          const pts = 5 * Math.min(gs.combo, 10);
+          const positions = this.getPilePositions();
+          const dest = destType === PileType.Tableau ? positions.tableau[destIndex] : positions.foundations[destIndex];
+          this.spawnScorePopup(`+${pts}`, dest, '#00ccff');
+        }
       }
       this.refreshCardPositions(true);
       this.checkAchievements();
@@ -1126,6 +1255,7 @@ export class GameSystem extends createSystem({}) {
   }
 
   doUndo() {
+    this.resetIdleHint();
     if (this.gs && undo(this.gs)) {
       sfxUndo();
       this.clearSelection();
@@ -1134,6 +1264,7 @@ export class GameSystem extends createSystem({}) {
   }
 
   doHint() {
+    this.resetIdleHint();
     const gs = this.gs!;
     this.clearHint();
     const hint = findHint(gs);
@@ -1166,6 +1297,7 @@ export class GameSystem extends createSystem({}) {
     this.phase = 'gameover';
     const gs = this.gs!;
     sfxWin();
+    clearGameState(); // Clear autosave on win
 
     // Calculate time bonus: faster = more points, max 500 for under 60s
     const maxBonus = 500;
@@ -1209,6 +1341,10 @@ export class GameSystem extends createSystem({}) {
         if (gs.score > daily.bestScore) daily.bestScore = gs.score;
         saveDailyProgress(daily);
         this.showToast(`Daily streak: ${daily.streak} day${daily.streak > 1 ? 's' : ''}!`);
+        // Check daily streak achievements
+        if (daily.streak >= 3) { this.unlocked.add('daily_streak_3'); saveUnlocked(this.unlocked); }
+        if (daily.streak >= 7) { this.unlocked.add('daily_streak_7'); saveUnlocked(this.unlocked); }
+        if (daily.streak >= 30) { this.unlocked.add('daily_streak_30'); saveUnlocked(this.unlocked); }
       }
     }
 
@@ -1318,6 +1454,7 @@ export class GameSystem extends createSystem({}) {
     this.phase = 'gameover';
     const gs = this.gs!;
     sfxLoss();
+    clearGameState(); // Clear autosave on loss
     this.stats.gamesPlayed++;
     this.stats.winStreak = 0;
     this.stats.totalMoves += gs.moves;
@@ -1365,6 +1502,21 @@ export class GameSystem extends createSystem({}) {
   showToast(msg: string) {
     this.toastTimer = 3;
     this.toastMsg = msg;
+  }
+
+  /** Reset the idle hint when user takes action */
+  resetIdleHint() {
+    this.idleTimer = 0;
+    if (this.idleHintActive) {
+      this.idleHintActive = false;
+      if (this.idleHintCardId >= 0) {
+        const cm = this.cardMeshes.get(this.idleHintCardId);
+        if (cm && (!this.selection || !this.selection.cardIds.includes(this.idleHintCardId))) {
+          setCardHighlight(cm, false);
+        }
+        this.idleHintCardId = -1;
+      }
+    }
   }
 
   /** Hover detection - highlight card under cursor */
@@ -1675,6 +1827,58 @@ export class GameSystem extends createSystem({}) {
       if (flip.progress >= 1) {
         if (cm) cm.group.scale.set(1, 1, 1);
         this.flippingCards.splice(i, 1);
+      }
+    }
+
+    // Score popup animation
+    for (let i = this.scorePopups.length - 1; i >= 0; i--) {
+      const sp = this.scorePopups[i];
+      sp.life -= delta;
+      if (sp.life <= 0) {
+        this.scene.remove(sp.mesh);
+        (sp.mesh as unknown as Sprite).material.map?.dispose();
+        (sp.mesh as unknown as Sprite).material.dispose();
+        this.scorePopups.splice(i, 1);
+        continue;
+      }
+      const fade = sp.life / sp.maxLife;
+      sp.mesh.position.y += sp.vel.y * delta;
+      (sp.mesh as unknown as Sprite).material.opacity = fade;
+      const scale = 0.08 + (1 - fade) * 0.02;
+      sp.mesh.scale.set(scale, scale / 2, 1);
+    }
+
+    // Auto-hint: after 15s idle, subtly highlight a movable card
+    if (this.phase === 'playing' && this.gs && this.gs.started) {
+      this.idleTimer += delta;
+      if (this.idleTimer > 15 && !this.idleHintActive) {
+        const hint = findHint(this.gs);
+        if (hint) {
+          this.idleHintActive = true;
+          let sourceCards: Card[] = [];
+          if (hint.from.type === PileType.Waste && this.gs.waste.length > 0) {
+            sourceCards = [this.gs.waste[this.gs.waste.length - 1]];
+          } else if (hint.from.type === PileType.Tableau) {
+            const col = this.gs.tableau[hint.from.index];
+            sourceCards = col.slice(col.length - hint.count);
+          }
+          if (sourceCards.length > 0) {
+            this.idleHintCardId = sourceCards[0].id;
+            for (const c of sourceCards) {
+              const cm = this.cardMeshes.get(c.id);
+              if (cm) setCardHighlight(cm, true, '#00ff8855');
+            }
+          }
+        }
+      }
+    }
+
+    // Auto-save every 10 seconds during play
+    if (this.phase === 'playing' && this.gs && this.gs.started) {
+      this.autoSaveTimer += delta;
+      if (this.autoSaveTimer >= 10) {
+        this.autoSaveTimer = 0;
+        this.doAutoSave();
       }
     }
 
