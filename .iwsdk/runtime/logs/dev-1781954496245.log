@@ -199,3 +199,4 @@
 [browser] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
 2:11:24 PM [vite] (client) page reload src/ui-system.ts
 2:11:29 PM [vite] (client) page reload src/ui-system.ts
+2:14:26 PM [vite] (client) page reload src/achievements.ts

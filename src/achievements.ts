@@ -92,6 +92,12 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'king_rush', name: 'King Rush', desc: 'Complete all 4 foundations in under 5 min', check: (gs) => gs.won && gs.elapsed < 300 },
   { id: 'total_moves_20k', name: 'Veteran', desc: '20000 total moves', check: (_gs, st) => st.totalMoves >= 20000 },
   { id: 'three_hundred_games', name: 'Dedicated', desc: 'Play 300 games', check: (_gs, st) => st.gamesPlayed >= 300 },
+  // Round 10 additions
+  { id: 'five_hundred_games', name: 'Life of Cards', desc: 'Play 500 games', check: (_gs, st) => st.gamesPlayed >= 500 },
+  { id: 'level_500', name: 'Ascended', desc: 'Reach level 500', check: (_gs, st) => st.playerLevel >= 500 },
+  { id: 'total_10000', name: 'Monument Builder', desc: '10000 cards to foundations total', check: (_gs, st) => st.cardsToFoundation >= 10000 },
+  { id: 'daily_streak_100', name: 'Century Devotion', desc: '100-day daily challenge streak', check: (_gs) => false }, // Checked via dailyProgress
+  { id: 'fifty_thousand_moves', name: 'Eternal Player', desc: '50000 total moves', check: (_gs, st) => st.totalMoves >= 50000 },
 ];
 
 // -- Storage ----------------------------------------------------------
