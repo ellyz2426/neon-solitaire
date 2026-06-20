@@ -69,6 +69,11 @@ export class UISystem extends createSystem({
     // TITLE
     bindPanel('title', this.queries.title, (e: Entity) => {
       const doc = getDoc(e); if (!doc) return;
+      // Show player stats on title
+      const stats = loadStats();
+      setText(doc, 'level-display', `Level ${stats.playerLevel}`);
+      setText(doc, 'wins-display', `${stats.gamesWon} Wins`);
+      setText(doc, 'streak-display', `${stats.bestStreak} Best Streak`);
       onClick(doc, 'btn-play', () => { sfxMenuClick(); this.show('modeselect'); });
       onClick(doc, 'btn-scores', () => { sfxMenuClick(); this.refreshLB(); this.show('leaderboard'); });
       onClick(doc, 'btn-achievements', () => { sfxMenuClick(); this.refreshAch(); this.show('achievements'); });
@@ -138,7 +143,7 @@ export class UISystem extends createSystem({
     bindPanel('achievements', this.queries.achievements, (e: Entity) => {
       const doc = getDoc(e); if (!doc) return;
       onClick(doc, 'btn-prev', () => { sfxMenuClick(); this.achievementPage = Math.max(0, this.achievementPage - 1); this.refreshAch(); });
-      onClick(doc, 'btn-next', () => { sfxMenuClick(); this.achievementPage = Math.min(2, this.achievementPage + 1); this.refreshAch(); });
+      onClick(doc, 'btn-next', () => { sfxMenuClick(); this.achievementPage = Math.min(Math.ceil(ACHIEVEMENTS.length / 15) - 1, this.achievementPage + 1); this.refreshAch(); });
       onClick(doc, 'btn-back', () => { sfxMenuClick(); this.show('title'); });
     });
 
@@ -321,6 +326,7 @@ export class UISystem extends createSystem({
           if (t !== this.lastTime) { setText(hud, 'time', t); this.lastTime = t; }
           setText(hud, 'mode', gs.mode);
           setText(hud, 'combo', g.combo > 1 ? `${g.combo}x combo` : '-');
+          setText(hud, 'level', `Lv.${gs.stats.playerLevel}`);
         }
       }
     }

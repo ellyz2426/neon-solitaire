@@ -80,6 +80,12 @@ export class GameSystem extends createSystem({}) {
   // Ambient particles timer
   ambientTimer = 0;
 
+  // Table edge meshes for animation
+  tableEdges: Mesh[] = [];
+
+  // Theme state tracking
+  lastThemeIndex = -1;
+
   init() {
     this.buildEnvironment();
     this.setupInput();
@@ -109,6 +115,37 @@ export class GameSystem extends createSystem({}) {
     tableMesh.rotation.x = -Math.PI / 2;
     tableMesh.position.set(0, TABLE_Y - 0.005, -1.0);
     this.tableGroup.add(tableMesh);
+
+    // Table edge glow
+    const edgeGeo = new PlaneGeometry(1.22, 0.005);
+    const edgeMat = new MeshStandardMaterial({
+      color: new Color(theme.accent), emissive: new Color(theme.accent),
+      emissiveIntensity: 0.6, transparent: true, opacity: 0.7,
+    });
+    const edgeNear = new Mesh(edgeGeo, edgeMat.clone());
+    edgeNear.rotation.x = -Math.PI / 2;
+    edgeNear.position.set(0, TABLE_Y - 0.004, -0.55);
+    this.tableGroup.add(edgeNear);
+    this.tableEdges.push(edgeNear);
+
+    const edgeFar = new Mesh(edgeGeo, edgeMat.clone());
+    edgeFar.rotation.x = -Math.PI / 2;
+    edgeFar.position.set(0, TABLE_Y - 0.004, -1.45);
+    this.tableGroup.add(edgeFar);
+    this.tableEdges.push(edgeFar);
+
+    const sideGeo = new PlaneGeometry(0.005, 0.92);
+    const sideLeft = new Mesh(sideGeo, edgeMat.clone());
+    sideLeft.rotation.x = -Math.PI / 2;
+    sideLeft.position.set(-0.61, TABLE_Y - 0.004, -1.0);
+    this.tableGroup.add(sideLeft);
+    this.tableEdges.push(sideLeft);
+
+    const sideRight = new Mesh(sideGeo, edgeMat.clone());
+    sideRight.rotation.x = -Math.PI / 2;
+    sideRight.position.set(0.61, TABLE_Y - 0.004, -1.0);
+    this.tableGroup.add(sideRight);
+    this.tableEdges.push(sideRight);
 
     // Grid floor
     const grid = new GridHelper(20, 40, new Color(theme.grid), new Color(theme.grid));
@@ -143,6 +180,24 @@ export class GameSystem extends createSystem({}) {
     this.scene.add(this.cardGroup);
     this.createPlaceholders();
     this.envBuilt = true;
+  }
+
+  /** Rebuild environment when theme changes */
+  rebuildEnvironment() {
+    const theme = THEMES[this.settings.themeIndex];
+    this.scene.background = new Color(theme.bg);
+
+    // Update grid colors
+    this.scene.traverse(obj => {
+      if (obj instanceof GridHelper) {
+        const mat = obj.material as any;
+        if (mat.color) mat.color.set(theme.grid);
+      }
+    });
+
+    // Rebuild placeholders with new theme colors
+    this.createPlaceholders();
+    this.lastThemeIndex = this.settings.themeIndex;
   }
 
   createPlaceholders() {
@@ -810,6 +865,20 @@ export class GameSystem extends createSystem({}) {
       const pos = new Vector3(x, 0.1, z);
       const vel = new Vector3((Math.random() - 0.5) * 0.02, 0.05 + Math.random() * 0.05, (Math.random() - 0.5) * 0.02);
       this.particles.emitCardTrail(pos, theme.accent);
+    }
+
+    // Theme change detection
+    if (this.settings.themeIndex !== this.lastThemeIndex && this.lastThemeIndex >= 0) {
+      this.rebuildEnvironment();
+      if (this.gs) { this.rebuildCardMeshes(); this.refreshCardPositions(); }
+    }
+    if (this.lastThemeIndex < 0) this.lastThemeIndex = this.settings.themeIndex;
+
+    // Table edge pulse animation
+    const edgePulse = 0.4 + Math.sin(performance.now() * 0.002) * 0.3;
+    for (const edge of this.tableEdges) {
+      const mat = edge.material as MeshStandardMaterial;
+      mat.emissiveIntensity = edgePulse;
     }
   }
 }

@@ -3,23 +3,27 @@
   flexDirection="column"
   alignItems="center"
   justifyContent="center"
-  gap={12}
-  padding={16}
-  backgroundColor="#000000cc"
-  borderRadius={12}
-  width={420}
+  gap={10}
+  padding={20}
+  backgroundColor="#000000dd"
+  borderRadius={14}
+  width={440}
 >
-  <text name="title" fontSize={32} fontWeight="bold" color="#00ffff">NEON SOLITAIRE</text>
-  <text name="subtitle" fontSize={14} color="#00cccc">Holodeck Card Game</text>
-  <text name="level-display" fontSize={12} color="#66ffff">Level 1 - Novice</text>
+  <text name="title" fontSize={36} fontWeight="bold" color="#00ffff">NEON SOLITAIRE</text>
+  <text name="subtitle" fontSize={13} color="#00aaaa">Holodeck Card Game</text>
+  <container flexDirection="row" gap={16} padding-top={2} padding-bottom={6}>
+    <text name="level-display" fontSize={11} color="#aa66ff">Level 1</text>
+    <text name="wins-display" fontSize={11} color="#66ff66">0 Wins</text>
+    <text name="streak-display" fontSize={11} color="#ffcc00">0 Streak</text>
+  </container>
 
-  <container flexDirection="column" gap={8} width="100%" alignItems="center" padding-top={8}>
-    <text name="btn-play" fontSize={18} color="#00ffff" backgroundColor="#003333" padding={8} borderRadius={6} width={260} textAlign="center" cursor="pointer">PLAY</text>
-    <text name="btn-scores" fontSize={18} color="#00ffcc" backgroundColor="#003333" padding={8} borderRadius={6} width={260} textAlign="center" cursor="pointer">LEADERBOARD</text>
-    <text name="btn-achievements" fontSize={18} color="#ffcc00" backgroundColor="#333300" padding={8} borderRadius={6} width={260} textAlign="center" cursor="pointer">ACHIEVEMENTS</text>
-    <text name="btn-stats" fontSize={18} color="#66ff66" backgroundColor="#003300" padding={8} borderRadius={6} width={260} textAlign="center" cursor="pointer">STATS</text>
-    <text name="btn-card-backs" fontSize={18} color="#ff66ff" backgroundColor="#330033" padding={8} borderRadius={6} width={260} textAlign="center" cursor="pointer">CARD BACKS</text>
-    <text name="btn-settings" fontSize={18} color="#aaaaaa" backgroundColor="#222222" padding={8} borderRadius={6} width={260} textAlign="center" cursor="pointer">SETTINGS</text>
-    <text name="btn-help" fontSize={18} color="#8888ff" backgroundColor="#222244" padding={8} borderRadius={6} width={260} textAlign="center" cursor="pointer">HELP</text>
+  <container flexDirection="column" gap={7} width="100%" alignItems="center">
+    <text name="btn-play" fontSize={18} fontWeight="bold" color="#00ffff" backgroundColor="#004444" padding={10} borderRadius={8} width={280} textAlign="center" cursor="pointer">PLAY</text>
+    <text name="btn-scores" fontSize={16} color="#00ccaa" backgroundColor="#003333" padding={8} borderRadius={6} width={280} textAlign="center" cursor="pointer">LEADERBOARD</text>
+    <text name="btn-achievements" fontSize={16} color="#ffcc00" backgroundColor="#332200" padding={8} borderRadius={6} width={280} textAlign="center" cursor="pointer">ACHIEVEMENTS</text>
+    <text name="btn-stats" fontSize={16} color="#66ff66" backgroundColor="#003300" padding={8} borderRadius={6} width={280} textAlign="center" cursor="pointer">STATS</text>
+    <text name="btn-card-backs" fontSize={16} color="#ff66ff" backgroundColor="#330033" padding={8} borderRadius={6} width={280} textAlign="center" cursor="pointer">CARD BACKS</text>
+    <text name="btn-settings" fontSize={16} color="#aaaaaa" backgroundColor="#222222" padding={8} borderRadius={6} width={280} textAlign="center" cursor="pointer">SETTINGS</text>
+    <text name="btn-help" fontSize={16} color="#8888ff" backgroundColor="#222244" padding={8} borderRadius={6} width={280} textAlign="center" cursor="pointer">HELP</text>
   </container>
 </container>

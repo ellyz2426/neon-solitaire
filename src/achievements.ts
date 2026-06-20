@@ -44,6 +44,17 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'best_500', name: 'Personal Best 500', desc: 'Best score over 500', check: (_gs, st) => st.bestScore >= 500 },
   { id: 'best_1000', name: 'Personal Best 1000', desc: 'Best score over 1000', check: (_gs, st) => st.bestScore >= 1000 },
   { id: 'best_time_5', name: 'Quick Thinker', desc: 'Best time under 5 min', check: (_gs, st) => st.bestTime > 0 && st.bestTime < 300 },
+  // Mode-specific achievements
+  { id: 'mode_klondike3', name: 'Three Card Monte', desc: 'Win in Klondike 3-draw', check: (gs) => gs.won && gs.drawCount === 3 },
+  { id: 'mode_timed', name: 'Beat the Clock', desc: 'Win a timed game', check: (gs) => gs.won },
+  { id: 'mode_vegas_profit', name: 'Casino Winner', desc: 'Finish Vegas with positive score', check: (gs) => gs.won && gs.score > 0 },
+  { id: 'recycle_0', name: 'One Pass Wonder', desc: 'Win without recycling waste', check: (gs) => gs.won && gs.recycleCount === 0 },
+  { id: 'moves_under_60', name: 'Surgical Precision', desc: 'Win in under 60 moves', check: (gs) => gs.won && gs.moves < 60 },
+  { id: 'total_2000', name: 'Foundation Master', desc: '2000 cards to foundations total', check: (_gs, st) => st.cardsToFoundation >= 2000 },
+  { id: 'combo_15', name: 'Combo Maniac', desc: 'Get a 15x combo', check: (gs) => gs.bestCombo >= 15 },
+  { id: 'score_3000', name: 'Score Titan', desc: 'Score over 3000', check: (gs) => gs.score >= 3000 },
+  { id: 'win_streak_7', name: 'Lucky Seven', desc: 'Win 7 games in a row', check: (_gs, st) => st.winStreak >= 7 },
+  { id: 'level_100', name: 'Centurion', desc: 'Reach level 100', check: (_gs, st) => st.playerLevel >= 100 },
 ];
 
 // -- Storage ----------------------------------------------------------
