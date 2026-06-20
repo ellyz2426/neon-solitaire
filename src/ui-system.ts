@@ -6,6 +6,7 @@ import { GameMode, THEMES, CARD_SKINS, TABLE_Y } from './types';
 import { GameSystem } from './game-system';
 import { ACHIEVEMENTS, loadSettings, saveSettings, loadLeaderboard, loadStats } from './achievements';
 import { foundationTotal, canAutoComplete } from './solitaire';
+import { sfxMenuClick, sfxThemeChange, setVolumes } from './audio';
 
 const getDoc = (e: Entity) =>
   (e as any).getValue(PanelDocument, 'document') as UIKitDocument | undefined;
@@ -68,13 +69,13 @@ export class UISystem extends createSystem({
     // TITLE
     bindPanel('title', this.queries.title, (e: Entity) => {
       const doc = getDoc(e); if (!doc) return;
-      onClick(doc, 'btn-play', () => this.show('modeselect'));
-      onClick(doc, 'btn-scores', () => { this.refreshLB(); this.show('leaderboard'); });
-      onClick(doc, 'btn-achievements', () => { this.refreshAch(); this.show('achievements'); });
-      onClick(doc, 'btn-stats', () => { this.refreshStats(); this.show('stats'); });
-      onClick(doc, 'btn-card-backs', () => this.show('skins'));
-      onClick(doc, 'btn-settings', () => this.show('settings'));
-      onClick(doc, 'btn-help', () => this.show('help'));
+      onClick(doc, 'btn-play', () => { sfxMenuClick(); this.show('modeselect'); });
+      onClick(doc, 'btn-scores', () => { sfxMenuClick(); this.refreshLB(); this.show('leaderboard'); });
+      onClick(doc, 'btn-achievements', () => { sfxMenuClick(); this.refreshAch(); this.show('achievements'); });
+      onClick(doc, 'btn-stats', () => { sfxMenuClick(); this.refreshStats(); this.show('stats'); });
+      onClick(doc, 'btn-card-backs', () => { sfxMenuClick(); this.show('skins'); });
+      onClick(doc, 'btn-settings', () => { sfxMenuClick(); this.show('settings'); });
+      onClick(doc, 'btn-help', () => { sfxMenuClick(); this.show('help'); });
     });
 
     // MODE SELECT
@@ -86,22 +87,22 @@ export class UISystem extends createSystem({
         ['btn-daily', 'daily'], ['btn-speed', 'speed'],
         ['btn-zen', 'zen'], ['btn-practice', 'practice'],
       ];
-      for (const [btn, mode] of modes) onClick(doc, btn, () => { g().startGame(mode); this.show('_playing'); });
-      onClick(doc, 'btn-back', () => this.show('title'));
+      for (const [btn, mode] of modes) onClick(doc, btn, () => { sfxMenuClick(); g().startGame(mode); this.show('_playing'); });
+      onClick(doc, 'btn-back', () => { sfxMenuClick(); this.show('title'); });
     });
 
     // GAMEOVER
     bindPanel('gameover', this.queries.gameover, (e: Entity) => {
       const doc = getDoc(e); if (!doc) return;
-      onClick(doc, 'btn-rematch', () => { g().startGame(g().mode); this.show('_playing'); });
-      onClick(doc, 'btn-menu', () => { g().phase = 'menu'; this.show('title'); });
+      onClick(doc, 'btn-rematch', () => { sfxMenuClick(); g().startGame(g().mode); this.show('_playing'); });
+      onClick(doc, 'btn-menu', () => { sfxMenuClick(); g().phase = 'menu'; this.show('title'); });
     });
 
     // PAUSE
     bindPanel('pause', this.queries.pause, (e: Entity) => {
       const doc = getDoc(e); if (!doc) return;
-      onClick(doc, 'btn-resume', () => { g().phase = 'playing'; this.show('_playing'); });
-      onClick(doc, 'btn-quit', () => { g().handleLoss(); g().phase = 'menu'; this.show('title'); });
+      onClick(doc, 'btn-resume', () => { sfxMenuClick(); g().phase = 'playing'; this.show('_playing'); });
+      onClick(doc, 'btn-quit', () => { sfxMenuClick(); g().handleLoss(); g().phase = 'menu'; this.show('title'); });
     });
 
     // TOOLBAR
@@ -114,7 +115,7 @@ export class UISystem extends createSystem({
         if (gs && g().phase === 'playing' && canAutoComplete(gs)) { g().phase = 'autocomplete'; g().autoCompleteTimer = 0; }
         else g().showToast('Cannot auto-complete yet');
       });
-      onClick(doc, 'btn-newgame', () => g().startGame(g().mode));
+      onClick(doc, 'btn-newgame', () => { sfxMenuClick(); g().startGame(g().mode); });
     });
 
     // SETTINGS
@@ -122,23 +123,23 @@ export class UISystem extends createSystem({
       const doc = getDoc(e); if (!doc) return;
       const s = loadSettings();
       this.refreshSettingsUI(doc, s);
-      onClick(doc, 'btn-master-up', () => this.adjVol('masterVol', 10));
-      onClick(doc, 'btn-master-down', () => this.adjVol('masterVol', -10));
-      onClick(doc, 'btn-sfx-up', () => this.adjVol('sfxVol', 10));
-      onClick(doc, 'btn-sfx-down', () => this.adjVol('sfxVol', -10));
-      onClick(doc, 'btn-music-up', () => this.adjVol('musicVol', 10));
-      onClick(doc, 'btn-music-down', () => this.adjVol('musicVol', -10));
-      onClick(doc, 'btn-theme-next', () => this.cycleTheme(1));
-      onClick(doc, 'btn-theme-prev', () => this.cycleTheme(-1));
-      onClick(doc, 'btn-back', () => this.show('title'));
+      onClick(doc, 'btn-master-up', () => { sfxMenuClick(); this.adjVol('masterVol', 10); });
+      onClick(doc, 'btn-master-down', () => { sfxMenuClick(); this.adjVol('masterVol', -10); });
+      onClick(doc, 'btn-sfx-up', () => { sfxMenuClick(); this.adjVol('sfxVol', 10); });
+      onClick(doc, 'btn-sfx-down', () => { sfxMenuClick(); this.adjVol('sfxVol', -10); });
+      onClick(doc, 'btn-music-up', () => { sfxMenuClick(); this.adjVol('musicVol', 10); });
+      onClick(doc, 'btn-music-down', () => { sfxMenuClick(); this.adjVol('musicVol', -10); });
+      onClick(doc, 'btn-theme-next', () => { sfxThemeChange(); this.cycleTheme(1); });
+      onClick(doc, 'btn-theme-prev', () => { sfxThemeChange(); this.cycleTheme(-1); });
+      onClick(doc, 'btn-back', () => { sfxMenuClick(); this.show('title'); });
     });
 
     // ACHIEVEMENTS
     bindPanel('achievements', this.queries.achievements, (e: Entity) => {
       const doc = getDoc(e); if (!doc) return;
-      onClick(doc, 'btn-prev', () => { this.achievementPage = Math.max(0, this.achievementPage - 1); this.refreshAch(); });
-      onClick(doc, 'btn-next', () => { this.achievementPage = Math.min(2, this.achievementPage + 1); this.refreshAch(); });
-      onClick(doc, 'btn-back', () => this.show('title'));
+      onClick(doc, 'btn-prev', () => { sfxMenuClick(); this.achievementPage = Math.max(0, this.achievementPage - 1); this.refreshAch(); });
+      onClick(doc, 'btn-next', () => { sfxMenuClick(); this.achievementPage = Math.min(2, this.achievementPage + 1); this.refreshAch(); });
+      onClick(doc, 'btn-back', () => { sfxMenuClick(); this.show('title'); });
     });
 
     // SKINS
@@ -147,6 +148,7 @@ export class UISystem extends createSystem({
       for (let i = 0; i < CARD_SKINS.length; i++) {
         const idx = i;
         const handler = () => {
+          sfxMenuClick();
           const gs = g();
           gs.settings.skinIndex = idx;
           saveSettings(gs.settings);
@@ -156,18 +158,18 @@ export class UISystem extends createSystem({
         onClick(doc, `skin${i}`, handler);
         onClick(doc, `skin${i}-color`, handler);
       }
-      onClick(doc, 'btn-back', () => this.show('title'));
+      onClick(doc, 'btn-back', () => { sfxMenuClick(); this.show('title'); });
     });
 
-    // LEADERBOARD / STATS / HELP — just back buttons
+    // LEADERBOARD / STATS / HELP - just back buttons
     for (const name of ['leaderboard', 'stats', 'help'] as const) {
       bindPanel(name, (this.queries as any)[name], (e: Entity) => {
         const doc = getDoc(e); if (!doc) return;
-        onClick(doc, 'btn-back', () => this.show('title'));
+        onClick(doc, 'btn-back', () => { sfxMenuClick(); this.show('title'); });
       });
     }
 
-    // HUD, TOAST, COUNTDOWN — no special wiring needed
+    // HUD, TOAST, COUNTDOWN - no special wiring needed
     bindPanel('hud', this.queries.hud, () => {});
     bindPanel('toast', this.queries.toast, () => {});
     bindPanel('countdown', this.queries.countdown, () => {});
@@ -230,6 +232,8 @@ export class UISystem extends createSystem({
     if (!gs) return;
     gs.settings[key] = Math.max(0, Math.min(100, gs.settings[key] + delta));
     saveSettings(gs.settings);
+    // Apply volume changes immediately
+    setVolumes(gs.settings.masterVol, gs.settings.sfxVol, gs.settings.musicVol);
     const e = this.panels.settings;
     if (e) { const doc = getDoc(e); if (doc) this.refreshSettingsUI(doc, gs.settings); }
   }

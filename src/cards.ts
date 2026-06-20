@@ -10,23 +10,37 @@ import {
 const CARD_TEX_W = 256;
 const CARD_TEX_H = 358;
 
-// ── Card face texture ────────────────────────────────────────────────
+// -- Card face texture ------------------------------------------------
 function drawCardFace(suit: Suit, rank: Rank, theme: Theme): HTMLCanvasElement {
   const c = document.createElement('canvas');
   c.width = CARD_TEX_W; c.height = CARD_TEX_H;
   const ctx = c.getContext('2d')!;
 
-  // Background
-  ctx.fillStyle = theme.cardFace;
+  // Background with subtle gradient
+  const bgGrad = ctx.createLinearGradient(0, 0, 0, c.height);
+  bgGrad.addColorStop(0, theme.cardFace);
+  const bgColor = new Color(theme.cardFace);
+  bgGrad.addColorStop(1, `rgb(${Math.max(0, bgColor.r * 255 - 8)},${Math.max(0, bgColor.g * 255 - 8)},${Math.max(0, bgColor.b * 255 - 8)})`);
+  ctx.fillStyle = bgGrad;
   ctx.beginPath();
   ctx.roundRect(0, 0, c.width, c.height, 16);
   ctx.fill();
 
-  // Border
+  // Border with glow
+  ctx.shadowColor = theme.cardBorder;
+  ctx.shadowBlur = 4;
   ctx.strokeStyle = theme.cardBorder;
-  ctx.lineWidth = 3;
+  ctx.lineWidth = 2.5;
   ctx.beginPath();
   ctx.roundRect(2, 2, c.width - 4, c.height - 4, 14);
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+
+  // Inner subtle border
+  ctx.strokeStyle = theme.cardBorder + '33';
+  ctx.lineWidth = 0.5;
+  ctx.beginPath();
+  ctx.roundRect(8, 8, c.width - 16, c.height - 16, 10);
   ctx.stroke();
 
   // Color
@@ -40,11 +54,14 @@ function drawCardFace(suit: Suit, rank: Rank, theme: Theme): HTMLCanvasElement {
   ctx.font = '28px monospace';
   ctx.fillText(SUIT_SYMBOLS[suit], 18, 74);
 
-  // Center suit symbol large
+  // Center suit symbol large with glow
+  ctx.shadowColor = suitColor;
+  ctx.shadowBlur = 12;
   ctx.font = '80px monospace';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText(SUIT_SYMBOLS[suit], c.width / 2, c.height / 2);
+  ctx.shadowBlur = 0;
 
   // Bottom-right (rotated)
   ctx.save();
@@ -60,7 +77,7 @@ function drawCardFace(suit: Suit, rank: Rank, theme: Theme): HTMLCanvasElement {
   return c;
 }
 
-// ── Card back texture ────────────────────────────────────────────────
+// -- Card back texture ------------------------------------------------
 function drawCardBack(skin: CardSkin, theme: Theme): HTMLCanvasElement {
   const c = document.createElement('canvas');
   c.width = CARD_TEX_W; c.height = CARD_TEX_H;
@@ -72,41 +89,84 @@ function drawCardBack(skin: CardSkin, theme: Theme): HTMLCanvasElement {
   ctx.roundRect(0, 0, c.width, c.height, 16);
   ctx.fill();
 
-  // Border
+  // Outer border
   ctx.strokeStyle = skin.color;
   ctx.lineWidth = 4;
   ctx.beginPath();
   ctx.roundRect(4, 4, c.width - 8, c.height - 8, 12);
   ctx.stroke();
 
-  // Inner pattern - diamond grid
-  ctx.strokeStyle = skin.color + '44';
-  ctx.lineWidth = 1;
-  const step = 24;
-  for (let x = step; x < c.width; x += step) {
-    ctx.beginPath();
-    ctx.moveTo(x, 20);
-    ctx.lineTo(x, c.height - 20);
-    ctx.stroke();
-  }
-  for (let y = step; y < c.height; y += step) {
-    ctx.beginPath();
-    ctx.moveTo(20, y);
-    ctx.lineTo(c.width - 20, y);
-    ctx.stroke();
+  // Inner border
+  ctx.strokeStyle = skin.color + '66';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.roundRect(14, 14, c.width - 28, c.height - 28, 8);
+  ctx.stroke();
+
+  // Diamond pattern background
+  ctx.strokeStyle = skin.color + '22';
+  ctx.lineWidth = 0.5;
+  const step = 20;
+  for (let x = 20; x < c.width - 20; x += step) {
+    for (let y = 20; y < c.height - 20; y += step) {
+      ctx.beginPath();
+      ctx.moveTo(x, y - step / 2);
+      ctx.lineTo(x + step / 2, y);
+      ctx.lineTo(x, y + step / 2);
+      ctx.lineTo(x - step / 2, y);
+      ctx.closePath();
+      ctx.stroke();
+    }
   }
 
-  // Center symbol
+  // Radial glow in center
+  const grad = ctx.createRadialGradient(c.width / 2, c.height / 2, 0, c.width / 2, c.height / 2, 80);
+  grad.addColorStop(0, skin.color + '30');
+  grad.addColorStop(1, skin.color + '00');
+  ctx.fillStyle = grad;
+  ctx.fillRect(20, 20, c.width - 40, c.height - 40);
+
+  // Center diamond emblem
   ctx.fillStyle = skin.color;
-  ctx.font = 'bold 48px monospace';
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.fillText('*', c.width / 2, c.height / 2);
+  ctx.globalAlpha = 0.8;
+  const cx = c.width / 2;
+  const cy = c.height / 2;
+  ctx.beginPath();
+  ctx.moveTo(cx, cy - 30);
+  ctx.lineTo(cx + 20, cy);
+  ctx.lineTo(cx, cy + 30);
+  ctx.lineTo(cx - 20, cy);
+  ctx.closePath();
+  ctx.fill();
+  ctx.globalAlpha = 1.0;
+
+  // Inner diamond
+  ctx.fillStyle = '#0a0a1a';
+  ctx.beginPath();
+  ctx.moveTo(cx, cy - 15);
+  ctx.lineTo(cx + 10, cy);
+  ctx.lineTo(cx, cy + 15);
+  ctx.lineTo(cx - 10, cy);
+  ctx.closePath();
+  ctx.fill();
+
+  // Corner accents
+  ctx.fillStyle = skin.color + '88';
+  const cornerSize = 6;
+  for (const [ox, oy] of [[24, 24], [c.width - 24, 24], [24, c.height - 24], [c.width - 24, c.height - 24]]) {
+    ctx.beginPath();
+    ctx.moveTo(ox, oy - cornerSize);
+    ctx.lineTo(ox + cornerSize, oy);
+    ctx.lineTo(ox, oy + cornerSize);
+    ctx.lineTo(ox - cornerSize, oy);
+    ctx.closePath();
+    ctx.fill();
+  }
 
   return c;
 }
 
-// ── Texture caching ──────────────────────────────────────────────────
+// -- Texture caching --------------------------------------------------
 const faceTexCache = new Map<string, CanvasTexture>();
 let backTexCache: CanvasTexture | null = null;
 
@@ -134,7 +194,7 @@ function getBackTex(skin: CardSkin, theme: Theme): CanvasTexture {
   return backTexCache;
 }
 
-// ── Card mesh creation ───────────────────────────────────────────────
+// -- Card mesh creation -----------------------------------------------
 const cardGeo = new BoxGeometry(CARD_W, CARD_D, CARD_H);
 
 export interface CardMesh {
@@ -186,7 +246,7 @@ export function updateCardFace(cm: CardMesh, card: Card, faceUp: boolean, theme:
   cm.backMat.needsUpdate = true;
 
   if (faceUp) {
-    // Face up: face on top (+Y), back on bottom (-Y) — default
+    // Face up: face on top (+Y), back on bottom (-Y) - default
     (cm.mesh.material as MeshStandardMaterial[])[2] = cm.faceMat;
     (cm.mesh.material as MeshStandardMaterial[])[3] = cm.backMat;
   } else {
@@ -196,7 +256,7 @@ export function updateCardFace(cm: CardMesh, card: Card, faceUp: boolean, theme:
   }
 }
 
-// ── Highlight / selection glow ───────────────────────────────────────
+// -- Highlight / selection glow ---------------------------------------
 export function setCardHighlight(cm: CardMesh, highlight: boolean, color: string = '#ffff00'): void {
   const edgeMat = (cm.mesh.material as MeshStandardMaterial[])[0];
   if (highlight) {
@@ -208,7 +268,7 @@ export function setCardHighlight(cm: CardMesh, highlight: boolean, color: string
   }
 }
 
-// ── Empty pile placeholder ───────────────────────────────────────────
+// -- Empty pile placeholder -------------------------------------------
 export function createPilePlaceholder(theme: Theme, isFoundation: boolean): Mesh {
   const geo = new BoxGeometry(CARD_W, 0.001, CARD_H);
   const mat = new MeshStandardMaterial({

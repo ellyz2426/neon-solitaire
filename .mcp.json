@@ -3,7 +3,7 @@
     "iwsdk": {
       "command": "node",
       "args": [
-        "/home/hatch/workspace/neon-reflect/node_modules/@iwsdk/cli/dist/cli.js",
+        "/home/hatch/workspace/neon-solitaire/node_modules/@iwsdk/cli/dist/cli.js",
         "mcp",
         "stdio"
       ]

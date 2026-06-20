@@ -1,12 +1,12 @@
 import { Card, Suit, Rank, GameState, PileType, MoveDesc, isRed, ModeConfig } from './types';
 
-// ── Seeded RNG ───────────────────────────────────────────────────────
+// -- Seeded RNG -------------------------------------------------------
 function mulberry32(seed: number) {
   let s = seed | 0;
   return () => { s = (s + 0x6D2B79F5) | 0; let t = Math.imul(s ^ (s >>> 15), 1 | s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
 }
 
-// ── Deck creation & shuffle ──────────────────────────────────────────
+// -- Deck creation & shuffle ------------------------------------------
 function createDeck(): Card[] {
   const cards: Card[] = [];
   let id = 0;
@@ -28,7 +28,7 @@ function shuffle(cards: Card[], seed: number | null): Card[] {
   return arr;
 }
 
-// ── Deal ─────────────────────────────────────────────────────────────
+// -- Deal -------------------------------------------------------------
 export function deal(config: ModeConfig): GameState {
   const deck = shuffle(createDeck(), config.seed);
   const tableau: Card[][] = [];
@@ -51,7 +51,7 @@ export function deal(config: ModeConfig): GameState {
   };
 }
 
-// ── Snapshot for undo ────────────────────────────────────────────────
+// -- Snapshot for undo ------------------------------------------------
 export function snapshot(gs: GameState): string {
   const { undoStack, ...rest } = gs;
   return JSON.stringify(rest);
@@ -63,7 +63,7 @@ export function restoreSnapshot(json: string, undoStack: string[]): GameState {
   return obj as GameState;
 }
 
-// ── Move validation ──────────────────────────────────────────────────
+// -- Move validation --------------------------------------------------
 export function canMoveToFoundation(card: Card, foundation: Card[]): boolean {
   if (foundation.length === 0) return card.rank === Rank.Ace;
   const top = foundation[foundation.length - 1];
@@ -77,11 +77,11 @@ export function canMoveToTableau(card: Card, column: Card[]): boolean {
   return isRed(card.suit) !== isRed(top.suit) && card.rank === top.rank - 1;
 }
 
-// ── Find all valid moves ─────────────────────────────────────────────
+// -- Find all valid moves ---------------------------------------------
 export function findAllMoves(gs: GameState): MoveDesc[] {
   const moves: MoveDesc[] = [];
 
-  // Waste → Foundation
+  // Waste -> Foundation
   if (gs.waste.length > 0) {
     const wCard = gs.waste[gs.waste.length - 1];
     for (let fi = 0; fi < 4; fi++) {
@@ -91,7 +91,7 @@ export function findAllMoves(gs: GameState): MoveDesc[] {
     }
   }
 
-  // Waste → Tableau
+  // Waste -> Tableau
   if (gs.waste.length > 0) {
     const wCard = gs.waste[gs.waste.length - 1];
     for (let ti = 0; ti < 7; ti++) {
@@ -101,7 +101,7 @@ export function findAllMoves(gs: GameState): MoveDesc[] {
     }
   }
 
-  // Tableau → Foundation
+  // Tableau -> Foundation
   for (let ti = 0; ti < 7; ti++) {
     const col = gs.tableau[ti];
     if (col.length === 0) continue;
@@ -114,7 +114,7 @@ export function findAllMoves(gs: GameState): MoveDesc[] {
     }
   }
 
-  // Tableau → Tableau
+  // Tableau -> Tableau
   for (let fromCol = 0; fromCol < 7; fromCol++) {
     const col = gs.tableau[fromCol];
     // Find the first face-up card
@@ -138,7 +138,7 @@ export function findAllMoves(gs: GameState): MoveDesc[] {
     }
   }
 
-  // Stock → draw
+  // Stock -> draw
   if (gs.stock.length > 0) {
     moves.push({ from: { type: PileType.Stock, index: 0 }, to: { type: PileType.Waste, index: 0 }, count: gs.drawCount });
   } else if (gs.waste.length > 0) {
@@ -149,7 +149,7 @@ export function findAllMoves(gs: GameState): MoveDesc[] {
   return moves;
 }
 
-// ── Execute moves ────────────────────────────────────────────────────
+// -- Execute moves ----------------------------------------------------
 export function drawFromStock(gs: GameState): { flipped: Card[] } {
   gs.undoStack.push(snapshot(gs));
   const count = Math.min(gs.drawCount, gs.stock.length);
@@ -283,7 +283,7 @@ export function undo(gs: GameState): boolean {
   return true;
 }
 
-// ── Auto-complete check ──────────────────────────────────────────────
+// -- Auto-complete check ----------------------------------------------
 export function canAutoComplete(gs: GameState): boolean {
   if (gs.stock.length > 0 || gs.waste.length > 0) return false;
   // All tableau cards must be face up
@@ -313,7 +313,7 @@ export function autoCompleteStep(gs: GameState): { card: Card; fromCol: number; 
   return null;
 }
 
-// ── Win check ────────────────────────────────────────────────────────
+// -- Win check --------------------------------------------------------
 function checkWin(gs: GameState): void {
   let total = 0;
   for (const f of gs.foundations) total += f.length;
@@ -326,7 +326,7 @@ export function foundationTotal(gs: GameState): number {
   return total;
 }
 
-// ── Hint ─────────────────────────────────────────────────────────────
+// -- Hint -------------------------------------------------------------
 export function findHint(gs: GameState): MoveDesc | null {
   const moves = findAllMoves(gs);
   // Prefer foundation moves, then tableau-to-tableau that reveals a card, then others
@@ -344,7 +344,7 @@ export function findHint(gs: GameState): MoveDesc | null {
   return moves[0] || null;
 }
 
-// ── Vegas scoring ────────────────────────────────────────────────────
+// -- Vegas scoring ----------------------------------------------------
 export function vegasScore(gs: GameState): number {
   let total = -52;
   for (const f of gs.foundations) total += f.length * 5;

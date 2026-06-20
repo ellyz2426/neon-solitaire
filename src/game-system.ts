@@ -18,6 +18,12 @@ import {
 } from './solitaire';
 import { CardMesh, createCardMesh, updateCardFace, setCardHighlight, createPilePlaceholder, clearTexCache } from './cards';
 import { ACHIEVEMENTS, loadStats, saveStats, loadLeaderboard, saveLeaderboard, loadUnlocked, saveUnlocked, loadSettings } from './achievements';
+import { ParticleSystem } from './particles';
+import {
+  sfxCardPlace, sfxCardSelect, sfxCardFlip, sfxDraw, sfxRecycle,
+  sfxFoundation, sfxCombo, sfxInvalid, sfxUndo, sfxHint,
+  sfxAutoComplete, sfxWin, sfxLoss, sfxDeal, setVolumes,
+} from './audio';
 
 interface Selection {
   pileType: PileType;
@@ -57,9 +63,28 @@ export class GameSystem extends createSystem({}) {
   toastTimer = 0;
   toastMsg = '';
 
+  // New: particle system
+  particles: ParticleSystem | null = null;
+
+  // New: hover tracking
+  hoveredCardId: number | null = null;
+
+  // New: double-click tracking
+  lastClickCardId = -1;
+  lastClickTime = 0;
+
+  // New: dealing animation
+  dealingCards: { cardId: number; delay: number; elapsed: number; target: Vector3 }[] = [];
+  isDealingAnim = false;
+
+  // Ambient particles timer
+  ambientTimer = 0;
+
   init() {
     this.buildEnvironment();
     this.setupInput();
+    // Initialize audio volumes
+    setVolumes(this.settings.masterVol, this.settings.sfxVol, this.settings.musicVol);
   }
 
   buildEnvironment() {
@@ -109,6 +134,10 @@ export class GameSystem extends createSystem({}) {
       pl.position.set(pos[0], pos[1], pos[2]);
       this.scene.add(pl);
     }
+
+    // Particle system
+    this.particles = new ParticleSystem();
+    this.scene.add(this.particles.group);
 
     this.scene.add(this.tableGroup);
     this.scene.add(this.cardGroup);
@@ -203,13 +232,85 @@ export class GameSystem extends createSystem({}) {
 
     if (cardHits.length > 0) {
       const cardId = cardHits[0].object.parent?.userData.cardId as number | undefined;
-      if (cardId !== undefined) this.handleCardClick(cardId);
+      if (cardId !== undefined) {
+        // Double-click detection
+        const now = performance.now();
+        if (cardId === this.lastClickCardId && now - this.lastClickTime < 400) {
+          this.handleDoubleClick(cardId);
+          this.lastClickCardId = -1;
+          this.lastClickTime = 0;
+          return;
+        }
+        this.lastClickCardId = cardId;
+        this.lastClickTime = now;
+        this.handleCardClick(cardId);
+      }
     } else if (phHits.length > 0) {
       const ph = phHits[0].object;
       this.handlePileClick(ph.userData.pileType as PileType, ph.userData.pileIndex as number);
     } else {
       this.clearSelection();
     }
+  }
+
+  /** Double-click: auto-move single card to foundation */
+  handleDoubleClick(cardId: number) {
+    const gs = this.gs!;
+    const loc = this.findCard(cardId);
+    if (!loc) return;
+
+    // Only for single cards (waste top, tableau top, foundation top)
+    let card: Card | null = null;
+    if (loc.pileType === PileType.Waste && loc.cardIndex === gs.waste.length - 1) {
+      card = gs.waste[gs.waste.length - 1];
+    } else if (loc.pileType === PileType.Tableau) {
+      const col = gs.tableau[loc.pileIndex];
+      if (loc.cardIndex === col.length - 1 && col[loc.cardIndex].faceUp) {
+        card = col[loc.cardIndex];
+      }
+    }
+    if (!card) return;
+
+    // Try foundations first
+    for (let fi = 0; fi < 4; fi++) {
+      let success = false;
+      if (loc.pileType === PileType.Waste) {
+        if (moveWasteToFoundation(gs, fi)) success = true;
+      } else if (loc.pileType === PileType.Tableau) {
+        if (moveTableauToFoundation(gs, loc.pileIndex, fi)) success = true;
+      }
+      if (success) {
+        this.clearSelection();
+        sfxFoundation(gs.combo);
+        const positions = this.getPilePositions();
+        this.particles?.emitSparkle(positions.foundations[fi], THEMES[this.settings.themeIndex].accent);
+        this.refreshCardPositions();
+        this.checkAchievements();
+        if (gs.won) this.handleWin();
+        else if (canAutoComplete(gs)) { this.phase = 'autocomplete'; this.autoCompleteTimer = 0; }
+        return;
+      }
+    }
+
+    // Try tableau
+    for (let ti = 0; ti < 7; ti++) {
+      let success = false;
+      if (loc.pileType === PileType.Waste) {
+        if (moveWasteToTableau(gs, ti)) success = true;
+      } else if (loc.pileType === PileType.Tableau && ti !== loc.pileIndex) {
+        if (moveTableauToTableau(gs, loc.pileIndex, loc.cardIndex, ti)) success = true;
+      }
+      if (success) {
+        this.clearSelection();
+        sfxCardPlace();
+        this.refreshCardPositions();
+        this.checkAchievements();
+        return;
+      }
+    }
+
+    // No valid move - select instead
+    sfxInvalid();
   }
 
   handleCardClick(cardId: number) {
@@ -229,25 +330,33 @@ export class GameSystem extends createSystem({}) {
     }
 
     if (loc.pileType === PileType.Stock) {
-      if (gs.stock.length > 0) drawFromStock(gs);
-      else if (gs.waste.length > 0) recycleWaste(gs);
+      if (gs.stock.length > 0) {
+        drawFromStock(gs);
+        sfxDraw();
+      } else if (gs.waste.length > 0) {
+        recycleWaste(gs);
+        sfxRecycle();
+      }
       this.refreshCardPositions();
       return;
     }
     if (loc.pileType === PileType.Waste) {
       if (loc.cardIndex !== gs.waste.length - 1) return;
+      sfxCardSelect();
       this.selectCards(PileType.Waste, 0, loc.cardIndex, [cardId]);
       return;
     }
     if (loc.pileType === PileType.Foundation) {
       const fPile = gs.foundations[loc.pileIndex];
       if (loc.cardIndex !== fPile.length - 1) return;
+      sfxCardSelect();
       this.selectCards(PileType.Foundation, loc.pileIndex, loc.cardIndex, [cardId]);
       return;
     }
     if (loc.pileType === PileType.Tableau) {
       const col = gs.tableau[loc.pileIndex];
       if (!col[loc.cardIndex].faceUp) return;
+      sfxCardSelect();
       const ids = col.slice(loc.cardIndex).map(c => c.id);
       this.selectCards(PileType.Tableau, loc.pileIndex, loc.cardIndex, ids);
     }
@@ -256,8 +365,13 @@ export class GameSystem extends createSystem({}) {
   handlePileClick(pileType: PileType, pileIndex: number) {
     const gs = this.gs!;
     if (pileType === PileType.Stock) {
-      if (gs.stock.length > 0) drawFromStock(gs);
-      else if (gs.waste.length > 0) recycleWaste(gs);
+      if (gs.stock.length > 0) {
+        drawFromStock(gs);
+        sfxDraw();
+      } else if (gs.waste.length > 0) {
+        recycleWaste(gs);
+        sfxRecycle();
+      }
       this.refreshCardPositions();
       return;
     }
@@ -268,12 +382,13 @@ export class GameSystem extends createSystem({}) {
     const gs = this.gs!;
     const sel = this.selection!;
     let success = false;
+    let toFoundation = false;
 
     if (sel.pileType === PileType.Waste) {
-      if (destType === PileType.Foundation) success = moveWasteToFoundation(gs, destIndex) !== null;
+      if (destType === PileType.Foundation) { success = moveWasteToFoundation(gs, destIndex) !== null; toFoundation = true; }
       else if (destType === PileType.Tableau) success = moveWasteToTableau(gs, destIndex) !== null;
     } else if (sel.pileType === PileType.Tableau) {
-      if (destType === PileType.Foundation) success = moveTableauToFoundation(gs, sel.pileIndex, destIndex) !== null;
+      if (destType === PileType.Foundation) { success = moveTableauToFoundation(gs, sel.pileIndex, destIndex) !== null; toFoundation = true; }
       else if (destType === PileType.Tableau) success = moveTableauToTableau(gs, sel.pileIndex, sel.cardIndex, destIndex) !== null;
     } else if (sel.pileType === PileType.Foundation) {
       if (destType === PileType.Tableau) success = moveFoundationToTableau(gs, sel.pileIndex, destIndex) !== null;
@@ -281,10 +396,30 @@ export class GameSystem extends createSystem({}) {
 
     this.clearSelection();
     if (success) {
+      if (toFoundation) {
+        sfxFoundation(gs.combo);
+        if (gs.combo > 1) {
+          sfxCombo(gs.combo);
+          const positions = this.getPilePositions();
+          this.particles?.emitCombo(positions.foundations[destIndex], gs.combo);
+        } else {
+          const positions = this.getPilePositions();
+          this.particles?.emitSparkle(positions.foundations[destIndex], THEMES[this.settings.themeIndex].accent, 5);
+        }
+        // Check if foundation just completed
+        if (gs.foundations[destIndex].length === 13) {
+          const positions = this.getPilePositions();
+          this.particles?.emitFoundationComplete(positions.foundations[destIndex]);
+        }
+      } else {
+        sfxCardPlace();
+      }
       this.refreshCardPositions();
       this.checkAchievements();
       if (gs.won) this.handleWin();
       else if (canAutoComplete(gs)) { this.phase = 'autocomplete'; this.autoCompleteTimer = 0; }
+    } else {
+      sfxInvalid();
     }
   }
 
@@ -299,10 +434,13 @@ export class GameSystem extends createSystem({}) {
     }
     this.clearSelection();
     if (success) {
+      sfxFoundation(gs.combo);
       this.refreshCardPositions();
       this.checkAchievements();
       if (gs.won) this.handleWin();
       else if (canAutoComplete(gs)) { this.phase = 'autocomplete'; this.autoCompleteTimer = 0; }
+    } else {
+      sfxInvalid();
     }
   }
 
@@ -342,7 +480,44 @@ export class GameSystem extends createSystem({}) {
     this.phase = 'playing';
     this.selection = null;
     this.rebuildCardMeshes();
-    this.refreshCardPositions();
+    this.startDealingAnimation();
+  }
+
+  /** Staggered dealing animation */
+  startDealingAnimation() {
+    const gs = this.gs!;
+    this.dealingCards = [];
+    this.isDealingAnim = true;
+
+    // Start all cards off-screen at stock position
+    const positions = this.getPilePositions();
+    const stockPos = positions.stock.clone();
+    stockPos.y += 0.1;
+    for (const [, cm] of this.cardMeshes) {
+      cm.group.position.copy(stockPos);
+    }
+
+    // Queue tableau cards with staggered delays
+    let delay = 0;
+    for (let col = 0; col < 7; col++) {
+      for (let row = 0; row <= col; row++) {
+        const card = gs.tableau[col][row];
+        const target = positions.tableau[col].clone();
+        target.y += row * STACK_Y;
+        target.z += row * (card.faceUp ? CASCADE_UP : CASCADE_DOWN);
+        this.dealingCards.push({ cardId: card.id, delay, elapsed: 0, target });
+        delay += 0.04;
+      }
+    }
+
+    // Queue stock cards
+    for (let i = 0; i < gs.stock.length; i++) {
+      const card = gs.stock[i];
+      const target = positions.stock.clone();
+      target.y += i * STACK_Y;
+      this.dealingCards.push({ cardId: card.id, delay, elapsed: 0, target });
+      delay += 0.01;
+    }
   }
 
   rebuildCardMeshes() {
@@ -407,19 +582,31 @@ export class GameSystem extends createSystem({}) {
   }
 
   doUndo() {
-    if (this.gs && undo(this.gs)) { this.clearSelection(); this.refreshCardPositions(); }
+    if (this.gs && undo(this.gs)) {
+      sfxUndo();
+      this.clearSelection();
+      this.refreshCardPositions();
+    }
   }
 
   doHint() {
     const gs = this.gs!;
     this.clearHint();
     const hint = findHint(gs);
-    if (!hint) { this.showToast('No moves available!'); return; }
+    if (!hint) { this.showToast('No moves available!'); sfxInvalid(); return; }
+    sfxHint();
     this.hintTimer = 2;
     let sourceCards: Card[] = [];
     if (hint.from.type === PileType.Waste && gs.waste.length > 0) sourceCards = [gs.waste[gs.waste.length - 1]];
     else if (hint.from.type === PileType.Tableau) { const col = gs.tableau[hint.from.index]; sourceCards = col.slice(col.length - hint.count); }
-    for (const c of sourceCards) { const cm = this.cardMeshes.get(c.id); if (cm) setCardHighlight(cm, true, '#00ff88'); }
+    for (const c of sourceCards) {
+      const cm = this.cardMeshes.get(c.id);
+      if (cm) {
+        setCardHighlight(cm, true, '#00ff88');
+        // Sparkle on hinted cards
+        this.particles?.emitSparkle(cm.group.position, '#00ff88', 4);
+      }
+    }
   }
 
   clearHint() {
@@ -434,6 +621,7 @@ export class GameSystem extends createSystem({}) {
   handleWin() {
     this.phase = 'gameover';
     const gs = this.gs!;
+    sfxWin();
     this.stats.gamesPlayed++;
     this.stats.gamesWon++;
     this.stats.winStreak++;
@@ -451,11 +639,16 @@ export class GameSystem extends createSystem({}) {
     lb.sort((a, b) => b.score - a.score);
     saveLeaderboard(lb.slice(0, 10));
     this.checkAchievements();
+
+    // Win celebration particles
+    const center = new Vector3(0, TABLE_Y + 0.2, -1.0);
+    this.particles?.emitWinCelebration(center);
   }
 
   handleLoss() {
     this.phase = 'gameover';
     const gs = this.gs!;
+    sfxLoss();
     this.stats.gamesPlayed++;
     this.stats.winStreak = 0;
     this.stats.totalMoves += gs.moves;
@@ -471,6 +664,8 @@ export class GameSystem extends createSystem({}) {
         this.unlocked.add(ach.id);
         newCount++;
         this.showToast(`Achievement: ${ach.name}!`);
+        // Achievement sparkle
+        this.particles?.emitAchievement(new Vector3(0, TABLE_Y + 0.3, -1.0));
       }
     }
     if (newCount > 0) {
@@ -485,7 +680,79 @@ export class GameSystem extends createSystem({}) {
     this.toastMsg = msg;
   }
 
+  /** Hover detection - highlight card under cursor */
+  updateHover() {
+    if (this.phase !== 'playing') return;
+    this.raycaster.setFromCamera(this.mouse, this.camera);
+    const cardObjects: Object3D[] = [];
+    this.cardMeshes.forEach(cm => cardObjects.push(cm.mesh));
+    const hits = this.raycaster.intersectObjects(cardObjects, false);
+
+    let newHover: number | null = null;
+    if (hits.length > 0) {
+      newHover = hits[0].object.parent?.userData.cardId ?? null;
+    }
+
+    if (newHover !== this.hoveredCardId) {
+      // Remove old hover
+      if (this.hoveredCardId !== null && (!this.selection || !this.selection.cardIds.includes(this.hoveredCardId))) {
+        const cm = this.cardMeshes.get(this.hoveredCardId);
+        if (cm) setCardHighlight(cm, false);
+      }
+      // Apply new hover
+      if (newHover !== null && (!this.selection || !this.selection.cardIds.includes(newHover))) {
+        const cm = this.cardMeshes.get(newHover);
+        if (cm) {
+          // Check if card is face up and interactable
+          const loc = this.findCard(newHover);
+          if (loc) {
+            let interactable = false;
+            if (loc.pileType === PileType.Stock) interactable = true;
+            else if (loc.pileType === PileType.Waste && loc.cardIndex === (this.gs?.waste.length ?? 0) - 1) interactable = true;
+            else if (loc.pileType === PileType.Foundation) {
+              const fPile = this.gs?.foundations[loc.pileIndex];
+              if (fPile && loc.cardIndex === fPile.length - 1) interactable = true;
+            }
+            else if (loc.pileType === PileType.Tableau) {
+              const col = this.gs?.tableau[loc.pileIndex];
+              if (col && col[loc.cardIndex]?.faceUp) interactable = true;
+            }
+            if (interactable) setCardHighlight(cm, true, '#00aacc');
+          }
+        }
+      }
+      this.hoveredCardId = newHover;
+    }
+  }
+
   update(delta: number) {
+    // Dealing animation
+    if (this.isDealingAnim && this.dealingCards.length > 0) {
+      let allDone = true;
+      for (const dc of this.dealingCards) {
+        dc.elapsed += delta;
+        if (dc.elapsed < dc.delay) { allDone = false; continue; }
+        const cm = this.cardMeshes.get(dc.cardId);
+        if (!cm) continue;
+        const diff = dc.target.clone().sub(cm.group.position);
+        const dist = diff.length();
+        if (dist > 0.002) {
+          allDone = false;
+          cm.group.position.add(diff.normalize().multiplyScalar(Math.min(delta * 10, dist)));
+        } else {
+          cm.group.position.copy(dc.target);
+        }
+        // Play deal sound when card first starts moving
+        if (dc.elapsed >= dc.delay && dc.elapsed - delta < dc.delay) {
+          sfxDeal(this.dealingCards.indexOf(dc));
+        }
+      }
+      if (allDone) {
+        this.isDealingAnim = false;
+        this.dealingCards = [];
+      }
+    }
+
     // Animate cards
     for (let i = this.anims.length - 1; i >= 0; i--) {
       const a = this.anims[i];
@@ -515,13 +782,34 @@ export class GameSystem extends createSystem({}) {
       if (this.autoCompleteTimer <= 0) {
         const result = autoCompleteStep(this.gs);
         if (result) {
+          sfxAutoComplete();
+          const positions = this.getPilePositions();
+          this.particles?.emitSparkle(positions.foundations[result.fi], '#00ffff', 3);
           this.refreshCardPositions();
-          this.autoCompleteTimer = 0.15;
+          this.autoCompleteTimer = 0.12;
           if (this.gs.won) this.handleWin();
         } else {
           this.phase = 'playing';
         }
       }
+    }
+
+    // Hover effect (check every 3 frames)
+    this.updateHover();
+
+    // Particle system update
+    this.particles?.update(delta);
+
+    // Ambient floating particles
+    this.ambientTimer -= delta;
+    if (this.ambientTimer <= 0 && this.particles) {
+      this.ambientTimer = 0.3 + Math.random() * 0.5;
+      const theme = THEMES[this.settings.themeIndex];
+      const x = (Math.random() - 0.5) * 2;
+      const z = -0.5 - Math.random() * 1.5;
+      const pos = new Vector3(x, 0.1, z);
+      const vel = new Vector3((Math.random() - 0.5) * 0.02, 0.05 + Math.random() * 0.05, (Math.random() - 0.5) * 0.02);
+      this.particles.emitCardTrail(pos, theme.accent);
     }
   }
 }

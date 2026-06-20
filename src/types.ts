@@ -1,4 +1,4 @@
-// ── Card data ────────────────────────────────────────────────────────
+// -- Card data --------------------------------------------------------
 export enum Suit { Clubs, Diamonds, Hearts, Spades }
 export enum Rank { Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King }
 
@@ -10,12 +10,12 @@ export function isRed(s: Suit): boolean { return s === Suit.Diamonds || s === Su
 
 export interface Card { suit: Suit; rank: Rank; faceUp: boolean; id: number; }
 
-// ── Pile types ───────────────────────────────────────────────────────
+// -- Pile types -------------------------------------------------------
 export enum PileType { Stock, Waste, Foundation, Tableau }
 
 export interface Pile { type: PileType; index: number; cards: Card[]; }
 
-// ── Game state ───────────────────────────────────────────────────────
+// -- Game state -------------------------------------------------------
 export interface GameState {
   stock: Card[];
   waste: Card[];
@@ -34,7 +34,7 @@ export interface GameState {
   recycleCount: number;
 }
 
-// ── Game mode ────────────────────────────────────────────────────────
+// -- Game mode --------------------------------------------------------
 export type GameMode =
   | 'klondike1' | 'klondike3' | 'timed' | 'vegas'
   | 'daily' | 'speed' | 'zen' | 'practice';
@@ -64,14 +64,14 @@ export function getModeConfig(mode: GameMode): ModeConfig {
   }
 }
 
-// ── Move description (for hints / undo labeling) ─────────────────────
+// -- Move description (for hints / undo labeling) ---------------------
 export interface MoveDesc {
   from: { type: PileType; index: number };
   to: { type: PileType; index: number };
   count: number;
 }
 
-// ── Layout constants ─────────────────────────────────────────────────
+// -- Layout constants -------------------------------------------------
 export const CARD_W = 0.07;
 export const CARD_H = 0.098;
 export const CARD_D = 0.002;
@@ -84,7 +84,7 @@ export const TABLE_Z = -1.0;
 export const TOP_ROW_Z = TABLE_Z - 0.3;
 export const TABLEAU_START_Z = TABLE_Z - 0.05;
 
-// ── Themes ───────────────────────────────────────────────────────────
+// -- Themes -----------------------------------------------------------
 export interface Theme {
   name: string;
   bg: string;
@@ -106,7 +106,7 @@ export const THEMES: Theme[] = [
   { name: 'Frost Blue', bg: '#050a10', floor: '#0a1420', grid: '#4488ff', table: '#0a1222', accent: '#4488ff', cardFace: '#0a1020', cardBorder: '#3366cc', redSuit: '#ff4466', blackSuit: '#ccddff' },
 ];
 
-// ── Card back skins ──────────────────────────────────────────────────
+// -- Card back skins --------------------------------------------------
 export interface CardSkin { name: string; color: string; }
 export const CARD_SKINS: CardSkin[] = [
   { name: 'Neon Cyan', color: '#00ffff' },
@@ -119,7 +119,7 @@ export const CARD_SKINS: CardSkin[] = [
   { name: 'Inferno', color: '#ff2200' },
 ];
 
-// ── Storage types ────────────────────────────────────────────────────
+// -- Storage types ----------------------------------------------------
 export interface PlayerStats {
   gamesPlayed: number;
   gamesWon: number;
@@ -148,7 +148,7 @@ export const EMPTY_STATS: PlayerStats = {
   achievementsUnlocked: 0, playerLevel: 1, xp: 0,
 };
 
-// ── Achievement ──────────────────────────────────────────────────────
+// -- Achievement ------------------------------------------------------
 export interface Achievement {
   id: string;
   name: string;

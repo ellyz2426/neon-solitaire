@@ -46,7 +46,7 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'best_time_5', name: 'Quick Thinker', desc: 'Best time under 5 min', check: (_gs, st) => st.bestTime > 0 && st.bestTime < 300 },
 ];
 
-// ── Storage ──────────────────────────────────────────────────────────
+// -- Storage ----------------------------------------------------------
 const STATS_KEY = 'neon_solitaire_stats';
 const LB_KEY = 'neon_solitaire_leaderboard';
 const ACH_KEY = 'neon_solitaire_achievements';

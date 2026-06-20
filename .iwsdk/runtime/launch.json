@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "workspaceRoot": "/home/hatch/workspace/neon-solitaire",
+  "pid": 40691,
+  "command": "npm",
+  "args": [
+    "run",
+    "dev:runtime"
+  ],
+  "logPath": "/home/hatch/workspace/neon-solitaire/.iwsdk/runtime/logs/dev-1781945830100.log",
+  "scriptName": "dev:runtime",
+  "port": 5173,
+  "openBrowser": false,
+  "createdAt": "2026-06-20T08:57:15.683Z"
+}
