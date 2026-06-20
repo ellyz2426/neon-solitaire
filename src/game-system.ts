@@ -14,7 +14,7 @@ import {
   deal, drawFromStock, recycleWaste, moveWasteToFoundation,
   moveWasteToTableau, moveTableauToFoundation, moveTableauToTableau,
   moveFoundationToTableau, undo, canAutoComplete, autoCompleteStep,
-  findHint, foundationTotal,
+  findHint, foundationTotal, findAllMoves,
 } from './solitaire';
 import { CardMesh, createCardMesh, updateCardFace, setCardHighlight, createPilePlaceholder, clearTexCache } from './cards';
 import { ACHIEVEMENTS, loadStats, saveStats, loadLeaderboard, saveLeaderboard, loadUnlocked, saveUnlocked, loadSettings } from './achievements';
@@ -23,7 +23,9 @@ import {
   sfxCardPlace, sfxCardSelect, sfxCardFlip, sfxDraw, sfxRecycle,
   sfxFoundation, sfxCombo, sfxInvalid, sfxUndo, sfxHint,
   sfxAutoComplete, sfxWin, sfxLoss, sfxDeal, setVolumes,
+  getMusicGain, getMasterGain,
 } from './audio';
+import { startMusic, stopMusic, setMusicVolume, connectMusicTo } from './music';
 
 interface Selection {
   pileType: PileType;
@@ -86,11 +88,22 @@ export class GameSystem extends createSystem({}) {
   // Theme state tracking
   lastThemeIndex = -1;
 
+  // Stalemate detection
+  stalemateCheckTimer = 0;
+  stalemateWarned = false;
+
+  // Card flip animation
+  flippingCards: { cardId: number; progress: number; targetFaceUp: boolean }[] = [];
+
+  // Music started flag
+  musicStarted = false;
+
   init() {
     this.buildEnvironment();
     this.setupInput();
     // Initialize audio volumes
     setVolumes(this.settings.masterVol, this.settings.sfxVol, this.settings.musicVol);
+    setMusicVolume(this.settings.musicVol);
   }
 
   buildEnvironment() {
@@ -534,8 +547,15 @@ export class GameSystem extends createSystem({}) {
     this.gs = deal(this.modeConfig);
     this.phase = 'playing';
     this.selection = null;
+    this.stalemateWarned = false;
+    this.stalemateCheckTimer = 3; // Wait 3 seconds before first stalemate check
     this.rebuildCardMeshes();
     this.startDealingAnimation();
+    // Start ambient music on first game
+    if (!this.musicStarted) {
+      this.musicStarted = true;
+      startMusic();
+    }
   }
 
   /** Staggered dealing animation */
@@ -879,6 +899,52 @@ export class GameSystem extends createSystem({}) {
     for (const edge of this.tableEdges) {
       const mat = edge.material as MeshStandardMaterial;
       mat.emissiveIntensity = edgePulse;
+    }
+
+    // Stalemate detection - check every few seconds
+    if (this.phase === 'playing' && this.gs && this.gs.started) {
+      this.stalemateCheckTimer -= delta;
+      if (this.stalemateCheckTimer <= 0 && !this.stalemateWarned) {
+        this.stalemateCheckTimer = 5; // Check every 5 seconds
+        const moves = findAllMoves(this.gs);
+        // Filter out pointless draws (stock->waste when we've been through the deck)
+        const meaningful = moves.filter(m => {
+          // Stock draws are always valid moves
+          if (m.from.type === PileType.Stock) return true;
+          // Recycle is valid unless stock+waste would just cycle
+          if (m.from.type === PileType.Waste && m.to.type === PileType.Stock) return true;
+          return true;
+        });
+        if (meaningful.length === 0) {
+          this.stalemateWarned = true;
+          this.showToast('No more moves! Game over.');
+          // Auto-end after short delay
+          setTimeout(() => {
+            if (this.phase === 'playing') this.handleLoss();
+          }, 2000);
+        }
+      }
+    }
+
+    // Card flip animation
+    for (let i = this.flippingCards.length - 1; i >= 0; i--) {
+      const flip = this.flippingCards[i];
+      flip.progress += delta * 4; // Complete flip in ~0.25s
+      const cm = this.cardMeshes.get(flip.cardId);
+      if (cm) {
+        // Scale X to simulate flip: 1 -> 0 -> 1
+        if (flip.progress < 0.5) {
+          const scale = 1 - flip.progress * 2;
+          cm.group.scale.set(Math.max(0.01, scale), 1, 1);
+        } else {
+          const scale = (flip.progress - 0.5) * 2;
+          cm.group.scale.set(Math.min(1, scale), 1, 1);
+        }
+      }
+      if (flip.progress >= 1) {
+        if (cm) cm.group.scale.set(1, 1, 1);
+        this.flippingCards.splice(i, 1);
+      }
     }
   }
 }

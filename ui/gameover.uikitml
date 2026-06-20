@@ -15,7 +15,9 @@
     <container flexDirection="row" gap={8}><text fontSize={12} color="#668888" width={120}>Moves:</text><text name="r-moves" fontSize={12} color="#66ff66">0</text></container>
     <container flexDirection="row" gap={8}><text fontSize={12} color="#668888" width={120}>Time:</text><text name="r-time" fontSize={12} color="#ffcc00">0:00</text></container>
     <container flexDirection="row" gap={8}><text fontSize={12} color="#668888" width={120}>Combo Best:</text><text name="r-combo" fontSize={12} color="#ff8800">0</text></container>
-    <container flexDirection="row" gap={8}><text fontSize={12} color="#668888" width={120}>Foundations:</text><text name="r-foundations" fontSize={12} color="#ff66ff">0/4</text></container>
+    <container flexDirection="row" gap={8}><text fontSize={12} color="#668888" width={120}>Foundations:</text><text name="r-foundations" fontSize={12} color="#ff66ff">0/52</text></container>
+    <container flexDirection="row" gap={8}><text fontSize={12} color="#668888" width={120}>Win Streak:</text><text name="r-streak" fontSize={12} color="#ffcc00">0</text></container>
+    <container flexDirection="row" gap={8}><text fontSize={12} color="#668888" width={120}>XP Earned:</text><text name="r-xp" fontSize={12} color="#aa66ff">+0</text></container>
   </container>
   <container flexDirection="row" gap={8} padding-top={8}>
     <text name="btn-rematch" fontSize={16} color="#00ffff" backgroundColor="#003333" padding={8} borderRadius={6} width={160} textAlign="center" cursor="pointer">NEW GAME</text>

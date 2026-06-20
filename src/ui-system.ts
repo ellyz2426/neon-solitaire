@@ -7,6 +7,7 @@ import { GameSystem } from './game-system';
 import { ACHIEVEMENTS, loadSettings, saveSettings, loadLeaderboard, loadStats } from './achievements';
 import { foundationTotal, canAutoComplete } from './solitaire';
 import { sfxMenuClick, sfxThemeChange, setVolumes } from './audio';
+import { setMusicVolume } from './music';
 
 const getDoc = (e: Entity) =>
   (e as any).getValue(PanelDocument, 'document') as UIKitDocument | undefined;
@@ -239,6 +240,7 @@ export class UISystem extends createSystem({
     saveSettings(gs.settings);
     // Apply volume changes immediately
     setVolumes(gs.settings.masterVol, gs.settings.sfxVol, gs.settings.musicVol);
+    setMusicVolume(gs.settings.musicVol);
     const e = this.panels.settings;
     if (e) { const doc = getDoc(e); if (doc) this.refreshSettingsUI(doc, gs.settings); }
   }
@@ -327,6 +329,7 @@ export class UISystem extends createSystem({
           setText(hud, 'mode', gs.mode);
           setText(hud, 'combo', g.combo > 1 ? `${g.combo}x combo` : '-');
           setText(hud, 'level', `Lv.${gs.stats.playerLevel}`);
+          setText(hud, 'stock-count', `Stock: ${g.stock.length}`);
         }
       }
     }
@@ -361,5 +364,8 @@ export class UISystem extends createSystem({
     setText(doc, 'r-time', `${Math.floor(g.elapsed / 60)}:${Math.floor(g.elapsed % 60).toString().padStart(2, '0')}`);
     setText(doc, 'r-combo', String(g.bestCombo));
     setText(doc, 'r-foundations', `${foundationTotal(g)}/52`);
+    setText(doc, 'r-streak', String(gs.stats.winStreak));
+    const xpGained = g.won ? Math.floor(g.score / 10) + 50 : 0;
+    setText(doc, 'r-xp', g.won ? `+${xpGained}` : '-');
   }
 }

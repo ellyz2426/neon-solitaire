@@ -648,3 +648,205 @@
     at http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25763:9
     at PropertiesImplementation2.subscribePropertyKeys (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:26194:7)
     at E.x (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25759:48)
+9:59:10 AM [vite] (client) page reload src/audio.ts
+9:59:17 AM [vite] (client) page reload src/game-system.ts
+[browser] Error: Invalid Yoga point: {12}
+    at convertYogaPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:23118:9)
+    at convertPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25495:10)
+    at Object.gapRow (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25699:20)
+    at E.<anonymous> (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25764:22)
+    at E.c (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:342:19)
+    at j (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:376:8)
+    at abortableEffect (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:36167:23)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25763:9
+    at PropertiesImplementation2.subscribePropertyKeys (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:26194:7)
+    at E.x (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25759:48)
+9:59:24 AM [vite] (client) page reload src/game-system.ts
+[browser] Error: Invalid Yoga point: {12}
+    at convertYogaPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:23118:9)
+    at convertPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25495:10)
+    at Object.gapRow (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25699:20)
+    at E.<anonymous> (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25764:22)
+    at E.c (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:342:19)
+    at j (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:376:8)
+    at abortableEffect (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:36167:23)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25763:9
+    at PropertiesImplementation2.subscribePropertyKeys (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:26194:7)
+    at E.x (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25759:48)
+9:59:47 AM [vite] (client) page reload src/game-system.ts
+9:59:52 AM [vite] (client) page reload src/game-system.ts
+[browser] Error: Invalid Yoga point: {12}
+    at convertYogaPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:23118:9)
+    at convertPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25495:10)
+    at Object.gapRow (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25699:20)
+    at E.<anonymous> (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25764:22)
+    at E.c (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:342:19)
+    at j (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:376:8)
+    at abortableEffect (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:36167:23)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25763:9
+    at PropertiesImplementation2.subscribePropertyKeys (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:26194:7)
+    at E.x (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25759:48)
+9:59:59 AM [vite] (client) page reload src/game-system.ts
+[browser] Error: Invalid Yoga point: {12}
+    at convertYogaPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:23118:9)
+    at convertPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25495:10)
+    at Object.gapRow (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25699:20)
+    at E.<anonymous> (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25764:22)
+    at E.c (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:342:19)
+    at j (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:376:8)
+    at abortableEffect (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:36167:23)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25763:9
+    at PropertiesImplementation2.subscribePropertyKeys (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:26194:7)
+    at E.x (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25759:48)
+[browser] Error: Invalid Yoga point: {130}
+    at convertYogaPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:23118:9)
+    at convertPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25495:10)
+    at Object.width (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25641:19)
+    at E.<anonymous> (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25764:22)
+    at E.c (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:342:19)
+    at j (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:376:8)
+    at abortableEffect (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:36167:23)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25763:9
+    at PropertiesImplementation2.subscribePropertyKeys (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:26194:7)
+    at E.x (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25759:48)
+10:00:15 AM [vite] (client) page reload src/game-system.ts
+[browser] Error: Invalid Yoga point: {160}
+    at convertYogaPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:23118:9)
+    at convertPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25495:10)
+    at Object.width (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25641:19)
+    at E.<anonymous> (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25764:22)
+    at E.c (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:342:19)
+    at j (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:376:8)
+    at abortableEffect (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:36167:23)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25763:9
+    at PropertiesImplementation2.subscribePropertyKeys (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:26194:7)
+    at E.x (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25759:48)
+[browser] [PanelUISystem] Error loading panel for entity 11: Error: Invalid Yoga point: {220}
+    at convertYogaPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:23118:9)
+    at convertPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25495:10)
+    at Object.width (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25641:19)
+    at E.<anonymous> (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25764:22)
+    at E.c (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:342:19)
+    at j (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:376:8)
+    at abortableEffect (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:36167:23)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25763:9
+    at PropertiesImplementation2.subscribePropertyKeys (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:26194:7)
+    at E.x (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25759:48)
+[browser] [PanelUISystem] Error loading panel for entity 12: Error: Invalid Yoga point: {16}
+    at convertYogaPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:23118:9)
+    at convertPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25495:10)
+    at Object.paddingBottom (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25696:24)
+    at E.<anonymous> (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25764:22)
+    at E.c (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:342:19)
+    at j (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:376:8)
+    at abortableEffect (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:36167:23)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25763:9
+    at PropertiesImplementation2.subscribePropertyKeys (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:26194:7)
+    at E.x (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25759:48)
+[browser] [PanelUISystem] Error loading panel for entity 13: Error: Invalid Yoga point: {130}
+    at convertYogaPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:23118:9)
+    at convertPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25495:10)
+    at Object.width (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25641:19)
+    at E.<anonymous> (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25764:22)
+    at E.c (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:342:19)
+    at j (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:376:8)
+    at abortableEffect (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:36167:23)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25763:9
+    at PropertiesImplementation2.subscribePropertyKeys (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:26194:7)
+    at E.x (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25759:48)
+[browser] [PanelUISystem] Error loading panel for entity 14: Error: Invalid Yoga point: {12}
+    at convertYogaPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:23118:9)
+    at convertPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25495:10)
+    at Object.gapRow (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25699:20)
+    at E.<anonymous> (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25764:22)
+    at E.c (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:342:19)
+    at j (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:376:8)
+    at abortableEffect (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:36167:23)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25763:9
+    at PropertiesImplementation2.subscribePropertyKeys (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:26194:7)
+    at E.x (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25759:48)
+📝 UIKitML file change: ui/hud.uikitml
+✅ UIKitML file recompiled: hud.uikitml
+[browser] Error: Invalid Yoga point: {130}
+    at convertYogaPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:23118:9)
+    at convertPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25495:10)
+    at Object.width (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25641:19)
+    at E.<anonymous> (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25764:22)
+    at E.c (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:342:19)
+    at j (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:376:8)
+    at abortableEffect (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:36167:23)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25763:9
+    at PropertiesImplementation2.subscribePropertyKeys (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:26194:7)
+    at E.x (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25759:48)
+10:00:44 AM [vite] (client) page reload src/ui-system.ts
+10:00:51 AM [vite] (client) page reload src/ui-system.ts
+[browser] Error: Invalid Yoga point: {12}
+    at convertYogaPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:23118:9)
+    at convertPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25495:10)
+    at Object.gapRow (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25699:20)
+    at E.<anonymous> (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25764:22)
+    at E.c (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:342:19)
+    at j (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:376:8)
+    at abortableEffect (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:36167:23)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25763:9
+    at PropertiesImplementation2.subscribePropertyKeys (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:26194:7)
+    at E.x (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25759:48)
+10:01:00 AM [vite] (client) page reload src/ui-system.ts
+[browser] Error: Invalid Yoga point: {220}
+    at convertYogaPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:23118:9)
+    at convertPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25495:10)
+    at Object.width (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25641:19)
+    at E.<anonymous> (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25764:22)
+    at E.c (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:342:19)
+    at j (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:376:8)
+    at abortableEffect (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:36167:23)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25763:9
+    at PropertiesImplementation2.subscribePropertyKeys (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:26194:7)
+    at E.x (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25759:48)
+[browser] Error: Invalid Yoga point: {12}
+    at convertYogaPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:23118:9)
+    at convertPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25495:10)
+    at Object.gapRow (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25699:20)
+    at E.<anonymous> (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25764:22)
+    at E.c (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:342:19)
+    at j (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:376:8)
+    at abortableEffect (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:36167:23)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25763:9
+    at PropertiesImplementation2.subscribePropertyKeys (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:26194:7)
+    at E.x (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25759:48)
+📝 UIKitML file change: ui/gameover.uikitml
+✅ UIKitML file recompiled: gameover.uikitml
+[browser] Error: Invalid Yoga point: {130}
+    at convertYogaPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:23118:9)
+    at convertPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25495:10)
+    at Object.width (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25641:19)
+    at E.<anonymous> (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25764:22)
+    at E.c (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:342:19)
+    at j (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:376:8)
+    at abortableEffect (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:36167:23)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25763:9
+    at PropertiesImplementation2.subscribePropertyKeys (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:26194:7)
+    at E.x (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25759:48)
+[browser] [PanelUISystem] Error loading panel for entity 14: Error: Invalid Yoga point: {12}
+    at convertYogaPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:23118:9)
+    at convertPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25495:10)
+    at Object.gapRow (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25699:20)
+    at E.<anonymous> (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25764:22)
+    at E.c (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:342:19)
+    at j (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:376:8)
+    at abortableEffect (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:36167:23)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25763:9
+    at PropertiesImplementation2.subscribePropertyKeys (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:26194:7)
+    at E.x (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25759:48)
+10:01:27 AM [vite] (client) page reload src/ui-system.ts
+[browser] Error: Invalid Yoga point: {12}
+    at convertYogaPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:23118:9)
+    at convertPoint (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25495:10)
+    at Object.gapRow (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25699:20)
+    at E.<anonymous> (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25764:22)
+    at E.c (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:342:19)
+    at j (http://localhost:5173/node_modules/.vite/deps/chunk-LXDCT5BB.js?v=4384fe20:376:8)
+    at abortableEffect (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:36167:23)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25763:9
+    at PropertiesImplementation2.subscribePropertyKeys (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:26194:7)
+    at E.x (http://localhost:5173/node_modules/.vite/deps/chunk-VPLHZB6C.js?v=4384fe20:25759:48)

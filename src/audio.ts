@@ -186,3 +186,7 @@ export function sfxDeal(index: number): void {
   playNoise(0.03, 0.02);
   playTone(300 + index * 15, 0.04, 'sine', 0.04);
 }
+
+/** Get the internal sfx gain node for music routing */
+export function getMusicGain(): GainNode | null { return musicGain; }
+export function getMasterGain(): GainNode | null { return masterGain; }
