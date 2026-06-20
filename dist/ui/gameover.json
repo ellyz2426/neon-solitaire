@@ -11,7 +11,7 @@
         ],
         "properties": {
           "name": "result-title",
-          "fontsize": "{24}",
+          "fontsize": "24",
           "fontweight": "bold",
           "color": "#00ffff"
         },
@@ -32,9 +32,9 @@
                   "Mode:"
                 ],
                 "properties": {
-                  "fontsize": "{12}",
+                  "fontsize": "12",
                   "color": "#668888",
-                  "width": "{120}"
+                  "width": "120"
                 },
                 "dataUid": "uid-5"
               },
@@ -46,7 +46,7 @@
                 ],
                 "properties": {
                   "name": "r-mode",
-                  "fontsize": "{12}",
+                  "fontsize": "12",
                   "color": "#ffffff"
                 },
                 "dataUid": "uid-6"
@@ -54,7 +54,7 @@
             ],
             "properties": {
               "flexdirection": "row",
-              "gap": "{8}"
+              "gap": "8"
             },
             "dataUid": "uid-4"
           },
@@ -69,9 +69,9 @@
                   "Score:"
                 ],
                 "properties": {
-                  "fontsize": "{12}",
+                  "fontsize": "12",
                   "color": "#668888",
-                  "width": "{120}"
+                  "width": "120"
                 },
                 "dataUid": "uid-8"
               },
@@ -83,7 +83,7 @@
                 ],
                 "properties": {
                   "name": "r-score",
-                  "fontsize": "{12}",
+                  "fontsize": "12",
                   "color": "#00ffff"
                 },
                 "dataUid": "uid-9"
@@ -91,7 +91,7 @@
             ],
             "properties": {
               "flexdirection": "row",
-              "gap": "{8}"
+              "gap": "8"
             },
             "dataUid": "uid-7"
           },
@@ -106,9 +106,9 @@
                   "Moves:"
                 ],
                 "properties": {
-                  "fontsize": "{12}",
+                  "fontsize": "12",
                   "color": "#668888",
-                  "width": "{120}"
+                  "width": "120"
                 },
                 "dataUid": "uid-11"
               },
@@ -120,7 +120,7 @@
                 ],
                 "properties": {
                   "name": "r-moves",
-                  "fontsize": "{12}",
+                  "fontsize": "12",
                   "color": "#66ff66"
                 },
                 "dataUid": "uid-12"
@@ -128,7 +128,7 @@
             ],
             "properties": {
               "flexdirection": "row",
-              "gap": "{8}"
+              "gap": "8"
             },
             "dataUid": "uid-10"
           },
@@ -143,9 +143,9 @@
                   "Time:"
                 ],
                 "properties": {
-                  "fontsize": "{12}",
+                  "fontsize": "12",
                   "color": "#668888",
-                  "width": "{120}"
+                  "width": "120"
                 },
                 "dataUid": "uid-14"
               },
@@ -157,7 +157,7 @@
                 ],
                 "properties": {
                   "name": "r-time",
-                  "fontsize": "{12}",
+                  "fontsize": "12",
                   "color": "#ffcc00"
                 },
                 "dataUid": "uid-15"
@@ -165,7 +165,7 @@
             ],
             "properties": {
               "flexdirection": "row",
-              "gap": "{8}"
+              "gap": "8"
             },
             "dataUid": "uid-13"
           },
@@ -180,9 +180,9 @@
                   "Combo Best:"
                 ],
                 "properties": {
-                  "fontsize": "{12}",
+                  "fontsize": "12",
                   "color": "#668888",
-                  "width": "{120}"
+                  "width": "120"
                 },
                 "dataUid": "uid-17"
               },
@@ -194,7 +194,7 @@
                 ],
                 "properties": {
                   "name": "r-combo",
-                  "fontsize": "{12}",
+                  "fontsize": "12",
                   "color": "#ff8800"
                 },
                 "dataUid": "uid-18"
@@ -202,7 +202,7 @@
             ],
             "properties": {
               "flexdirection": "row",
-              "gap": "{8}"
+              "gap": "8"
             },
             "dataUid": "uid-16"
           },
@@ -217,9 +217,9 @@
                   "Foundations:"
                 ],
                 "properties": {
-                  "fontsize": "{12}",
+                  "fontsize": "12",
                   "color": "#668888",
-                  "width": "{120}"
+                  "width": "120"
                 },
                 "dataUid": "uid-20"
               },
@@ -231,7 +231,7 @@
                 ],
                 "properties": {
                   "name": "r-foundations",
-                  "fontsize": "{12}",
+                  "fontsize": "12",
                   "color": "#ff66ff"
                 },
                 "dataUid": "uid-21"
@@ -239,7 +239,7 @@
             ],
             "properties": {
               "flexdirection": "row",
-              "gap": "{8}"
+              "gap": "8"
             },
             "dataUid": "uid-19"
           },
@@ -254,9 +254,9 @@
                   "Win Streak:"
                 ],
                 "properties": {
-                  "fontsize": "{12}",
+                  "fontsize": "12",
                   "color": "#668888",
-                  "width": "{120}"
+                  "width": "120"
                 },
                 "dataUid": "uid-23"
               },
@@ -268,7 +268,7 @@
                 ],
                 "properties": {
                   "name": "r-streak",
-                  "fontsize": "{12}",
+                  "fontsize": "12",
                   "color": "#ffcc00"
                 },
                 "dataUid": "uid-24"
@@ -276,7 +276,7 @@
             ],
             "properties": {
               "flexdirection": "row",
-              "gap": "{8}"
+              "gap": "8"
             },
             "dataUid": "uid-22"
           },
@@ -291,9 +291,9 @@
                   "XP Earned:"
                 ],
                 "properties": {
-                  "fontsize": "{12}",
+                  "fontsize": "12",
                   "color": "#668888",
-                  "width": "{120}"
+                  "width": "120"
                 },
                 "dataUid": "uid-26"
               },
@@ -305,7 +305,7 @@
                 ],
                 "properties": {
                   "name": "r-xp",
-                  "fontsize": "{12}",
+                  "fontsize": "12",
                   "color": "#aa66ff"
                 },
                 "dataUid": "uid-27"
@@ -313,16 +313,16 @@
             ],
             "properties": {
               "flexdirection": "row",
-              "gap": "{8}"
+              "gap": "8"
             },
             "dataUid": "uid-25"
           }
         ],
         "properties": {
           "flexdirection": "column",
-          "gap": "{4}",
+          "gap": "4",
           "width": "100%",
-          "paddingTop": "{4}"
+          "paddingTop": "4"
         },
         "dataUid": "uid-3"
       },
@@ -338,12 +338,12 @@
             ],
             "properties": {
               "name": "btn-rematch",
-              "fontsize": "{16}",
+              "fontsize": "16",
               "color": "#00ffff",
               "backgroundcolor": "#003333",
-              "padding": "{8}",
-              "borderradius": "{6}",
-              "width": "{160}",
+              "padding": "8",
+              "borderradius": "6",
+              "width": "160",
               "textalign": "center",
               "cursor": "pointer"
             },
@@ -357,12 +357,12 @@
             ],
             "properties": {
               "name": "btn-menu",
-              "fontsize": "{16}",
+              "fontsize": "16",
               "color": "#ff4444",
               "backgroundcolor": "#330000",
-              "padding": "{8}",
-              "borderradius": "{6}",
-              "width": "{160}",
+              "padding": "8",
+              "borderradius": "6",
+              "width": "160",
               "textalign": "center",
               "cursor": "pointer"
             },
@@ -371,8 +371,8 @@
         ],
         "properties": {
           "flexdirection": "row",
-          "gap": "{8}",
-          "paddingTop": "{8}"
+          "gap": "8",
+          "paddingTop": "8"
         },
         "dataUid": "uid-28"
       }
@@ -381,11 +381,11 @@
       "name": "root",
       "flexdirection": "column",
       "alignitems": "center",
-      "gap": "{8}",
-      "padding": "{16}",
+      "gap": "8",
+      "padding": "16",
       "backgroundcolor": "#000000cc",
-      "borderradius": "{12}",
-      "width": "{420}"
+      "borderradius": "12",
+      "width": "420"
     },
     "dataUid": "uid-1"
   },

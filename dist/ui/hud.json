@@ -18,7 +18,7 @@
                   "SCORE"
                 ],
                 "properties": {
-                  "fontsize": "{10}",
+                  "fontsize": "10",
                   "color": "#668888"
                 },
                 "dataUid": "uid-4"
@@ -31,7 +31,7 @@
                 ],
                 "properties": {
                   "name": "score",
-                  "fontsize": "{20}",
+                  "fontsize": "20",
                   "fontweight": "bold",
                   "color": "#00ffff"
                 },
@@ -40,9 +40,9 @@
             ],
             "properties": {
               "flexdirection": "column",
-              "gap": "{2}",
+              "gap": "2",
               "alignitems": "center",
-              "flexgrow": "{1}"
+              "flexgrow": "1"
             },
             "dataUid": "uid-3"
           },
@@ -57,7 +57,7 @@
                   "MOVES"
                 ],
                 "properties": {
-                  "fontsize": "{10}",
+                  "fontsize": "10",
                   "color": "#668888"
                 },
                 "dataUid": "uid-7"
@@ -70,7 +70,7 @@
                 ],
                 "properties": {
                   "name": "moves",
-                  "fontsize": "{20}",
+                  "fontsize": "20",
                   "fontweight": "bold",
                   "color": "#66ff66"
                 },
@@ -79,9 +79,9 @@
             ],
             "properties": {
               "flexdirection": "column",
-              "gap": "{2}",
+              "gap": "2",
               "alignitems": "center",
-              "flexgrow": "{1}"
+              "flexgrow": "1"
             },
             "dataUid": "uid-6"
           },
@@ -96,7 +96,7 @@
                   "TIME"
                 ],
                 "properties": {
-                  "fontsize": "{10}",
+                  "fontsize": "10",
                   "color": "#668888"
                 },
                 "dataUid": "uid-10"
@@ -109,7 +109,7 @@
                 ],
                 "properties": {
                   "name": "time",
-                  "fontsize": "{20}",
+                  "fontsize": "20",
                   "fontweight": "bold",
                   "color": "#ffcc00"
                 },
@@ -118,16 +118,16 @@
             ],
             "properties": {
               "flexdirection": "column",
-              "gap": "{2}",
+              "gap": "2",
               "alignitems": "center",
-              "flexgrow": "{1}"
+              "flexgrow": "1"
             },
             "dataUid": "uid-9"
           }
         ],
         "properties": {
           "flexdirection": "row",
-          "gap": "{16}",
+          "gap": "16",
           "width": "100%"
         },
         "dataUid": "uid-2"
@@ -144,9 +144,9 @@
             ],
             "properties": {
               "name": "mode",
-              "fontsize": "{10}",
+              "fontsize": "10",
               "color": "#888888",
-              "flexgrow": "{1}"
+              "flexgrow": "1"
             },
             "dataUid": "uid-13"
           },
@@ -158,7 +158,7 @@
             ],
             "properties": {
               "name": "stock-count",
-              "fontsize": "{10}",
+              "fontsize": "10",
               "color": "#557777"
             },
             "dataUid": "uid-14"
@@ -171,7 +171,7 @@
             ],
             "properties": {
               "name": "combo",
-              "fontsize": "{11}",
+              "fontsize": "11",
               "fontweight": "bold",
               "color": "#ff8800"
             },
@@ -185,7 +185,7 @@
             ],
             "properties": {
               "name": "level",
-              "fontsize": "{10}",
+              "fontsize": "10",
               "color": "#aa66ff"
             },
             "dataUid": "uid-16"
@@ -193,7 +193,7 @@
         ],
         "properties": {
           "flexdirection": "row",
-          "gap": "{12}",
+          "gap": "8",
           "width": "100%"
         },
         "dataUid": "uid-12"
@@ -203,11 +203,11 @@
       "name": "root",
       "flexdirection": "column",
       "alignitems": "center",
-      "gap": "{6}",
-      "padding": "{12}",
+      "gap": "6",
+      "padding": "10",
       "backgroundcolor": "#000000bb",
-      "borderradius": "{8}",
-      "width": "{360}"
+      "borderradius": "8",
+      "width": "360"
     },
     "dataUid": "uid-1"
   },

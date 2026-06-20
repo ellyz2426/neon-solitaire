@@ -2,46 +2,46 @@
   name="root"
   flexDirection="column"
   alignItems="center"
-  gap={4}
-  padding={12}
+  gap="4"
+  padding="12"
   backgroundColor="#000000cc"
-  borderRadius={8}
-  width={380}
+  borderRadius="8"
+  width="380"
 >
-  <text fontSize={20} fontWeight="bold" color="#ff66ff">CARD BACKS</text>
-  <container flexDirection="row" gap={6} width="100%" justifyContent="center" flexWrap="wrap">
-    <container flexDirection="column" alignItems="center" gap={2}>
-      <text name="skin0-color" fontSize={28} color="#00ffff">|</text>
-      <text name="skin0" fontSize={9} color="#ffffff" textAlign="center">Neon Cyan</text>
+  <text fontSize="20" fontWeight="bold" color="#ff66ff">CARD BACKS</text>
+  <container flexDirection="row" gap="6" width="100%" justifyContent="center" flexWrap="wrap">
+    <container flexDirection="column" alignItems="center" gap="2">
+      <text name="skin0-color" fontSize="28" color="#00ffff">|</text>
+      <text name="skin0" fontSize="9" color="#ffffff" textAlign="center">Neon Cyan</text>
     </container>
-    <container flexDirection="column" alignItems="center" gap={2}>
-      <text name="skin1-color" fontSize={28} color="#ff4400">|</text>
-      <text name="skin1" fontSize={9} color="#ffffff" textAlign="center">Solar Flare</text>
+    <container flexDirection="column" alignItems="center" gap="2">
+      <text name="skin1-color" fontSize="28" color="#ff4400">|</text>
+      <text name="skin1" fontSize="9" color="#ffffff" textAlign="center">Solar Flare</text>
     </container>
-    <container flexDirection="column" alignItems="center" gap={2}>
-      <text name="skin2-color" fontSize={28} color="#ff00ff">|</text>
-      <text name="skin2" fontSize={9} color="#ffffff" textAlign="center">Plasma Pink</text>
+    <container flexDirection="column" alignItems="center" gap="2">
+      <text name="skin2-color" fontSize="28" color="#ff00ff">|</text>
+      <text name="skin2" fontSize="9" color="#ffffff" textAlign="center">Plasma Pink</text>
     </container>
-    <container flexDirection="column" alignItems="center" gap={2}>
-      <text name="skin3-color" fontSize={28} color="#4488ff">|</text>
-      <text name="skin3" fontSize={9} color="#ffffff" textAlign="center">Frost Blue</text>
+    <container flexDirection="column" alignItems="center" gap="2">
+      <text name="skin3-color" fontSize="28" color="#4488ff">|</text>
+      <text name="skin3" fontSize="9" color="#ffffff" textAlign="center">Frost Blue</text>
     </container>
-    <container flexDirection="column" alignItems="center" gap={2}>
-      <text name="skin4-color" fontSize={28} color="#44ff44">|</text>
-      <text name="skin4" fontSize={9} color="#ffffff" textAlign="center">Toxic Green</text>
+    <container flexDirection="column" alignItems="center" gap="2">
+      <text name="skin4-color" fontSize="28" color="#44ff44">|</text>
+      <text name="skin4" fontSize="9" color="#ffffff" textAlign="center">Toxic Green</text>
     </container>
-    <container flexDirection="column" alignItems="center" gap={2}>
-      <text name="skin5-color" fontSize={28} color="#ffcc00">|</text>
-      <text name="skin5" fontSize={9} color="#ffffff" textAlign="center">Royal Gold</text>
+    <container flexDirection="column" alignItems="center" gap="2">
+      <text name="skin5-color" fontSize="28" color="#ffcc00">|</text>
+      <text name="skin5" fontSize="9" color="#ffffff" textAlign="center">Royal Gold</text>
     </container>
-    <container flexDirection="column" alignItems="center" gap={2}>
-      <text name="skin6-color" fontSize={28} color="#8800ff">|</text>
-      <text name="skin6" fontSize={9} color="#ffffff" textAlign="center">Void Purple</text>
+    <container flexDirection="column" alignItems="center" gap="2">
+      <text name="skin6-color" fontSize="28" color="#8800ff">|</text>
+      <text name="skin6" fontSize="9" color="#ffffff" textAlign="center">Void Purple</text>
     </container>
-    <container flexDirection="column" alignItems="center" gap={2}>
-      <text name="skin7-color" fontSize={28} color="#ff2200">|</text>
-      <text name="skin7" fontSize={9} color="#ffffff" textAlign="center">Inferno</text>
+    <container flexDirection="column" alignItems="center" gap="2">
+      <text name="skin7-color" fontSize="28" color="#ff2200">|</text>
+      <text name="skin7" fontSize="9" color="#ffffff" textAlign="center">Inferno</text>
     </container>
   </container>
-  <text name="btn-back" fontSize={16} color="#ff4444" backgroundColor="#330000" padding={8} borderRadius={6} width={160} textAlign="center" cursor="pointer" margin-top={4}>BACK</text>
+  <text name="btn-back" fontSize="16" color="#ff4444" backgroundColor="#330000" padding="8" borderRadius="6" width="160" textAlign="center" cursor="pointer" margin-top="4">BACK</text>
 </container>

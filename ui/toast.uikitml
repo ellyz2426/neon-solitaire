@@ -3,12 +3,12 @@
   flexDirection="column"
   alignItems="center"
   justifyContent="center"
-  paddingTop={8}
-  paddingBottom={8}
-  paddingLeft={12}
-  paddingRight={12}
+  paddingTop="8"
+  paddingBottom="8"
+  paddingLeft="12"
+  paddingRight="12"
   backgroundColor="#000000cc"
-  borderRadius={8}
+  borderRadius="8"
 >
-  <text name="msg" fontSize={12} color="#00ffff">-</text>
+  <text name="msg" fontSize="12" color="#00ffff">-</text>
 </container>

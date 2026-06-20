@@ -2,29 +2,29 @@
   name="root"
   flexDirection="column"
   alignItems="center"
-  gap={4}
-  padding={16}
+  gap="4"
+  padding="16"
   backgroundColor="#000000cc"
-  borderRadius={12}
-  width={420}
+  borderRadius="12"
+  width="420"
 >
-  <text fontSize={22} fontWeight="bold" color="#ffcc00">LEADERBOARD</text>
-  <container flexDirection="row" gap={4} width="100%" padding-top={4}>
-    <text fontSize={10} color="#668888" width={30}>#</text>
-    <text fontSize={10} color="#668888" flexGrow={1}>SCORE</text>
-    <text fontSize={10} color="#668888" width={60}>MOVES</text>
-    <text fontSize={10} color="#668888" width={60}>TIME</text>
-    <text fontSize={10} color="#668888" width={70}>MODE</text>
+  <text fontSize="22" fontWeight="bold" color="#ffcc00">LEADERBOARD</text>
+  <container flexDirection="row" gap="4" width="100%" padding-top="4">
+    <text fontSize="10" color="#668888" width="30">#</text>
+    <text fontSize="10" color="#668888" flexGrow="1">SCORE</text>
+    <text fontSize="10" color="#668888" width="60">MOVES</text>
+    <text fontSize="10" color="#668888" width="60">TIME</text>
+    <text fontSize="10" color="#668888" width="70">MODE</text>
   </container>
-  <text name="row0" fontSize={10} color="#ffffff" width="100%">-</text>
-  <text name="row1" fontSize={10} color="#ffffff" width="100%">-</text>
-  <text name="row2" fontSize={10} color="#ffffff" width="100%">-</text>
-  <text name="row3" fontSize={10} color="#ffffff" width="100%">-</text>
-  <text name="row4" fontSize={10} color="#ffffff" width="100%">-</text>
-  <text name="row5" fontSize={10} color="#ffffff" width="100%">-</text>
-  <text name="row6" fontSize={10} color="#ffffff" width="100%">-</text>
-  <text name="row7" fontSize={10} color="#ffffff" width="100%">-</text>
-  <text name="row8" fontSize={10} color="#ffffff" width="100%">-</text>
-  <text name="row9" fontSize={10} color="#ffffff" width="100%">-</text>
-  <text name="btn-back" fontSize={16} color="#ff4444" backgroundColor="#330000" padding={8} borderRadius={6} width={160} textAlign="center" cursor="pointer" margin-top={8}>BACK</text>
+  <text name="row0" fontSize="10" color="#ffffff" width="100%">-</text>
+  <text name="row1" fontSize="10" color="#ffffff" width="100%">-</text>
+  <text name="row2" fontSize="10" color="#ffffff" width="100%">-</text>
+  <text name="row3" fontSize="10" color="#ffffff" width="100%">-</text>
+  <text name="row4" fontSize="10" color="#ffffff" width="100%">-</text>
+  <text name="row5" fontSize="10" color="#ffffff" width="100%">-</text>
+  <text name="row6" fontSize="10" color="#ffffff" width="100%">-</text>
+  <text name="row7" fontSize="10" color="#ffffff" width="100%">-</text>
+  <text name="row8" fontSize="10" color="#ffffff" width="100%">-</text>
+  <text name="row9" fontSize="10" color="#ffffff" width="100%">-</text>
+  <text name="btn-back" fontSize="16" color="#ff4444" backgroundColor="#330000" padding="8" borderRadius="6" width="160" textAlign="center" cursor="pointer" margin-top="8">BACK</text>
 </container>

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "sessionId": "e456d65b-74e6-4638-89ec-80220b5cbac6",
+  "sessionId": "ac63b268-4221-4b1d-b7bb-ae0d0f49153d",
   "workspaceRoot": "/home/hatch/workspace/neon-solitaire",
-  "pid": 40691,
+  "pid": 56223,
   "port": 5173,
   "localUrl": "http://localhost:5173/",
   "networkUrls": [
@@ -16,8 +16,8 @@
     "status": "connected",
     "connected": true,
     "connectedClientCount": 1,
-    "lastTransitionAt": "2026-06-20T10:06:44.008Z"
+    "lastTransitionAt": "2026-06-20T11:21:51.463Z"
   },
-  "registeredAt": "2026-06-20T08:57:12.404Z",
-  "updatedAt": "2026-06-20T10:06:44.010Z"
+  "registeredAt": "2026-06-20T11:21:38.168Z",
+  "updatedAt": "2026-06-20T11:21:51.466Z"
 }

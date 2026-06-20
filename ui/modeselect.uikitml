@@ -2,33 +2,33 @@
   name="root"
   flexDirection="column"
   alignItems="center"
-  gap={6}
-  padding={18}
+  gap="6"
+  padding="18"
   backgroundColor="#000000dd"
-  borderRadius={14}
-  width={460}
+  borderRadius="14"
+  width="460"
 >
-  <text fontSize={26} fontWeight="bold" color="#00ffff">SELECT MODE</text>
-  <text name="mode-desc" fontSize={11} color="#668888" padding-bottom={4}>Choose your challenge</text>
+  <text fontSize="26" fontWeight="bold" color="#00ffff">SELECT MODE</text>
+  <text name="mode-desc" fontSize="11" color="#668888" padding-bottom="4">Choose your challenge</text>
 
-  <container flexDirection="column" gap={5} width="100%" alignItems="center">
-    <container flexDirection="row" gap={8} width={340}>
-      <text name="btn-klondike1" fontSize={15} color="#00ffff" backgroundColor="#003333" padding={8} borderRadius={6} flexGrow={1} textAlign="center" cursor="pointer">DRAW 1</text>
-      <text name="btn-klondike3" fontSize={15} color="#00bbbb" backgroundColor="#002828" padding={8} borderRadius={6} flexGrow={1} textAlign="center" cursor="pointer">DRAW 3</text>
+  <container flexDirection="column" gap="5" width="100%" alignItems="center">
+    <container flexDirection="row" gap="8" width="340">
+      <text name="btn-klondike1" fontSize="15" color="#00ffff" backgroundColor="#003333" padding="8" borderRadius="6" flexGrow="1" textAlign="center" cursor="pointer">DRAW 1</text>
+      <text name="btn-klondike3" fontSize="15" color="#00bbbb" backgroundColor="#002828" padding="8" borderRadius="6" flexGrow="1" textAlign="center" cursor="pointer">DRAW 3</text>
     </container>
-    <container flexDirection="row" gap={8} width={340}>
-      <text name="btn-timed" fontSize={15} color="#ffcc00" backgroundColor="#332200" padding={8} borderRadius={6} flexGrow={1} textAlign="center" cursor="pointer">TIMED 5m</text>
-      <text name="btn-speed" fontSize={15} color="#ff66ff" backgroundColor="#2a0033" padding={8} borderRadius={6} flexGrow={1} textAlign="center" cursor="pointer">SPEED 2m</text>
+    <container flexDirection="row" gap="8" width="340">
+      <text name="btn-timed" fontSize="15" color="#ffcc00" backgroundColor="#332200" padding="8" borderRadius="6" flexGrow="1" textAlign="center" cursor="pointer">TIMED 5m</text>
+      <text name="btn-speed" fontSize="15" color="#ff66ff" backgroundColor="#2a0033" padding="8" borderRadius="6" flexGrow="1" textAlign="center" cursor="pointer">SPEED 2m</text>
     </container>
-    <container flexDirection="row" gap={8} width={340}>
-      <text name="btn-vegas" fontSize={15} color="#66ff66" backgroundColor="#003300" padding={8} borderRadius={6} flexGrow={1} textAlign="center" cursor="pointer">VEGAS</text>
-      <text name="btn-daily" fontSize={15} color="#ff8800" backgroundColor="#332200" padding={8} borderRadius={6} flexGrow={1} textAlign="center" cursor="pointer">DAILY</text>
+    <container flexDirection="row" gap="8" width="340">
+      <text name="btn-vegas" fontSize="15" color="#66ff66" backgroundColor="#003300" padding="8" borderRadius="6" flexGrow="1" textAlign="center" cursor="pointer">VEGAS</text>
+      <text name="btn-daily" fontSize="15" color="#ff8800" backgroundColor="#332200" padding="8" borderRadius="6" flexGrow="1" textAlign="center" cursor="pointer">DAILY</text>
     </container>
-    <container flexDirection="row" gap={8} width={340}>
-      <text name="btn-zen" fontSize={15} color="#88ff88" backgroundColor="#002800" padding={8} borderRadius={6} flexGrow={1} textAlign="center" cursor="pointer">ZEN</text>
-      <text name="btn-practice" fontSize={15} color="#aaaaaa" backgroundColor="#222222" padding={8} borderRadius={6} flexGrow={1} textAlign="center" cursor="pointer">PRACTICE</text>
+    <container flexDirection="row" gap="8" width="340">
+      <text name="btn-zen" fontSize="15" color="#88ff88" backgroundColor="#002800" padding="8" borderRadius="6" flexGrow="1" textAlign="center" cursor="pointer">ZEN</text>
+      <text name="btn-practice" fontSize="15" color="#aaaaaa" backgroundColor="#222222" padding="8" borderRadius="6" flexGrow="1" textAlign="center" cursor="pointer">PRACTICE</text>
     </container>
   </container>
 
-  <text name="btn-back" fontSize={14} color="#ff6666" backgroundColor="#330000" padding={7} borderRadius={6} width={140} textAlign="center" cursor="pointer" margin-top={6}>BACK</text>
+  <text name="btn-back" fontSize="14" color="#ff6666" backgroundColor="#330000" padding="7" borderRadius="6" width="140" textAlign="center" cursor="pointer" margin-top="6">BACK</text>
 </container>

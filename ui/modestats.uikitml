@@ -1,0 +1,29 @@
+<container
+  name="root"
+  flexDirection="column"
+  alignItems="center"
+  gap="6"
+  padding="16"
+  backgroundColor="#0c1525ee"
+  borderRadius="16"
+  width="400"
+>
+  <text fontSize="20" color="#00ffff" fontWeight="bold">MODE STATISTICS</text>
+  <container flexDirection="row" gap="8" width="100%" padding-top="4">
+    <text fontSize="11" color="#667788" width="100">Mode</text>
+    <text fontSize="11" color="#667788" width="50">Played</text>
+    <text fontSize="11" color="#667788" width="50">Won</text>
+    <text fontSize="11" color="#667788" width="50">Win%</text>
+    <text fontSize="11" color="#667788" width="50">Best</text>
+  </container>
+  <text name="ms0" fontSize="11" color="#aabbcc">-</text>
+  <text name="ms1" fontSize="11" color="#aabbcc">-</text>
+  <text name="ms2" fontSize="11" color="#aabbcc">-</text>
+  <text name="ms3" fontSize="11" color="#aabbcc">-</text>
+  <text name="ms4" fontSize="11" color="#aabbcc">-</text>
+  <text name="ms5" fontSize="11" color="#aabbcc">-</text>
+  <text name="ms6" fontSize="11" color="#aabbcc">-</text>
+  <text name="ms7" fontSize="11" color="#aabbcc">-</text>
+  <text name="ms-total" fontSize="14" color="#00ccff" fontWeight="bold" padding-top="6">-</text>
+  <text name="btn-back" fontSize="14" color="#ff4444" backgroundColor="#330000" padding="8" borderRadius="6" width="140" textAlign="center" cursor="pointer" margin-top="6">BACK</text>
+</container>

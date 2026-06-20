@@ -10,7 +10,7 @@
           "SETTINGS"
         ],
         "properties": {
-          "fontsize": "{22}",
+          "fontsize": "22",
           "fontweight": "bold",
           "color": "#aaaaaa"
         },
@@ -27,9 +27,9 @@
               "Master Vol"
             ],
             "properties": {
-              "fontsize": "{12}",
+              "fontsize": "12",
               "color": "#668888",
-              "width": "{120}"
+              "width": "120"
             },
             "dataUid": "uid-4"
           },
@@ -41,12 +41,12 @@
             ],
             "properties": {
               "name": "btn-master-down",
-              "fontsize": "{14}",
+              "fontsize": "14",
               "color": "#ffffff",
               "backgroundcolor": "#333333",
-              "padding": "{4}",
-              "borderradius": "{4}",
-              "width": "{30}",
+              "padding": "4",
+              "borderradius": "4",
+              "width": "30",
               "textalign": "center",
               "cursor": "pointer"
             },
@@ -60,9 +60,9 @@
             ],
             "properties": {
               "name": "master-vol",
-              "fontsize": "{12}",
+              "fontsize": "12",
               "color": "#ffffff",
-              "width": "{40}",
+              "width": "40",
               "textalign": "center"
             },
             "dataUid": "uid-6"
@@ -75,12 +75,12 @@
             ],
             "properties": {
               "name": "btn-master-up",
-              "fontsize": "{14}",
+              "fontsize": "14",
               "color": "#ffffff",
               "backgroundcolor": "#333333",
-              "padding": "{4}",
-              "borderradius": "{4}",
-              "width": "{30}",
+              "padding": "4",
+              "borderradius": "4",
+              "width": "30",
               "textalign": "center",
               "cursor": "pointer"
             },
@@ -89,7 +89,7 @@
         ],
         "properties": {
           "flexdirection": "row",
-          "gap": "{8}",
+          "gap": "8",
           "width": "100%",
           "alignitems": "center"
         },
@@ -106,9 +106,9 @@
               "SFX Vol"
             ],
             "properties": {
-              "fontsize": "{12}",
+              "fontsize": "12",
               "color": "#668888",
-              "width": "{120}"
+              "width": "120"
             },
             "dataUid": "uid-9"
           },
@@ -120,12 +120,12 @@
             ],
             "properties": {
               "name": "btn-sfx-down",
-              "fontsize": "{14}",
+              "fontsize": "14",
               "color": "#ffffff",
               "backgroundcolor": "#333333",
-              "padding": "{4}",
-              "borderradius": "{4}",
-              "width": "{30}",
+              "padding": "4",
+              "borderradius": "4",
+              "width": "30",
               "textalign": "center",
               "cursor": "pointer"
             },
@@ -139,9 +139,9 @@
             ],
             "properties": {
               "name": "sfx-vol",
-              "fontsize": "{12}",
+              "fontsize": "12",
               "color": "#ffffff",
-              "width": "{40}",
+              "width": "40",
               "textalign": "center"
             },
             "dataUid": "uid-11"
@@ -154,12 +154,12 @@
             ],
             "properties": {
               "name": "btn-sfx-up",
-              "fontsize": "{14}",
+              "fontsize": "14",
               "color": "#ffffff",
               "backgroundcolor": "#333333",
-              "padding": "{4}",
-              "borderradius": "{4}",
-              "width": "{30}",
+              "padding": "4",
+              "borderradius": "4",
+              "width": "30",
               "textalign": "center",
               "cursor": "pointer"
             },
@@ -168,7 +168,7 @@
         ],
         "properties": {
           "flexdirection": "row",
-          "gap": "{8}",
+          "gap": "8",
           "width": "100%",
           "alignitems": "center"
         },
@@ -185,9 +185,9 @@
               "Music Vol"
             ],
             "properties": {
-              "fontsize": "{12}",
+              "fontsize": "12",
               "color": "#668888",
-              "width": "{120}"
+              "width": "120"
             },
             "dataUid": "uid-14"
           },
@@ -199,12 +199,12 @@
             ],
             "properties": {
               "name": "btn-music-down",
-              "fontsize": "{14}",
+              "fontsize": "14",
               "color": "#ffffff",
               "backgroundcolor": "#333333",
-              "padding": "{4}",
-              "borderradius": "{4}",
-              "width": "{30}",
+              "padding": "4",
+              "borderradius": "4",
+              "width": "30",
               "textalign": "center",
               "cursor": "pointer"
             },
@@ -218,9 +218,9 @@
             ],
             "properties": {
               "name": "music-vol",
-              "fontsize": "{12}",
+              "fontsize": "12",
               "color": "#ffffff",
-              "width": "{40}",
+              "width": "40",
               "textalign": "center"
             },
             "dataUid": "uid-16"
@@ -233,12 +233,12 @@
             ],
             "properties": {
               "name": "btn-music-up",
-              "fontsize": "{14}",
+              "fontsize": "14",
               "color": "#ffffff",
               "backgroundcolor": "#333333",
-              "padding": "{4}",
-              "borderradius": "{4}",
-              "width": "{30}",
+              "padding": "4",
+              "borderradius": "4",
+              "width": "30",
               "textalign": "center",
               "cursor": "pointer"
             },
@@ -247,7 +247,7 @@
         ],
         "properties": {
           "flexdirection": "row",
-          "gap": "{8}",
+          "gap": "8",
           "width": "100%",
           "alignitems": "center"
         },
@@ -264,9 +264,9 @@
               "Theme"
             ],
             "properties": {
-              "fontsize": "{12}",
+              "fontsize": "12",
               "color": "#668888",
-              "width": "{120}"
+              "width": "120"
             },
             "dataUid": "uid-19"
           },
@@ -278,12 +278,12 @@
             ],
             "properties": {
               "name": "btn-theme-prev",
-              "fontsize": "{14}",
+              "fontsize": "14",
               "color": "#ffffff",
               "backgroundcolor": "#333333",
-              "padding": "{4}",
-              "borderradius": "{4}",
-              "width": "{30}",
+              "padding": "4",
+              "borderradius": "4",
+              "width": "30",
               "textalign": "center",
               "cursor": "pointer"
             },
@@ -297,9 +297,9 @@
             ],
             "properties": {
               "name": "theme-name",
-              "fontsize": "{12}",
+              "fontsize": "12",
               "color": "#00ffff",
-              "width": "{120}",
+              "width": "120",
               "textalign": "center"
             },
             "dataUid": "uid-21"
@@ -312,12 +312,12 @@
             ],
             "properties": {
               "name": "btn-theme-next",
-              "fontsize": "{14}",
+              "fontsize": "14",
               "color": "#ffffff",
               "backgroundcolor": "#333333",
-              "padding": "{4}",
-              "borderradius": "{4}",
-              "width": "{30}",
+              "padding": "4",
+              "borderradius": "4",
+              "width": "30",
               "textalign": "center",
               "cursor": "pointer"
             },
@@ -326,7 +326,7 @@
         ],
         "properties": {
           "flexdirection": "row",
-          "gap": "{8}",
+          "gap": "8",
           "width": "100%",
           "alignitems": "center"
         },
@@ -340,15 +340,15 @@
         ],
         "properties": {
           "name": "btn-back",
-          "fontsize": "{16}",
+          "fontsize": "16",
           "color": "#ff4444",
           "backgroundcolor": "#330000",
-          "padding": "{8}",
-          "borderradius": "{6}",
-          "width": "{160}",
+          "padding": "8",
+          "borderradius": "6",
+          "width": "160",
           "textalign": "center",
           "cursor": "pointer",
-          "marginTop": "{8}"
+          "marginTop": "8"
         },
         "dataUid": "uid-23"
       }
@@ -357,11 +357,11 @@
       "name": "root",
       "flexdirection": "column",
       "alignitems": "center",
-      "gap": "{6}",
-      "padding": "{16}",
+      "gap": "6",
+      "padding": "16",
       "backgroundcolor": "#000000cc",
-      "borderradius": "{12}",
-      "width": "{400}"
+      "borderradius": "12",
+      "width": "400"
     },
     "dataUid": "uid-1"
   },

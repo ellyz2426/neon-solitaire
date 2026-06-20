@@ -10,7 +10,7 @@
           "HOW TO PLAY"
         ],
         "properties": {
-          "fontsize": "{22}",
+          "fontsize": "22",
           "fontweight": "bold",
           "color": "#8888ff"
         },
@@ -23,7 +23,7 @@
           "GOAL: Move all 52 cards to the four foundation piles, building each suit from Ace to King."
         ],
         "properties": {
-          "fontsize": "{11}",
+          "fontsize": "11",
           "color": "#cccccc",
           "width": "100%"
         },
@@ -36,7 +36,7 @@
           "TABLEAU: 7 columns. Build down in alternating colors (red on black). Move groups of face-up cards between columns. Empty columns accept any King."
         ],
         "properties": {
-          "fontsize": "{11}",
+          "fontsize": "11",
           "color": "#cccccc",
           "width": "100%"
         },
@@ -49,7 +49,7 @@
           "FOUNDATION: 4 piles (top area). Build up by suit from Ace to King."
         ],
         "properties": {
-          "fontsize": "{11}",
+          "fontsize": "11",
           "color": "#cccccc",
           "width": "100%"
         },
@@ -62,7 +62,7 @@
           "STOCK: Click to draw cards. Draw 1 or Draw 3 depending on mode."
         ],
         "properties": {
-          "fontsize": "{11}",
+          "fontsize": "11",
           "color": "#cccccc",
           "width": "100%"
         },
@@ -75,9 +75,9 @@
           "BROWSER CONTROLS"
         ],
         "properties": {
-          "fontsize": "{13}",
+          "fontsize": "13",
           "color": "#00ffff",
-          "paddingTop": "{4}"
+          "paddingTop": "4"
         },
         "dataUid": "uid-7"
       },
@@ -88,7 +88,7 @@
           "Click card to select, click destination to move. ESC=pause, Z=undo, H=hint, R=new game."
         ],
         "properties": {
-          "fontsize": "{11}",
+          "fontsize": "11",
           "color": "#cccccc",
           "width": "100%"
         },
@@ -101,9 +101,9 @@
           "VR CONTROLS"
         ],
         "properties": {
-          "fontsize": "{13}",
+          "fontsize": "13",
           "color": "#00ffff",
-          "paddingTop": "{4}"
+          "paddingTop": "4"
         },
         "dataUid": "uid-9"
       },
@@ -114,7 +114,7 @@
           "Trigger=select/place card, Grip=undo, B=pause, Thumbstick=navigate. Laser pointer for menus."
         ],
         "properties": {
-          "fontsize": "{11}",
+          "fontsize": "11",
           "color": "#cccccc",
           "width": "100%"
         },
@@ -127,9 +127,9 @@
           "MODES"
         ],
         "properties": {
-          "fontsize": "{13}",
+          "fontsize": "13",
           "color": "#ffcc00",
-          "paddingTop": "{4}"
+          "paddingTop": "4"
         },
         "dataUid": "uid-11"
       },
@@ -140,7 +140,7 @@
           "Klondike Draw 1 - Classic, draw one card at a time"
         ],
         "properties": {
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#cccccc",
           "width": "100%"
         },
@@ -153,7 +153,7 @@
           "Klondike Draw 3 - Harder, draw three cards at a time"
         ],
         "properties": {
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#cccccc",
           "width": "100%"
         },
@@ -166,7 +166,7 @@
           "Timed - 5 minute limit, race to complete"
         ],
         "properties": {
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#cccccc",
           "width": "100%"
         },
@@ -179,7 +179,7 @@
           "Vegas - Start at -$52, earn $5 per foundation card"
         ],
         "properties": {
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#cccccc",
           "width": "100%"
         },
@@ -192,7 +192,7 @@
           "Daily - Same deal every day worldwide"
         ],
         "properties": {
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#cccccc",
           "width": "100%"
         },
@@ -205,7 +205,7 @@
           "Speed - 2 minute blitz, score what you can"
         ],
         "properties": {
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#cccccc",
           "width": "100%"
         },
@@ -218,7 +218,7 @@
           "Zen - No score, no timer, just relax"
         ],
         "properties": {
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#cccccc",
           "width": "100%"
         },
@@ -231,7 +231,7 @@
           "Practice - Unlimited undo, hints always on"
         ],
         "properties": {
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#cccccc",
           "width": "100%"
         },
@@ -244,9 +244,9 @@
           "SCORING"
         ],
         "properties": {
-          "fontsize": "{13}",
+          "fontsize": "13",
           "color": "#66ff66",
-          "paddingTop": "{4}"
+          "paddingTop": "4"
         },
         "dataUid": "uid-20"
       },
@@ -257,7 +257,7 @@
           "Waste to Tableau: 5 pts  |  Waste to Foundation: 10 pts"
         ],
         "properties": {
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#cccccc",
           "width": "100%"
         },
@@ -270,7 +270,7 @@
           "Tableau to Foundation: 10 pts  |  Card flip: 5 pts"
         ],
         "properties": {
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#cccccc",
           "width": "100%"
         },
@@ -283,7 +283,7 @@
           "Combo bonus: consecutive moves x2-x10 multiplier"
         ],
         "properties": {
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#cccccc",
           "width": "100%"
         },
@@ -297,15 +297,15 @@
         ],
         "properties": {
           "name": "btn-back",
-          "fontsize": "{16}",
+          "fontsize": "16",
           "color": "#ff4444",
           "backgroundcolor": "#330000",
-          "padding": "{8}",
-          "borderradius": "{6}",
-          "width": "{160}",
+          "padding": "8",
+          "borderradius": "6",
+          "width": "160",
           "textalign": "center",
           "cursor": "pointer",
-          "marginTop": "{8}"
+          "marginTop": "8"
         },
         "dataUid": "uid-24"
       }
@@ -314,11 +314,11 @@
       "name": "root",
       "flexdirection": "column",
       "alignitems": "center",
-      "gap": "{6}",
-      "padding": "{16}",
+      "gap": "6",
+      "padding": "16",
       "backgroundcolor": "#000000cc",
-      "borderradius": "{12}",
-      "width": "{440}"
+      "borderradius": "12",
+      "width": "440"
     },
     "dataUid": "uid-1"
   },

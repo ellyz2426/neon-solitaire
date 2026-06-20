@@ -10,7 +10,7 @@
           "ACHIEVEMENTS"
         ],
         "properties": {
-          "fontsize": "{22}",
+          "fontsize": "22",
           "fontweight": "bold",
           "color": "#ffcc00"
         },
@@ -24,7 +24,7 @@
         ],
         "properties": {
           "name": "count",
-          "fontsize": "{12}",
+          "fontsize": "12",
           "color": "#888888"
         },
         "dataUid": "uid-3"
@@ -37,7 +37,7 @@
         ],
         "properties": {
           "name": "a0",
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#ffffff",
           "width": "100%"
         },
@@ -51,7 +51,7 @@
         ],
         "properties": {
           "name": "a1",
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#ffffff",
           "width": "100%"
         },
@@ -65,7 +65,7 @@
         ],
         "properties": {
           "name": "a2",
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#ffffff",
           "width": "100%"
         },
@@ -79,7 +79,7 @@
         ],
         "properties": {
           "name": "a3",
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#ffffff",
           "width": "100%"
         },
@@ -93,7 +93,7 @@
         ],
         "properties": {
           "name": "a4",
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#ffffff",
           "width": "100%"
         },
@@ -107,7 +107,7 @@
         ],
         "properties": {
           "name": "a5",
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#ffffff",
           "width": "100%"
         },
@@ -121,7 +121,7 @@
         ],
         "properties": {
           "name": "a6",
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#ffffff",
           "width": "100%"
         },
@@ -135,7 +135,7 @@
         ],
         "properties": {
           "name": "a7",
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#ffffff",
           "width": "100%"
         },
@@ -149,7 +149,7 @@
         ],
         "properties": {
           "name": "a8",
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#ffffff",
           "width": "100%"
         },
@@ -163,7 +163,7 @@
         ],
         "properties": {
           "name": "a9",
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#ffffff",
           "width": "100%"
         },
@@ -177,7 +177,7 @@
         ],
         "properties": {
           "name": "a10",
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#ffffff",
           "width": "100%"
         },
@@ -191,7 +191,7 @@
         ],
         "properties": {
           "name": "a11",
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#ffffff",
           "width": "100%"
         },
@@ -205,7 +205,7 @@
         ],
         "properties": {
           "name": "a12",
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#ffffff",
           "width": "100%"
         },
@@ -219,7 +219,7 @@
         ],
         "properties": {
           "name": "a13",
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#ffffff",
           "width": "100%"
         },
@@ -233,7 +233,7 @@
         ],
         "properties": {
           "name": "a14",
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#ffffff",
           "width": "100%"
         },
@@ -251,12 +251,12 @@
             ],
             "properties": {
               "name": "btn-prev",
-              "fontsize": "{14}",
+              "fontsize": "14",
               "color": "#888888",
               "backgroundcolor": "#222222",
-              "padding": "{6}",
-              "borderradius": "{4}",
-              "width": "{80}",
+              "padding": "6",
+              "borderradius": "4",
+              "width": "80",
               "textalign": "center",
               "cursor": "pointer"
             },
@@ -270,7 +270,7 @@
             ],
             "properties": {
               "name": "page",
-              "fontsize": "{12}",
+              "fontsize": "12",
               "color": "#888888"
             },
             "dataUid": "uid-21"
@@ -283,12 +283,12 @@
             ],
             "properties": {
               "name": "btn-next",
-              "fontsize": "{14}",
+              "fontsize": "14",
               "color": "#888888",
               "backgroundcolor": "#222222",
-              "padding": "{6}",
-              "borderradius": "{4}",
-              "width": "{80}",
+              "padding": "6",
+              "borderradius": "4",
+              "width": "80",
               "textalign": "center",
               "cursor": "pointer"
             },
@@ -297,8 +297,8 @@
         ],
         "properties": {
           "flexdirection": "row",
-          "gap": "{8}",
-          "paddingTop": "{4}"
+          "gap": "8",
+          "paddingTop": "4"
         },
         "dataUid": "uid-19"
       },
@@ -310,15 +310,15 @@
         ],
         "properties": {
           "name": "btn-back",
-          "fontsize": "{16}",
+          "fontsize": "16",
           "color": "#ff4444",
           "backgroundcolor": "#330000",
-          "padding": "{8}",
-          "borderradius": "{6}",
-          "width": "{160}",
+          "padding": "8",
+          "borderradius": "6",
+          "width": "160",
           "textalign": "center",
           "cursor": "pointer",
-          "marginTop": "{4}"
+          "marginTop": "4"
         },
         "dataUid": "uid-23"
       }
@@ -327,11 +327,11 @@
       "name": "root",
       "flexdirection": "column",
       "alignitems": "center",
-      "gap": "{4}",
-      "padding": "{16}",
+      "gap": "4",
+      "padding": "16",
       "backgroundcolor": "#000000cc",
-      "borderradius": "{12}",
-      "width": "{420}"
+      "borderradius": "12",
+      "width": "420"
     },
     "dataUid": "uid-1"
   },

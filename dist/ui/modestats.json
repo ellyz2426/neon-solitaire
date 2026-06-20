@@ -7,12 +7,12 @@
         "sourceTag": "text",
         "type": "custom",
         "children": [
-          "LEADERBOARD"
+          "MODE STATISTICS"
         ],
         "properties": {
-          "fontsize": "22",
-          "fontweight": "bold",
-          "color": "#ffcc00"
+          "fontsize": "20",
+          "color": "#00ffff",
+          "fontweight": "bold"
         },
         "dataUid": "uid-2"
       },
@@ -24,12 +24,12 @@
             "sourceTag": "text",
             "type": "custom",
             "children": [
-              "#"
+              "Mode"
             ],
             "properties": {
-              "fontsize": "10",
-              "color": "#668888",
-              "width": "30"
+              "fontsize": "11",
+              "color": "#667788",
+              "width": "100"
             },
             "dataUid": "uid-4"
           },
@@ -37,12 +37,12 @@
             "sourceTag": "text",
             "type": "custom",
             "children": [
-              "SCORE"
+              "Played"
             ],
             "properties": {
-              "fontsize": "10",
-              "color": "#668888",
-              "flexgrow": "1"
+              "fontsize": "11",
+              "color": "#667788",
+              "width": "50"
             },
             "dataUid": "uid-5"
           },
@@ -50,12 +50,12 @@
             "sourceTag": "text",
             "type": "custom",
             "children": [
-              "MOVES"
+              "Won"
             ],
             "properties": {
-              "fontsize": "10",
-              "color": "#668888",
-              "width": "60"
+              "fontsize": "11",
+              "color": "#667788",
+              "width": "50"
             },
             "dataUid": "uid-6"
           },
@@ -63,12 +63,12 @@
             "sourceTag": "text",
             "type": "custom",
             "children": [
-              "TIME"
+              "Win%"
             ],
             "properties": {
-              "fontsize": "10",
-              "color": "#668888",
-              "width": "60"
+              "fontsize": "11",
+              "color": "#667788",
+              "width": "50"
             },
             "dataUid": "uid-7"
           },
@@ -76,19 +76,19 @@
             "sourceTag": "text",
             "type": "custom",
             "children": [
-              "MODE"
+              "Best"
             ],
             "properties": {
-              "fontsize": "10",
-              "color": "#668888",
-              "width": "70"
+              "fontsize": "11",
+              "color": "#667788",
+              "width": "50"
             },
             "dataUid": "uid-8"
           }
         ],
         "properties": {
           "flexdirection": "row",
-          "gap": "4",
+          "gap": "8",
           "width": "100%",
           "paddingTop": "4"
         },
@@ -101,10 +101,9 @@
           "-"
         ],
         "properties": {
-          "name": "row0",
-          "fontsize": "10",
-          "color": "#ffffff",
-          "width": "100%"
+          "name": "ms0",
+          "fontsize": "11",
+          "color": "#aabbcc"
         },
         "dataUid": "uid-9"
       },
@@ -115,10 +114,9 @@
           "-"
         ],
         "properties": {
-          "name": "row1",
-          "fontsize": "10",
-          "color": "#ffffff",
-          "width": "100%"
+          "name": "ms1",
+          "fontsize": "11",
+          "color": "#aabbcc"
         },
         "dataUid": "uid-10"
       },
@@ -129,10 +127,9 @@
           "-"
         ],
         "properties": {
-          "name": "row2",
-          "fontsize": "10",
-          "color": "#ffffff",
-          "width": "100%"
+          "name": "ms2",
+          "fontsize": "11",
+          "color": "#aabbcc"
         },
         "dataUid": "uid-11"
       },
@@ -143,10 +140,9 @@
           "-"
         ],
         "properties": {
-          "name": "row3",
-          "fontsize": "10",
-          "color": "#ffffff",
-          "width": "100%"
+          "name": "ms3",
+          "fontsize": "11",
+          "color": "#aabbcc"
         },
         "dataUid": "uid-12"
       },
@@ -157,10 +153,9 @@
           "-"
         ],
         "properties": {
-          "name": "row4",
-          "fontsize": "10",
-          "color": "#ffffff",
-          "width": "100%"
+          "name": "ms4",
+          "fontsize": "11",
+          "color": "#aabbcc"
         },
         "dataUid": "uid-13"
       },
@@ -171,10 +166,9 @@
           "-"
         ],
         "properties": {
-          "name": "row5",
-          "fontsize": "10",
-          "color": "#ffffff",
-          "width": "100%"
+          "name": "ms5",
+          "fontsize": "11",
+          "color": "#aabbcc"
         },
         "dataUid": "uid-14"
       },
@@ -185,10 +179,9 @@
           "-"
         ],
         "properties": {
-          "name": "row6",
-          "fontsize": "10",
-          "color": "#ffffff",
-          "width": "100%"
+          "name": "ms6",
+          "fontsize": "11",
+          "color": "#aabbcc"
         },
         "dataUid": "uid-15"
       },
@@ -199,10 +192,9 @@
           "-"
         ],
         "properties": {
-          "name": "row7",
-          "fontsize": "10",
-          "color": "#ffffff",
-          "width": "100%"
+          "name": "ms7",
+          "fontsize": "11",
+          "color": "#aabbcc"
         },
         "dataUid": "uid-16"
       },
@@ -213,26 +205,13 @@
           "-"
         ],
         "properties": {
-          "name": "row8",
-          "fontsize": "10",
-          "color": "#ffffff",
-          "width": "100%"
+          "name": "ms-total",
+          "fontsize": "14",
+          "color": "#00ccff",
+          "fontweight": "bold",
+          "paddingTop": "6"
         },
         "dataUid": "uid-17"
-      },
-      {
-        "sourceTag": "text",
-        "type": "custom",
-        "children": [
-          "-"
-        ],
-        "properties": {
-          "name": "row9",
-          "fontsize": "10",
-          "color": "#ffffff",
-          "width": "100%"
-        },
-        "dataUid": "uid-18"
       },
       {
         "sourceTag": "text",
@@ -242,28 +221,28 @@
         ],
         "properties": {
           "name": "btn-back",
-          "fontsize": "16",
+          "fontsize": "14",
           "color": "#ff4444",
           "backgroundcolor": "#330000",
           "padding": "8",
           "borderradius": "6",
-          "width": "160",
+          "width": "140",
           "textalign": "center",
           "cursor": "pointer",
-          "marginTop": "8"
+          "marginTop": "6"
         },
-        "dataUid": "uid-19"
+        "dataUid": "uid-18"
       }
     ],
     "properties": {
       "name": "root",
       "flexdirection": "column",
       "alignitems": "center",
-      "gap": "4",
+      "gap": "6",
       "padding": "16",
-      "backgroundcolor": "#000000cc",
-      "borderradius": "12",
-      "width": "420"
+      "backgroundcolor": "#0c1525ee",
+      "borderradius": "16",
+      "width": "400"
     },
     "dataUid": "uid-1"
   },
@@ -275,7 +254,7 @@
         "column": 0
       },
       "end": {
-        "line": 29,
+        "line": 28,
         "column": 12
       }
     },
@@ -286,7 +265,7 @@
       },
       "end": {
         "line": 10,
-        "column": 74
+        "column": 78
       }
     },
     "uid-3": {
@@ -306,7 +285,7 @@
       },
       "end": {
         "line": 12,
-        "column": 59
+        "column": 63
       }
     },
     "uid-5": {
@@ -316,7 +295,7 @@
       },
       "end": {
         "line": 13,
-        "column": 65
+        "column": 64
       }
     },
     "uid-6": {
@@ -326,7 +305,7 @@
       },
       "end": {
         "line": 14,
-        "column": 63
+        "column": 61
       }
     },
     "uid-7": {
@@ -356,7 +335,7 @@
       },
       "end": {
         "line": 18,
-        "column": 71
+        "column": 57
       }
     },
     "uid-10": {
@@ -366,7 +345,7 @@
       },
       "end": {
         "line": 19,
-        "column": 71
+        "column": 57
       }
     },
     "uid-11": {
@@ -376,7 +355,7 @@
       },
       "end": {
         "line": 20,
-        "column": 71
+        "column": 57
       }
     },
     "uid-12": {
@@ -386,7 +365,7 @@
       },
       "end": {
         "line": 21,
-        "column": 71
+        "column": 57
       }
     },
     "uid-13": {
@@ -396,7 +375,7 @@
       },
       "end": {
         "line": 22,
-        "column": 71
+        "column": 57
       }
     },
     "uid-14": {
@@ -406,7 +385,7 @@
       },
       "end": {
         "line": 23,
-        "column": 71
+        "column": 57
       }
     },
     "uid-15": {
@@ -416,7 +395,7 @@
       },
       "end": {
         "line": 24,
-        "column": 71
+        "column": 57
       }
     },
     "uid-16": {
@@ -426,7 +405,7 @@
       },
       "end": {
         "line": 25,
-        "column": 71
+        "column": 57
       }
     },
     "uid-17": {
@@ -436,7 +415,7 @@
       },
       "end": {
         "line": 26,
-        "column": 71
+        "column": 96
       }
     },
     "uid-18": {
@@ -446,16 +425,6 @@
       },
       "end": {
         "line": 27,
-        "column": 71
-      }
-    },
-    "uid-19": {
-      "start": {
-        "line": 28,
-        "column": 2
-      },
-      "end": {
-        "line": 28,
         "column": 183
       }
     }

@@ -11,7 +11,7 @@
         ],
         "properties": {
           "name": "count",
-          "fontsize": "{48}",
+          "fontsize": "48",
           "fontweight": "bold",
           "color": "#00ffff"
         },
@@ -23,9 +23,9 @@
       "flexdirection": "column",
       "alignitems": "center",
       "justifycontent": "center",
-      "padding": "{16}",
+      "padding": "16",
       "backgroundcolor": "#000000cc",
-      "borderradius": "{12}"
+      "borderradius": "12"
     },
     "dataUid": "uid-1"
   },

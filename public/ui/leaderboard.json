@@ -10,7 +10,7 @@
           "LEADERBOARD"
         ],
         "properties": {
-          "fontsize": "{22}",
+          "fontsize": "22",
           "fontweight": "bold",
           "color": "#ffcc00"
         },
@@ -27,9 +27,9 @@
               "#"
             ],
             "properties": {
-              "fontsize": "{10}",
+              "fontsize": "10",
               "color": "#668888",
-              "width": "{30}"
+              "width": "30"
             },
             "dataUid": "uid-4"
           },
@@ -40,9 +40,9 @@
               "SCORE"
             ],
             "properties": {
-              "fontsize": "{10}",
+              "fontsize": "10",
               "color": "#668888",
-              "flexgrow": "{1}"
+              "flexgrow": "1"
             },
             "dataUid": "uid-5"
           },
@@ -53,9 +53,9 @@
               "MOVES"
             ],
             "properties": {
-              "fontsize": "{10}",
+              "fontsize": "10",
               "color": "#668888",
-              "width": "{60}"
+              "width": "60"
             },
             "dataUid": "uid-6"
           },
@@ -66,9 +66,9 @@
               "TIME"
             ],
             "properties": {
-              "fontsize": "{10}",
+              "fontsize": "10",
               "color": "#668888",
-              "width": "{60}"
+              "width": "60"
             },
             "dataUid": "uid-7"
           },
@@ -79,18 +79,18 @@
               "MODE"
             ],
             "properties": {
-              "fontsize": "{10}",
+              "fontsize": "10",
               "color": "#668888",
-              "width": "{70}"
+              "width": "70"
             },
             "dataUid": "uid-8"
           }
         ],
         "properties": {
           "flexdirection": "row",
-          "gap": "{4}",
+          "gap": "4",
           "width": "100%",
-          "paddingTop": "{4}"
+          "paddingTop": "4"
         },
         "dataUid": "uid-3"
       },
@@ -102,7 +102,7 @@
         ],
         "properties": {
           "name": "row0",
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#ffffff",
           "width": "100%"
         },
@@ -116,7 +116,7 @@
         ],
         "properties": {
           "name": "row1",
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#ffffff",
           "width": "100%"
         },
@@ -130,7 +130,7 @@
         ],
         "properties": {
           "name": "row2",
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#ffffff",
           "width": "100%"
         },
@@ -144,7 +144,7 @@
         ],
         "properties": {
           "name": "row3",
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#ffffff",
           "width": "100%"
         },
@@ -158,7 +158,7 @@
         ],
         "properties": {
           "name": "row4",
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#ffffff",
           "width": "100%"
         },
@@ -172,7 +172,7 @@
         ],
         "properties": {
           "name": "row5",
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#ffffff",
           "width": "100%"
         },
@@ -186,7 +186,7 @@
         ],
         "properties": {
           "name": "row6",
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#ffffff",
           "width": "100%"
         },
@@ -200,7 +200,7 @@
         ],
         "properties": {
           "name": "row7",
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#ffffff",
           "width": "100%"
         },
@@ -214,7 +214,7 @@
         ],
         "properties": {
           "name": "row8",
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#ffffff",
           "width": "100%"
         },
@@ -228,7 +228,7 @@
         ],
         "properties": {
           "name": "row9",
-          "fontsize": "{10}",
+          "fontsize": "10",
           "color": "#ffffff",
           "width": "100%"
         },
@@ -242,15 +242,15 @@
         ],
         "properties": {
           "name": "btn-back",
-          "fontsize": "{16}",
+          "fontsize": "16",
           "color": "#ff4444",
           "backgroundcolor": "#330000",
-          "padding": "{8}",
-          "borderradius": "{6}",
-          "width": "{160}",
+          "padding": "8",
+          "borderradius": "6",
+          "width": "160",
           "textalign": "center",
           "cursor": "pointer",
-          "marginTop": "{8}"
+          "marginTop": "8"
         },
         "dataUid": "uid-19"
       }
@@ -259,11 +259,11 @@
       "name": "root",
       "flexdirection": "column",
       "alignitems": "center",
-      "gap": "{4}",
-      "padding": "{16}",
+      "gap": "4",
+      "padding": "16",
       "backgroundcolor": "#000000cc",
-      "borderradius": "{12}",
-      "width": "{420}"
+      "borderradius": "12",
+      "width": "420"
     },
     "dataUid": "uid-1"
   },

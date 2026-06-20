@@ -10,7 +10,7 @@
           "SELECT MODE"
         ],
         "properties": {
-          "fontsize": "{26}",
+          "fontsize": "26",
           "fontweight": "bold",
           "color": "#00ffff"
         },
@@ -24,9 +24,9 @@
         ],
         "properties": {
           "name": "mode-desc",
-          "fontsize": "{11}",
+          "fontsize": "11",
           "color": "#668888",
-          "paddingBottom": "{4}"
+          "paddingBottom": "4"
         },
         "dataUid": "uid-3"
       },
@@ -46,12 +46,12 @@
                 ],
                 "properties": {
                   "name": "btn-klondike1",
-                  "fontsize": "{15}",
+                  "fontsize": "15",
                   "color": "#00ffff",
                   "backgroundcolor": "#003333",
-                  "padding": "{8}",
-                  "borderradius": "{6}",
-                  "flexgrow": "{1}",
+                  "padding": "8",
+                  "borderradius": "6",
+                  "flexgrow": "1",
                   "textalign": "center",
                   "cursor": "pointer"
                 },
@@ -65,12 +65,12 @@
                 ],
                 "properties": {
                   "name": "btn-klondike3",
-                  "fontsize": "{15}",
+                  "fontsize": "15",
                   "color": "#00bbbb",
                   "backgroundcolor": "#002828",
-                  "padding": "{8}",
-                  "borderradius": "{6}",
-                  "flexgrow": "{1}",
+                  "padding": "8",
+                  "borderradius": "6",
+                  "flexgrow": "1",
                   "textalign": "center",
                   "cursor": "pointer"
                 },
@@ -79,8 +79,8 @@
             ],
             "properties": {
               "flexdirection": "row",
-              "gap": "{8}",
-              "width": "{340}"
+              "gap": "8",
+              "width": "340"
             },
             "dataUid": "uid-5"
           },
@@ -96,12 +96,12 @@
                 ],
                 "properties": {
                   "name": "btn-timed",
-                  "fontsize": "{15}",
+                  "fontsize": "15",
                   "color": "#ffcc00",
                   "backgroundcolor": "#332200",
-                  "padding": "{8}",
-                  "borderradius": "{6}",
-                  "flexgrow": "{1}",
+                  "padding": "8",
+                  "borderradius": "6",
+                  "flexgrow": "1",
                   "textalign": "center",
                   "cursor": "pointer"
                 },
@@ -115,12 +115,12 @@
                 ],
                 "properties": {
                   "name": "btn-speed",
-                  "fontsize": "{15}",
+                  "fontsize": "15",
                   "color": "#ff66ff",
                   "backgroundcolor": "#2a0033",
-                  "padding": "{8}",
-                  "borderradius": "{6}",
-                  "flexgrow": "{1}",
+                  "padding": "8",
+                  "borderradius": "6",
+                  "flexgrow": "1",
                   "textalign": "center",
                   "cursor": "pointer"
                 },
@@ -129,8 +129,8 @@
             ],
             "properties": {
               "flexdirection": "row",
-              "gap": "{8}",
-              "width": "{340}"
+              "gap": "8",
+              "width": "340"
             },
             "dataUid": "uid-8"
           },
@@ -146,12 +146,12 @@
                 ],
                 "properties": {
                   "name": "btn-vegas",
-                  "fontsize": "{15}",
+                  "fontsize": "15",
                   "color": "#66ff66",
                   "backgroundcolor": "#003300",
-                  "padding": "{8}",
-                  "borderradius": "{6}",
-                  "flexgrow": "{1}",
+                  "padding": "8",
+                  "borderradius": "6",
+                  "flexgrow": "1",
                   "textalign": "center",
                   "cursor": "pointer"
                 },
@@ -165,12 +165,12 @@
                 ],
                 "properties": {
                   "name": "btn-daily",
-                  "fontsize": "{15}",
+                  "fontsize": "15",
                   "color": "#ff8800",
                   "backgroundcolor": "#332200",
-                  "padding": "{8}",
-                  "borderradius": "{6}",
-                  "flexgrow": "{1}",
+                  "padding": "8",
+                  "borderradius": "6",
+                  "flexgrow": "1",
                   "textalign": "center",
                   "cursor": "pointer"
                 },
@@ -179,8 +179,8 @@
             ],
             "properties": {
               "flexdirection": "row",
-              "gap": "{8}",
-              "width": "{340}"
+              "gap": "8",
+              "width": "340"
             },
             "dataUid": "uid-11"
           },
@@ -196,12 +196,12 @@
                 ],
                 "properties": {
                   "name": "btn-zen",
-                  "fontsize": "{15}",
+                  "fontsize": "15",
                   "color": "#88ff88",
                   "backgroundcolor": "#002800",
-                  "padding": "{8}",
-                  "borderradius": "{6}",
-                  "flexgrow": "{1}",
+                  "padding": "8",
+                  "borderradius": "6",
+                  "flexgrow": "1",
                   "textalign": "center",
                   "cursor": "pointer"
                 },
@@ -215,12 +215,12 @@
                 ],
                 "properties": {
                   "name": "btn-practice",
-                  "fontsize": "{15}",
+                  "fontsize": "15",
                   "color": "#aaaaaa",
                   "backgroundcolor": "#222222",
-                  "padding": "{8}",
-                  "borderradius": "{6}",
-                  "flexgrow": "{1}",
+                  "padding": "8",
+                  "borderradius": "6",
+                  "flexgrow": "1",
                   "textalign": "center",
                   "cursor": "pointer"
                 },
@@ -229,15 +229,15 @@
             ],
             "properties": {
               "flexdirection": "row",
-              "gap": "{8}",
-              "width": "{340}"
+              "gap": "8",
+              "width": "340"
             },
             "dataUid": "uid-14"
           }
         ],
         "properties": {
           "flexdirection": "column",
-          "gap": "{5}",
+          "gap": "5",
           "width": "100%",
           "alignitems": "center"
         },
@@ -251,15 +251,15 @@
         ],
         "properties": {
           "name": "btn-back",
-          "fontsize": "{14}",
+          "fontsize": "14",
           "color": "#ff6666",
           "backgroundcolor": "#330000",
-          "padding": "{7}",
-          "borderradius": "{6}",
-          "width": "{140}",
+          "padding": "7",
+          "borderradius": "6",
+          "width": "140",
           "textalign": "center",
           "cursor": "pointer",
-          "marginTop": "{6}"
+          "marginTop": "6"
         },
         "dataUid": "uid-17"
       }
@@ -268,11 +268,11 @@
       "name": "root",
       "flexdirection": "column",
       "alignitems": "center",
-      "gap": "{6}",
-      "padding": "{18}",
+      "gap": "6",
+      "padding": "18",
       "backgroundcolor": "#000000dd",
-      "borderradius": "{14}",
-      "width": "{460}"
+      "borderradius": "14",
+      "width": "460"
     },
     "dataUid": "uid-1"
   },

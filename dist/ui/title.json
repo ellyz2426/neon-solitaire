@@ -11,7 +11,7 @@
         ],
         "properties": {
           "name": "title",
-          "fontsize": "{36}",
+          "fontsize": "36",
           "fontweight": "bold",
           "color": "#00ffff"
         },
@@ -25,7 +25,7 @@
         ],
         "properties": {
           "name": "subtitle",
-          "fontsize": "{13}",
+          "fontsize": "13",
           "color": "#00aaaa"
         },
         "dataUid": "uid-3"
@@ -42,7 +42,7 @@
             ],
             "properties": {
               "name": "level-display",
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#aa66ff"
             },
             "dataUid": "uid-5"
@@ -55,7 +55,7 @@
             ],
             "properties": {
               "name": "wins-display",
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#66ff66"
             },
             "dataUid": "uid-6"
@@ -68,7 +68,7 @@
             ],
             "properties": {
               "name": "streak-display",
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#ffcc00"
             },
             "dataUid": "uid-7"
@@ -76,9 +76,9 @@
         ],
         "properties": {
           "flexdirection": "row",
-          "gap": "{16}",
-          "paddingTop": "{2}",
-          "paddingBottom": "{6}"
+          "gap": "16",
+          "paddingTop": "2",
+          "paddingBottom": "6"
         },
         "dataUid": "uid-4"
       },
@@ -94,13 +94,13 @@
             ],
             "properties": {
               "name": "btn-play",
-              "fontsize": "{18}",
+              "fontsize": "18",
               "fontweight": "bold",
               "color": "#00ffff",
               "backgroundcolor": "#004444",
-              "padding": "{10}",
-              "borderradius": "{8}",
-              "width": "{280}",
+              "padding": "10",
+              "borderradius": "8",
+              "width": "280",
               "textalign": "center",
               "cursor": "pointer"
             },
@@ -114,12 +114,12 @@
             ],
             "properties": {
               "name": "btn-scores",
-              "fontsize": "{16}",
+              "fontsize": "16",
               "color": "#00ccaa",
               "backgroundcolor": "#003333",
-              "padding": "{8}",
-              "borderradius": "{6}",
-              "width": "{280}",
+              "padding": "8",
+              "borderradius": "6",
+              "width": "280",
               "textalign": "center",
               "cursor": "pointer"
             },
@@ -133,12 +133,12 @@
             ],
             "properties": {
               "name": "btn-achievements",
-              "fontsize": "{16}",
+              "fontsize": "16",
               "color": "#ffcc00",
               "backgroundcolor": "#332200",
-              "padding": "{8}",
-              "borderradius": "{6}",
-              "width": "{280}",
+              "padding": "8",
+              "borderradius": "6",
+              "width": "280",
               "textalign": "center",
               "cursor": "pointer"
             },
@@ -152,12 +152,12 @@
             ],
             "properties": {
               "name": "btn-stats",
-              "fontsize": "{16}",
+              "fontsize": "16",
               "color": "#66ff66",
               "backgroundcolor": "#003300",
-              "padding": "{8}",
-              "borderradius": "{6}",
-              "width": "{280}",
+              "padding": "8",
+              "borderradius": "6",
+              "width": "280",
               "textalign": "center",
               "cursor": "pointer"
             },
@@ -171,12 +171,12 @@
             ],
             "properties": {
               "name": "btn-card-backs",
-              "fontsize": "{16}",
+              "fontsize": "16",
               "color": "#ff66ff",
               "backgroundcolor": "#330033",
-              "padding": "{8}",
-              "borderradius": "{6}",
-              "width": "{280}",
+              "padding": "8",
+              "borderradius": "6",
+              "width": "280",
               "textalign": "center",
               "cursor": "pointer"
             },
@@ -190,12 +190,12 @@
             ],
             "properties": {
               "name": "btn-settings",
-              "fontsize": "{16}",
+              "fontsize": "16",
               "color": "#aaaaaa",
               "backgroundcolor": "#222222",
-              "padding": "{8}",
-              "borderradius": "{6}",
-              "width": "{280}",
+              "padding": "8",
+              "borderradius": "6",
+              "width": "280",
               "textalign": "center",
               "cursor": "pointer"
             },
@@ -209,12 +209,12 @@
             ],
             "properties": {
               "name": "btn-help",
-              "fontsize": "{16}",
+              "fontsize": "16",
               "color": "#8888ff",
               "backgroundcolor": "#222244",
-              "padding": "{8}",
-              "borderradius": "{6}",
-              "width": "{280}",
+              "padding": "8",
+              "borderradius": "6",
+              "width": "280",
               "textalign": "center",
               "cursor": "pointer"
             },
@@ -223,7 +223,7 @@
         ],
         "properties": {
           "flexdirection": "column",
-          "gap": "{7}",
+          "gap": "7",
           "width": "100%",
           "alignitems": "center"
         },
@@ -235,11 +235,11 @@
       "flexdirection": "column",
       "alignitems": "center",
       "justifycontent": "center",
-      "gap": "{10}",
-      "padding": "{20}",
+      "gap": "10",
+      "padding": "20",
       "backgroundcolor": "#000000dd",
-      "borderradius": "{14}",
-      "width": "{440}"
+      "borderradius": "14",
+      "width": "440"
     },
     "dataUid": "uid-1"
   },

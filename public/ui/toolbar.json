@@ -11,12 +11,12 @@
         ],
         "properties": {
           "name": "btn-undo",
-          "fontsize": "{14}",
+          "fontsize": "14",
           "color": "#ffcc00",
           "backgroundcolor": "#333300",
-          "padding": "{6}",
-          "borderradius": "{4}",
-          "width": "{130}",
+          "padding": "6",
+          "borderradius": "4",
+          "width": "130",
           "textalign": "center",
           "cursor": "pointer"
         },
@@ -30,12 +30,12 @@
         ],
         "properties": {
           "name": "btn-hint",
-          "fontsize": "{14}",
+          "fontsize": "14",
           "color": "#66ff66",
           "backgroundcolor": "#003300",
-          "padding": "{6}",
-          "borderradius": "{4}",
-          "width": "{130}",
+          "padding": "6",
+          "borderradius": "4",
+          "width": "130",
           "textalign": "center",
           "cursor": "pointer"
         },
@@ -49,12 +49,12 @@
         ],
         "properties": {
           "name": "btn-autocomplete",
-          "fontsize": "{14}",
+          "fontsize": "14",
           "color": "#00ffff",
           "backgroundcolor": "#003333",
-          "padding": "{6}",
-          "borderradius": "{4}",
-          "width": "{130}",
+          "padding": "6",
+          "borderradius": "4",
+          "width": "130",
           "textalign": "center",
           "cursor": "pointer"
         },
@@ -68,12 +68,12 @@
         ],
         "properties": {
           "name": "btn-newgame",
-          "fontsize": "{14}",
+          "fontsize": "14",
           "color": "#ff8800",
           "backgroundcolor": "#332200",
-          "padding": "{6}",
-          "borderradius": "{4}",
-          "width": "{130}",
+          "padding": "6",
+          "borderradius": "4",
+          "width": "130",
           "textalign": "center",
           "cursor": "pointer"
         },
@@ -84,11 +84,11 @@
       "name": "root",
       "flexdirection": "column",
       "alignitems": "center",
-      "gap": "{6}",
-      "padding": "{12}",
+      "gap": "6",
+      "padding": "12",
       "backgroundcolor": "#000000cc",
-      "borderradius": "{8}",
-      "width": "{160}"
+      "borderradius": "8",
+      "width": "160"
     },
     "dataUid": "uid-1"
   },

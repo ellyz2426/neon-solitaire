@@ -4,7 +4,7 @@ import {
 } from '@iwsdk/core';
 import { GameMode, THEMES, CARD_SKINS, TABLE_Y } from './types';
 import { GameSystem } from './game-system';
-import { ACHIEVEMENTS, loadSettings, saveSettings, loadLeaderboard, loadStats, loadDailyProgress, getTodayString } from './achievements';
+import { ACHIEVEMENTS, loadSettings, saveSettings, loadLeaderboard, loadStats, loadDailyProgress, getTodayString, loadModeStats } from './achievements';
 import { foundationTotal, canAutoComplete } from './solitaire';
 import { sfxMenuClick, sfxThemeChange, setVolumes } from './audio';
 import { setMusicVolume } from './music';
@@ -28,6 +28,7 @@ const panelPos: Record<string, [number, number, number]> = {
   achievements: [0, 1.5, -1.8], stats: [0, 1.5, -1.8], skins: [0, 1.5, -1.8],
   settings: [0, 1.5, -1.8], help: [0, 1.5, -1.8], gameover: [0, 1.5, -1.8],
   pause: [0, 1.5, -1.8], countdown: [0, 1.5, -1.8],
+  tutorial: [0, 1.5, -1.8], modestats: [0, 1.5, -1.8],
 };
 
 export class UISystem extends createSystem({
@@ -45,6 +46,8 @@ export class UISystem extends createSystem({
   hud: { required: [PanelUI, PanelDocument], where: [eq(PanelUI, 'config', './ui/hud.json')] },
   toolbar: { required: [PanelUI, PanelDocument], where: [eq(PanelUI, 'config', './ui/toolbar.json')] },
   toast: { required: [PanelUI, PanelDocument], where: [eq(PanelUI, 'config', './ui/toast.json')] },
+  tutorial: { required: [PanelUI, PanelDocument], where: [eq(PanelUI, 'config', './ui/tutorial.json')] },
+  modestats: { required: [PanelUI, PanelDocument], where: [eq(PanelUI, 'config', './ui/modestats.json')] },
 }) {
   panels: Record<string, Entity> = {};
   activePanel = 'title';
@@ -82,6 +85,11 @@ export class UISystem extends createSystem({
       onClick(doc, 'btn-card-backs', () => { sfxMenuClick(); this.show('skins'); });
       onClick(doc, 'btn-settings', () => { sfxMenuClick(); this.show('settings'); });
       onClick(doc, 'btn-help', () => { sfxMenuClick(); this.show('help'); });
+      // Show tutorial for first-time players
+      const gs2 = g();
+      if (!gs2.tutorialShown) {
+        this.show('tutorial');
+      }
     });
 
     // MODE SELECT
@@ -168,17 +176,42 @@ export class UISystem extends createSystem({
     });
 
     // LEADERBOARD / STATS / HELP - just back buttons
-    for (const name of ['leaderboard', 'stats', 'help'] as const) {
+    for (const name of ['leaderboard', 'help'] as const) {
       bindPanel(name, (this.queries as any)[name], (e: Entity) => {
         const doc = getDoc(e); if (!doc) return;
         onClick(doc, 'btn-back', () => { sfxMenuClick(); this.show('title'); });
       });
     }
 
+    // STATS - back + mode stats button
+    bindPanel('stats', this.queries.stats, (e: Entity) => {
+      const doc = getDoc(e); if (!doc) return;
+      onClick(doc, 'btn-back', () => { sfxMenuClick(); this.show('title'); });
+      onClick(doc, 'btn-modestats', () => { sfxMenuClick(); this.refreshModeStats(); this.show('modestats'); });
+    });
+
     // HUD, TOAST, COUNTDOWN - no special wiring needed
     bindPanel('hud', this.queries.hud, () => {});
     bindPanel('toast', this.queries.toast, () => {});
     bindPanel('countdown', this.queries.countdown, () => {});
+
+    // TUTORIAL
+    bindPanel('tutorial', this.queries.tutorial, (e: Entity) => {
+      const doc = getDoc(e); if (!doc) return;
+      onClick(doc, 'btn-got-it', () => {
+        sfxMenuClick();
+        const gs = g();
+        gs.tutorialShown = true;
+        import('./achievements').then(m => m.saveTutorialSeen());
+        this.show('title');
+      });
+    });
+
+    // MODE STATS
+    bindPanel('modestats', this.queries.modestats, (e: Entity) => {
+      const doc = getDoc(e); if (!doc) return;
+      onClick(doc, 'btn-back', () => { sfxMenuClick(); this.show('stats'); });
+    });
   }
 
   show(name: string) { this.activePanel = name; this.syncVis(); }
@@ -186,7 +219,7 @@ export class UISystem extends createSystem({
   syncVis() {
     const gs = (this.world as any).getSystem(GameSystem) as GameSystem | undefined;
     const phase = gs?.phase || 'menu';
-    const menuPanels = ['title', 'modeselect', 'leaderboard', 'achievements', 'stats', 'skins', 'settings', 'help'];
+    const menuPanels = ['title', 'modeselect', 'leaderboard', 'achievements', 'stats', 'skins', 'settings', 'help', 'tutorial', 'modestats'];
 
     for (const [name, entity] of Object.entries(this.panels)) {
       if (!entity || !(entity as any).object3D) continue;
@@ -369,5 +402,28 @@ export class UISystem extends createSystem({
     setText(doc, 'r-streak', String(gs.stats.winStreak));
     const xpGained = g.won ? Math.floor(g.score / 10) + 50 : 0;
     setText(doc, 'r-xp', g.won ? `+${xpGained}` : '-');
+  }
+
+  refreshModeStats() {
+    const e = this.panels.modestats; if (!e) return;
+    const doc = getDoc(e); if (!doc) return;
+    const ms = loadModeStats();
+    const modes = ['klondike1', 'klondike3', 'timed', 'vegas', 'daily', 'speed', 'zen', 'practice'];
+    const modeNames = ['Klondike 1', 'Klondike 3', 'Timed', 'Vegas', 'Daily', 'Speed', 'Zen', 'Practice'];
+    let totalPlayed = 0;
+    let totalWon = 0;
+    for (let i = 0; i < modes.length; i++) {
+      const s = ms[modes[i]];
+      if (s && s.played > 0) {
+        const winRate = Math.round(s.won / s.played * 100);
+        setText(doc, `ms${i}`, `${modeNames[i]}  ${s.played}  ${s.won}  ${winRate}%  ${s.bestScore}`);
+        totalPlayed += s.played;
+        totalWon += s.won;
+      } else {
+        setText(doc, `ms${i}`, `${modeNames[i]}  -  -  -  -`);
+      }
+    }
+    const totalRate = totalPlayed > 0 ? Math.round(totalWon / totalPlayed * 100) : 0;
+    setText(doc, 'ms-total', `Total: ${totalPlayed} played, ${totalWon} won (${totalRate}%)`);
   }
 }

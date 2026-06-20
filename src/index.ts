@@ -14,10 +14,11 @@ async function main() {
     browserControls: true,
   });
 
-  // World-space panels (menu screens, gameover, pause, toolbar, countdown)
+  // World-space panels (menu screens, gameover, pause, toolbar, countdown, tutorial, modestats)
   const worldPanelNames = [
     'title', 'modeselect', 'leaderboard', 'achvlist', 'stats',
     'skins', 'settings', 'help', 'gameover', 'pause', 'countdown', 'toolbar',
+    'tutorial', 'modestats',
   ];
   for (const name of worldPanelNames) {
     const mesh = new Mesh(

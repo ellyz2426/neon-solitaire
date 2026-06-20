@@ -1,0 +1,34 @@
+<container
+  name="root"
+  flexDirection="column"
+  alignItems="center"
+  gap="10"
+  padding="16"
+  backgroundColor="#0c1525ee"
+  borderRadius="16"
+  width="420"
+>
+  <text fontSize="22" color="#00ffff" fontWeight="bold">WELCOME TO NEON SOLITAIRE</text>
+  <text fontSize="13" color="#ccddee">Build 4 foundation piles from Ace to King</text>
+  <text fontSize="13" color="#ccddee">Alternate red and black cards on tableau</text>
+  <text fontSize="16" color="#00ccff" fontWeight="bold" padding-top="6">CONTROLS</text>
+  <container flexDirection="row" gap="20">
+    <container flexDirection="column" gap="4" alignItems="center">
+      <text fontSize="14" color="#ffcc00" fontWeight="bold">Browser</text>
+      <text fontSize="12" color="#aabbcc">Click: Select card</text>
+      <text fontSize="12" color="#aabbcc">Dbl-click: Auto-move</text>
+      <text fontSize="12" color="#aabbcc">Z: Undo  H: Hint</text>
+      <text fontSize="12" color="#aabbcc">ESC: Pause</text>
+    </container>
+    <container flexDirection="column" gap="4" alignItems="center">
+      <text fontSize="14" color="#ffcc00" fontWeight="bold">VR Controller</text>
+      <text fontSize="12" color="#aabbcc">Trigger: Select card</text>
+      <text fontSize="12" color="#aabbcc">A Button: Undo</text>
+      <text fontSize="12" color="#aabbcc">B Button: Hint</text>
+      <text fontSize="12" color="#aabbcc">Stick click: Pause</text>
+    </container>
+  </container>
+  <text fontSize="11" color="#667788" padding-top="4">Score points by moving cards to foundations</text>
+  <text fontSize="11" color="#667788">Build combos with consecutive foundation moves</text>
+  <text name="btn-got-it" fontSize="16" fontWeight="bold" color="#000000" backgroundColor="#00cccc" padding="10" borderRadius="8" width="160" textAlign="center" cursor="pointer" margin-top="8">GOT IT!</text>
+</container>

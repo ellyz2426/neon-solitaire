@@ -115,3 +115,29 @@ export function getYesterdayString(): string {
   d.setDate(d.getDate() - 1);
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 }
+
+// -- Per-mode stats ---------------------------------------------------
+export interface ModeStatsEntry {
+  played: number;
+  won: number;
+  bestScore: number;
+  bestTime: number;
+}
+
+const MODE_STATS_KEY = 'neon_solitaire_mode_stats';
+export function loadModeStats(): Record<string, ModeStatsEntry> {
+  try { const r = localStorage.getItem(MODE_STATS_KEY); if (r) return JSON.parse(r); } catch {}
+  return {};
+}
+export function saveModeStats(s: Record<string, ModeStatsEntry>): void {
+  localStorage.setItem(MODE_STATS_KEY, JSON.stringify(s));
+}
+
+// -- Tutorial state ---------------------------------------------------
+const TUTORIAL_KEY = 'neon_solitaire_tutorial_seen';
+export function loadTutorialSeen(): boolean {
+  try { return localStorage.getItem(TUTORIAL_KEY) === 'true'; } catch { return false; }
+}
+export function saveTutorialSeen(): void {
+  localStorage.setItem(TUTORIAL_KEY, 'true');
+}

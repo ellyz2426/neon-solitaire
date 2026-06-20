@@ -11,7 +11,7 @@
         ],
         "properties": {
           "name": "msg",
-          "fontsize": "{12}",
+          "fontsize": "12",
           "color": "#00ffff"
         },
         "dataUid": "uid-2"
@@ -22,12 +22,12 @@
       "flexdirection": "column",
       "alignitems": "center",
       "justifycontent": "center",
-      "paddingtop": "{8}",
-      "paddingbottom": "{8}",
-      "paddingleft": "{12}",
-      "paddingright": "{12}",
+      "paddingtop": "8",
+      "paddingbottom": "8",
+      "paddingleft": "12",
+      "paddingright": "12",
       "backgroundcolor": "#000000cc",
-      "borderradius": "{8}"
+      "borderradius": "8"
     },
     "dataUid": "uid-1"
   },

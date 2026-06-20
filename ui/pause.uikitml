@@ -2,13 +2,13 @@
   name="root"
   flexDirection="column"
   alignItems="center"
-  gap={8}
-  padding={16}
+  gap="8"
+  padding="16"
   backgroundColor="#000000cc"
-  borderRadius={12}
-  width={380}
+  borderRadius="12"
+  width="380"
 >
-  <text fontSize={22} fontWeight="bold" color="#00ffff">PAUSED</text>
-  <text name="btn-resume" fontSize={18} color="#66ff66" backgroundColor="#003300" padding={8} borderRadius={6} width={220} textAlign="center" cursor="pointer">RESUME</text>
-  <text name="btn-quit" fontSize={18} color="#ff4444" backgroundColor="#330000" padding={8} borderRadius={6} width={220} textAlign="center" cursor="pointer">QUIT TO MENU</text>
+  <text fontSize="22" fontWeight="bold" color="#00ffff">PAUSED</text>
+  <text name="btn-resume" fontSize="18" color="#66ff66" backgroundColor="#003300" padding="8" borderRadius="6" width="220" textAlign="center" cursor="pointer">RESUME</text>
+  <text name="btn-quit" fontSize="18" color="#ff4444" backgroundColor="#330000" padding="8" borderRadius="6" width="220" textAlign="center" cursor="pointer">QUIT TO MENU</text>
 </container>

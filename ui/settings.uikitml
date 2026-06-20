@@ -2,36 +2,36 @@
   name="root"
   flexDirection="column"
   alignItems="center"
-  gap={6}
-  padding={16}
+  gap="6"
+  padding="16"
   backgroundColor="#000000cc"
-  borderRadius={12}
-  width={400}
+  borderRadius="12"
+  width="400"
 >
-  <text fontSize={22} fontWeight="bold" color="#aaaaaa">SETTINGS</text>
-  <container flexDirection="row" gap={8} width="100%" alignItems="center">
-    <text fontSize={12} color="#668888" width={120}>Master Vol</text>
-    <text name="btn-master-down" fontSize={14} color="#ffffff" backgroundColor="#333333" padding={4} borderRadius={4} width={30} textAlign="center" cursor="pointer">-</text>
-    <text name="master-vol" fontSize={12} color="#ffffff" width={40} textAlign="center">100</text>
-    <text name="btn-master-up" fontSize={14} color="#ffffff" backgroundColor="#333333" padding={4} borderRadius={4} width={30} textAlign="center" cursor="pointer">+</text>
+  <text fontSize="22" fontWeight="bold" color="#aaaaaa">SETTINGS</text>
+  <container flexDirection="row" gap="8" width="100%" alignItems="center">
+    <text fontSize="12" color="#668888" width="120">Master Vol</text>
+    <text name="btn-master-down" fontSize="14" color="#ffffff" backgroundColor="#333333" padding="4" borderRadius="4" width="30" textAlign="center" cursor="pointer">-</text>
+    <text name="master-vol" fontSize="12" color="#ffffff" width="40" textAlign="center">100</text>
+    <text name="btn-master-up" fontSize="14" color="#ffffff" backgroundColor="#333333" padding="4" borderRadius="4" width="30" textAlign="center" cursor="pointer">+</text>
   </container>
-  <container flexDirection="row" gap={8} width="100%" alignItems="center">
-    <text fontSize={12} color="#668888" width={120}>SFX Vol</text>
-    <text name="btn-sfx-down" fontSize={14} color="#ffffff" backgroundColor="#333333" padding={4} borderRadius={4} width={30} textAlign="center" cursor="pointer">-</text>
-    <text name="sfx-vol" fontSize={12} color="#ffffff" width={40} textAlign="center">100</text>
-    <text name="btn-sfx-up" fontSize={14} color="#ffffff" backgroundColor="#333333" padding={4} borderRadius={4} width={30} textAlign="center" cursor="pointer">+</text>
+  <container flexDirection="row" gap="8" width="100%" alignItems="center">
+    <text fontSize="12" color="#668888" width="120">SFX Vol</text>
+    <text name="btn-sfx-down" fontSize="14" color="#ffffff" backgroundColor="#333333" padding="4" borderRadius="4" width="30" textAlign="center" cursor="pointer">-</text>
+    <text name="sfx-vol" fontSize="12" color="#ffffff" width="40" textAlign="center">100</text>
+    <text name="btn-sfx-up" fontSize="14" color="#ffffff" backgroundColor="#333333" padding="4" borderRadius="4" width="30" textAlign="center" cursor="pointer">+</text>
   </container>
-  <container flexDirection="row" gap={8} width="100%" alignItems="center">
-    <text fontSize={12} color="#668888" width={120}>Music Vol</text>
-    <text name="btn-music-down" fontSize={14} color="#ffffff" backgroundColor="#333333" padding={4} borderRadius={4} width={30} textAlign="center" cursor="pointer">-</text>
-    <text name="music-vol" fontSize={12} color="#ffffff" width={40} textAlign="center">100</text>
-    <text name="btn-music-up" fontSize={14} color="#ffffff" backgroundColor="#333333" padding={4} borderRadius={4} width={30} textAlign="center" cursor="pointer">+</text>
+  <container flexDirection="row" gap="8" width="100%" alignItems="center">
+    <text fontSize="12" color="#668888" width="120">Music Vol</text>
+    <text name="btn-music-down" fontSize="14" color="#ffffff" backgroundColor="#333333" padding="4" borderRadius="4" width="30" textAlign="center" cursor="pointer">-</text>
+    <text name="music-vol" fontSize="12" color="#ffffff" width="40" textAlign="center">100</text>
+    <text name="btn-music-up" fontSize="14" color="#ffffff" backgroundColor="#333333" padding="4" borderRadius="4" width="30" textAlign="center" cursor="pointer">+</text>
   </container>
-  <container flexDirection="row" gap={8} width="100%" alignItems="center">
-    <text fontSize={12} color="#668888" width={120}>Theme</text>
-    <text name="btn-theme-prev" fontSize={14} color="#ffffff" backgroundColor="#333333" padding={4} borderRadius={4} width={30} textAlign="center" cursor="pointer">&lt;</text>
-    <text name="theme-name" fontSize={12} color="#00ffff" width={120} textAlign="center">Neon Holodeck</text>
-    <text name="btn-theme-next" fontSize={14} color="#ffffff" backgroundColor="#333333" padding={4} borderRadius={4} width={30} textAlign="center" cursor="pointer">&gt;</text>
+  <container flexDirection="row" gap="8" width="100%" alignItems="center">
+    <text fontSize="12" color="#668888" width="120">Theme</text>
+    <text name="btn-theme-prev" fontSize="14" color="#ffffff" backgroundColor="#333333" padding="4" borderRadius="4" width="30" textAlign="center" cursor="pointer">&lt;</text>
+    <text name="theme-name" fontSize="12" color="#00ffff" width="120" textAlign="center">Neon Holodeck</text>
+    <text name="btn-theme-next" fontSize="14" color="#ffffff" backgroundColor="#333333" padding="4" borderRadius="4" width="30" textAlign="center" cursor="pointer">&gt;</text>
   </container>
-  <text name="btn-back" fontSize={16} color="#ff4444" backgroundColor="#330000" padding={8} borderRadius={6} width={160} textAlign="center" cursor="pointer" margin-top={8}>BACK</text>
+  <text name="btn-back" fontSize="16" color="#ff4444" backgroundColor="#330000" padding="8" borderRadius="6" width="160" textAlign="center" cursor="pointer" margin-top="8">BACK</text>
 </container>

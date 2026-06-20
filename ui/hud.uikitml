@@ -2,30 +2,30 @@
   name="root"
   flexDirection="column"
   alignItems="center"
-  gap={6}
-  padding={12}
+  gap="6"
+  padding="10"
   backgroundColor="#000000bb"
-  borderRadius={8}
-  width={360}
+  borderRadius="8"
+  width="360"
 >
-  <container flexDirection="row" gap={16} width="100%">
-    <container flexDirection="column" gap={2} alignItems="center" flexGrow={1}>
-      <text fontSize={10} color="#668888">SCORE</text>
-      <text name="score" fontSize={20} fontWeight="bold" color="#00ffff">0</text>
+  <container flexDirection="row" gap="16" width="100%">
+    <container flexDirection="column" gap="2" alignItems="center" flexGrow="1">
+      <text fontSize="10" color="#668888">SCORE</text>
+      <text name="score" fontSize="20" fontWeight="bold" color="#00ffff">0</text>
     </container>
-    <container flexDirection="column" gap={2} alignItems="center" flexGrow={1}>
-      <text fontSize={10} color="#668888">MOVES</text>
-      <text name="moves" fontSize={20} fontWeight="bold" color="#66ff66">0</text>
+    <container flexDirection="column" gap="2" alignItems="center" flexGrow="1">
+      <text fontSize="10" color="#668888">MOVES</text>
+      <text name="moves" fontSize="20" fontWeight="bold" color="#66ff66">0</text>
     </container>
-    <container flexDirection="column" gap={2} alignItems="center" flexGrow={1}>
-      <text fontSize={10} color="#668888">TIME</text>
-      <text name="time" fontSize={20} fontWeight="bold" color="#ffcc00">0:00</text>
+    <container flexDirection="column" gap="2" alignItems="center" flexGrow="1">
+      <text fontSize="10" color="#668888">TIME</text>
+      <text name="time" fontSize="20" fontWeight="bold" color="#ffcc00">0:00</text>
     </container>
   </container>
-  <container flexDirection="row" gap={12} width="100%">
-    <text name="mode" fontSize={10} color="#888888" flexGrow={1}>Klondike</text>
-    <text name="stock-count" fontSize={10} color="#557777">Stock: 24</text>
-    <text name="combo" fontSize={11} fontWeight="bold" color="#ff8800">-</text>
-    <text name="level" fontSize={10} color="#aa66ff">Lv.1</text>
+  <container flexDirection="row" gap="8" width="100%">
+    <text name="mode" fontSize="10" color="#888888" flexGrow="1">Klondike</text>
+    <text name="stock-count" fontSize="10" color="#557777">Stock: 24</text>
+    <text name="combo" fontSize="11" fontWeight="bold" color="#ff8800">-</text>
+    <text name="level" fontSize="10" color="#aa66ff">Lv.1</text>
   </container>
 </container>

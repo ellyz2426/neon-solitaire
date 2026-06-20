@@ -10,7 +10,7 @@
           "CARD BACKS"
         ],
         "properties": {
-          "fontsize": "{20}",
+          "fontsize": "20",
           "fontweight": "bold",
           "color": "#ff66ff"
         },
@@ -32,7 +32,7 @@
                 ],
                 "properties": {
                   "name": "skin0-color",
-                  "fontsize": "{28}",
+                  "fontsize": "28",
                   "color": "#00ffff"
                 },
                 "dataUid": "uid-5"
@@ -45,7 +45,7 @@
                 ],
                 "properties": {
                   "name": "skin0",
-                  "fontsize": "{9}",
+                  "fontsize": "9",
                   "color": "#ffffff",
                   "textalign": "center"
                 },
@@ -55,7 +55,7 @@
             "properties": {
               "flexdirection": "column",
               "alignitems": "center",
-              "gap": "{2}"
+              "gap": "2"
             },
             "dataUid": "uid-4"
           },
@@ -71,7 +71,7 @@
                 ],
                 "properties": {
                   "name": "skin1-color",
-                  "fontsize": "{28}",
+                  "fontsize": "28",
                   "color": "#ff4400"
                 },
                 "dataUid": "uid-8"
@@ -84,7 +84,7 @@
                 ],
                 "properties": {
                   "name": "skin1",
-                  "fontsize": "{9}",
+                  "fontsize": "9",
                   "color": "#ffffff",
                   "textalign": "center"
                 },
@@ -94,7 +94,7 @@
             "properties": {
               "flexdirection": "column",
               "alignitems": "center",
-              "gap": "{2}"
+              "gap": "2"
             },
             "dataUid": "uid-7"
           },
@@ -110,7 +110,7 @@
                 ],
                 "properties": {
                   "name": "skin2-color",
-                  "fontsize": "{28}",
+                  "fontsize": "28",
                   "color": "#ff00ff"
                 },
                 "dataUid": "uid-11"
@@ -123,7 +123,7 @@
                 ],
                 "properties": {
                   "name": "skin2",
-                  "fontsize": "{9}",
+                  "fontsize": "9",
                   "color": "#ffffff",
                   "textalign": "center"
                 },
@@ -133,7 +133,7 @@
             "properties": {
               "flexdirection": "column",
               "alignitems": "center",
-              "gap": "{2}"
+              "gap": "2"
             },
             "dataUid": "uid-10"
           },
@@ -149,7 +149,7 @@
                 ],
                 "properties": {
                   "name": "skin3-color",
-                  "fontsize": "{28}",
+                  "fontsize": "28",
                   "color": "#4488ff"
                 },
                 "dataUid": "uid-14"
@@ -162,7 +162,7 @@
                 ],
                 "properties": {
                   "name": "skin3",
-                  "fontsize": "{9}",
+                  "fontsize": "9",
                   "color": "#ffffff",
                   "textalign": "center"
                 },
@@ -172,7 +172,7 @@
             "properties": {
               "flexdirection": "column",
               "alignitems": "center",
-              "gap": "{2}"
+              "gap": "2"
             },
             "dataUid": "uid-13"
           },
@@ -188,7 +188,7 @@
                 ],
                 "properties": {
                   "name": "skin4-color",
-                  "fontsize": "{28}",
+                  "fontsize": "28",
                   "color": "#44ff44"
                 },
                 "dataUid": "uid-17"
@@ -201,7 +201,7 @@
                 ],
                 "properties": {
                   "name": "skin4",
-                  "fontsize": "{9}",
+                  "fontsize": "9",
                   "color": "#ffffff",
                   "textalign": "center"
                 },
@@ -211,7 +211,7 @@
             "properties": {
               "flexdirection": "column",
               "alignitems": "center",
-              "gap": "{2}"
+              "gap": "2"
             },
             "dataUid": "uid-16"
           },
@@ -227,7 +227,7 @@
                 ],
                 "properties": {
                   "name": "skin5-color",
-                  "fontsize": "{28}",
+                  "fontsize": "28",
                   "color": "#ffcc00"
                 },
                 "dataUid": "uid-20"
@@ -240,7 +240,7 @@
                 ],
                 "properties": {
                   "name": "skin5",
-                  "fontsize": "{9}",
+                  "fontsize": "9",
                   "color": "#ffffff",
                   "textalign": "center"
                 },
@@ -250,7 +250,7 @@
             "properties": {
               "flexdirection": "column",
               "alignitems": "center",
-              "gap": "{2}"
+              "gap": "2"
             },
             "dataUid": "uid-19"
           },
@@ -266,7 +266,7 @@
                 ],
                 "properties": {
                   "name": "skin6-color",
-                  "fontsize": "{28}",
+                  "fontsize": "28",
                   "color": "#8800ff"
                 },
                 "dataUid": "uid-23"
@@ -279,7 +279,7 @@
                 ],
                 "properties": {
                   "name": "skin6",
-                  "fontsize": "{9}",
+                  "fontsize": "9",
                   "color": "#ffffff",
                   "textalign": "center"
                 },
@@ -289,7 +289,7 @@
             "properties": {
               "flexdirection": "column",
               "alignitems": "center",
-              "gap": "{2}"
+              "gap": "2"
             },
             "dataUid": "uid-22"
           },
@@ -305,7 +305,7 @@
                 ],
                 "properties": {
                   "name": "skin7-color",
-                  "fontsize": "{28}",
+                  "fontsize": "28",
                   "color": "#ff2200"
                 },
                 "dataUid": "uid-26"
@@ -318,7 +318,7 @@
                 ],
                 "properties": {
                   "name": "skin7",
-                  "fontsize": "{9}",
+                  "fontsize": "9",
                   "color": "#ffffff",
                   "textalign": "center"
                 },
@@ -328,14 +328,14 @@
             "properties": {
               "flexdirection": "column",
               "alignitems": "center",
-              "gap": "{2}"
+              "gap": "2"
             },
             "dataUid": "uid-25"
           }
         ],
         "properties": {
           "flexdirection": "row",
-          "gap": "{6}",
+          "gap": "6",
           "width": "100%",
           "justifycontent": "center",
           "flexwrap": "wrap"
@@ -350,15 +350,15 @@
         ],
         "properties": {
           "name": "btn-back",
-          "fontsize": "{16}",
+          "fontsize": "16",
           "color": "#ff4444",
           "backgroundcolor": "#330000",
-          "padding": "{8}",
-          "borderradius": "{6}",
-          "width": "{160}",
+          "padding": "8",
+          "borderradius": "6",
+          "width": "160",
           "textalign": "center",
           "cursor": "pointer",
-          "marginTop": "{4}"
+          "marginTop": "4"
         },
         "dataUid": "uid-28"
       }
@@ -367,11 +367,11 @@
       "name": "root",
       "flexdirection": "column",
       "alignitems": "center",
-      "gap": "{4}",
-      "padding": "{12}",
+      "gap": "4",
+      "padding": "12",
       "backgroundcolor": "#000000cc",
-      "borderradius": "{8}",
-      "width": "{380}"
+      "borderradius": "8",
+      "width": "380"
     },
     "dataUid": "uid-1"
   },

@@ -10,7 +10,7 @@
           "STATISTICS"
         ],
         "properties": {
-          "fontsize": "{22}",
+          "fontsize": "22",
           "fontweight": "bold",
           "color": "#66ff66"
         },
@@ -27,9 +27,9 @@
               "Games Played"
             ],
             "properties": {
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#668888",
-              "width": "{180}"
+              "width": "180"
             },
             "dataUid": "uid-4"
           },
@@ -41,7 +41,7 @@
             ],
             "properties": {
               "name": "s-games",
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#ffffff"
             },
             "dataUid": "uid-5"
@@ -49,7 +49,7 @@
         ],
         "properties": {
           "flexdirection": "row",
-          "gap": "{4}",
+          "gap": "4",
           "width": "100%"
         },
         "dataUid": "uid-3"
@@ -65,9 +65,9 @@
               "Games Won"
             ],
             "properties": {
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#668888",
-              "width": "{180}"
+              "width": "180"
             },
             "dataUid": "uid-7"
           },
@@ -79,7 +79,7 @@
             ],
             "properties": {
               "name": "s-wins",
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#ffffff"
             },
             "dataUid": "uid-8"
@@ -87,7 +87,7 @@
         ],
         "properties": {
           "flexdirection": "row",
-          "gap": "{4}",
+          "gap": "4",
           "width": "100%"
         },
         "dataUid": "uid-6"
@@ -103,9 +103,9 @@
               "Win Rate"
             ],
             "properties": {
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#668888",
-              "width": "{180}"
+              "width": "180"
             },
             "dataUid": "uid-10"
           },
@@ -117,7 +117,7 @@
             ],
             "properties": {
               "name": "s-winrate",
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#ffffff"
             },
             "dataUid": "uid-11"
@@ -125,7 +125,7 @@
         ],
         "properties": {
           "flexdirection": "row",
-          "gap": "{4}",
+          "gap": "4",
           "width": "100%"
         },
         "dataUid": "uid-9"
@@ -141,9 +141,9 @@
               "Best Score"
             ],
             "properties": {
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#668888",
-              "width": "{180}"
+              "width": "180"
             },
             "dataUid": "uid-13"
           },
@@ -155,7 +155,7 @@
             ],
             "properties": {
               "name": "s-best",
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#ffffff"
             },
             "dataUid": "uid-14"
@@ -163,7 +163,7 @@
         ],
         "properties": {
           "flexdirection": "row",
-          "gap": "{4}",
+          "gap": "4",
           "width": "100%"
         },
         "dataUid": "uid-12"
@@ -179,9 +179,9 @@
               "Best Time"
             ],
             "properties": {
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#668888",
-              "width": "{180}"
+              "width": "180"
             },
             "dataUid": "uid-16"
           },
@@ -193,7 +193,7 @@
             ],
             "properties": {
               "name": "s-time",
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#ffffff"
             },
             "dataUid": "uid-17"
@@ -201,7 +201,7 @@
         ],
         "properties": {
           "flexdirection": "row",
-          "gap": "{4}",
+          "gap": "4",
           "width": "100%"
         },
         "dataUid": "uid-15"
@@ -217,9 +217,9 @@
               "Fewest Moves Win"
             ],
             "properties": {
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#668888",
-              "width": "{180}"
+              "width": "180"
             },
             "dataUid": "uid-19"
           },
@@ -231,7 +231,7 @@
             ],
             "properties": {
               "name": "s-moves",
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#ffffff"
             },
             "dataUid": "uid-20"
@@ -239,7 +239,7 @@
         ],
         "properties": {
           "flexdirection": "row",
-          "gap": "{4}",
+          "gap": "4",
           "width": "100%"
         },
         "dataUid": "uid-18"
@@ -255,9 +255,9 @@
               "Total Moves"
             ],
             "properties": {
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#668888",
-              "width": "{180}"
+              "width": "180"
             },
             "dataUid": "uid-22"
           },
@@ -269,7 +269,7 @@
             ],
             "properties": {
               "name": "s-totalmoves",
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#ffffff"
             },
             "dataUid": "uid-23"
@@ -277,7 +277,7 @@
         ],
         "properties": {
           "flexdirection": "row",
-          "gap": "{4}",
+          "gap": "4",
           "width": "100%"
         },
         "dataUid": "uid-21"
@@ -293,9 +293,9 @@
               "Cards to Foundation"
             ],
             "properties": {
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#668888",
-              "width": "{180}"
+              "width": "180"
             },
             "dataUid": "uid-25"
           },
@@ -307,7 +307,7 @@
             ],
             "properties": {
               "name": "s-foundation",
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#ffffff"
             },
             "dataUid": "uid-26"
@@ -315,7 +315,7 @@
         ],
         "properties": {
           "flexdirection": "row",
-          "gap": "{4}",
+          "gap": "4",
           "width": "100%"
         },
         "dataUid": "uid-24"
@@ -331,9 +331,9 @@
               "Win Streak"
             ],
             "properties": {
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#668888",
-              "width": "{180}"
+              "width": "180"
             },
             "dataUid": "uid-28"
           },
@@ -345,7 +345,7 @@
             ],
             "properties": {
               "name": "s-streak",
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#ffffff"
             },
             "dataUid": "uid-29"
@@ -353,7 +353,7 @@
         ],
         "properties": {
           "flexdirection": "row",
-          "gap": "{4}",
+          "gap": "4",
           "width": "100%"
         },
         "dataUid": "uid-27"
@@ -369,9 +369,9 @@
               "Best Streak"
             ],
             "properties": {
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#668888",
-              "width": "{180}"
+              "width": "180"
             },
             "dataUid": "uid-31"
           },
@@ -383,7 +383,7 @@
             ],
             "properties": {
               "name": "s-beststreak",
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#ffffff"
             },
             "dataUid": "uid-32"
@@ -391,7 +391,7 @@
         ],
         "properties": {
           "flexdirection": "row",
-          "gap": "{4}",
+          "gap": "4",
           "width": "100%"
         },
         "dataUid": "uid-30"
@@ -407,9 +407,9 @@
               "Achievements"
             ],
             "properties": {
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#668888",
-              "width": "{180}"
+              "width": "180"
             },
             "dataUid": "uid-34"
           },
@@ -421,7 +421,7 @@
             ],
             "properties": {
               "name": "s-achievements",
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#ffffff"
             },
             "dataUid": "uid-35"
@@ -429,7 +429,7 @@
         ],
         "properties": {
           "flexdirection": "row",
-          "gap": "{4}",
+          "gap": "4",
           "width": "100%"
         },
         "dataUid": "uid-33"
@@ -445,9 +445,9 @@
               "Player Level"
             ],
             "properties": {
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#668888",
-              "width": "{180}"
+              "width": "180"
             },
             "dataUid": "uid-37"
           },
@@ -459,7 +459,7 @@
             ],
             "properties": {
               "name": "s-level",
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#ffffff"
             },
             "dataUid": "uid-38"
@@ -467,7 +467,7 @@
         ],
         "properties": {
           "flexdirection": "row",
-          "gap": "{4}",
+          "gap": "4",
           "width": "100%"
         },
         "dataUid": "uid-36"
@@ -483,9 +483,9 @@
               "Daily Challenge"
             ],
             "properties": {
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#668888",
-              "width": "{180}"
+              "width": "180"
             },
             "dataUid": "uid-40"
           },
@@ -497,7 +497,7 @@
             ],
             "properties": {
               "name": "s-daily",
-              "fontsize": "{11}",
+              "fontsize": "11",
               "color": "#ff8800"
             },
             "dataUid": "uid-41"
@@ -505,28 +505,60 @@
         ],
         "properties": {
           "flexdirection": "row",
-          "gap": "{4}",
+          "gap": "4",
           "width": "100%"
         },
         "dataUid": "uid-39"
       },
       {
-        "sourceTag": "text",
+        "sourceTag": "container",
         "type": "custom",
         "children": [
-          "BACK"
+          {
+            "sourceTag": "text",
+            "type": "custom",
+            "children": [
+              "MODE STATS"
+            ],
+            "properties": {
+              "name": "btn-modestats",
+              "fontsize": "14",
+              "color": "#00cccc",
+              "backgroundcolor": "#002222",
+              "padding": "8",
+              "borderradius": "6",
+              "width": "160",
+              "textalign": "center",
+              "cursor": "pointer"
+            },
+            "dataUid": "uid-43"
+          },
+          {
+            "sourceTag": "text",
+            "type": "custom",
+            "children": [
+              "BACK"
+            ],
+            "properties": {
+              "name": "btn-back",
+              "fontsize": "14",
+              "color": "#ff4444",
+              "backgroundcolor": "#330000",
+              "padding": "8",
+              "borderradius": "6",
+              "width": "100",
+              "textalign": "center",
+              "cursor": "pointer"
+            },
+            "dataUid": "uid-44"
+          }
         ],
         "properties": {
-          "name": "btn-back",
-          "fontsize": "{16}",
-          "color": "#ff4444",
-          "backgroundcolor": "#330000",
-          "padding": "{8}",
-          "borderradius": "{6}",
-          "width": "{160}",
-          "textalign": "center",
-          "cursor": "pointer",
-          "marginTop": "{8}"
+          "flexdirection": "row",
+          "gap": "8",
+          "width": "100%",
+          "justifycontent": "center",
+          "marginTop": "8"
         },
         "dataUid": "uid-42"
       }
@@ -535,11 +567,11 @@
       "name": "root",
       "flexdirection": "column",
       "alignitems": "center",
-      "gap": "{4}",
-      "padding": "{16}",
+      "gap": "4",
+      "padding": "16",
       "backgroundcolor": "#000000cc",
-      "borderradius": "{12}",
-      "width": "{400}"
+      "borderradius": "12",
+      "width": "400"
     },
     "dataUid": "uid-1"
   },
@@ -551,7 +583,7 @@
         "column": 0
       },
       "end": {
-        "line": 25,
+        "line": 28,
         "column": 12
       }
     },
@@ -961,8 +993,28 @@
         "column": 2
       },
       "end": {
-        "line": 24,
-        "column": 183
+        "line": 27,
+        "column": 14
+      }
+    },
+    "uid-43": {
+      "start": {
+        "line": 25,
+        "column": 4
+      },
+      "end": {
+        "line": 25,
+        "column": 181
+      }
+    },
+    "uid-44": {
+      "start": {
+        "line": 26,
+        "column": 4
+      },
+      "end": {
+        "line": 26,
+        "column": 170
       }
     }
   }

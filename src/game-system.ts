@@ -1,8 +1,9 @@
 import {
   createSystem, Raycaster, Vector2, Vector3, Group,
-  Mesh, Color, Object3D,
+  Mesh, Color, Object3D, Quaternion,
   GridHelper, PlaneGeometry, MeshStandardMaterial,
   AmbientLight, DirectionalLight, PointLight,
+  InputComponent,
 } from '@iwsdk/core';
 import {
   GameState, GameMode, ModeConfig, getModeConfig, PileType,
@@ -18,7 +19,7 @@ import {
   canMoveToFoundation, canMoveToTableau,
 } from './solitaire';
 import { CardMesh, createCardMesh, updateCardFace, setCardHighlight, createPilePlaceholder, clearTexCache } from './cards';
-import { ACHIEVEMENTS, loadStats, saveStats, loadLeaderboard, saveLeaderboard, loadUnlocked, saveUnlocked, loadSettings, loadDailyProgress, saveDailyProgress, getTodayString, getYesterdayString } from './achievements';
+import { ACHIEVEMENTS, loadStats, saveStats, loadLeaderboard, saveLeaderboard, loadUnlocked, saveUnlocked, loadSettings, loadDailyProgress, saveDailyProgress, getTodayString, getYesterdayString, loadModeStats, saveModeStats, loadTutorialSeen, saveTutorialSeen } from './achievements';
 import { ParticleSystem } from './particles';
 import {
   sfxCardPlace, sfxCardSelect, sfxCardFlip, sfxDraw, sfxRecycle,
@@ -99,12 +100,33 @@ export class GameSystem extends createSystem({}) {
   // Music started flag
   musicStarted = false;
 
+  // XR controller state
+  xrTriggerWasDown = false;
+  xrRaycaster = new Raycaster();
+  xrRayOrigin = new Vector3();
+  xrRayDir = new Vector3();
+  xrHoveredCardId: number | null = null;
+
+  // Card placement bounce
+  bounceAnims: { mesh: Group; startTime: number; originalY: number }[] = [];
+
+  // Per-mode stats
+  modeStats: Record<string, { played: number; won: number; bestScore: number; bestTime: number }> = {};
+
+  // Tutorial state
+  tutorialShown = false;
+  tutorialStep = 0;
+
   init() {
     this.buildEnvironment();
     this.setupInput();
     // Initialize audio volumes
     setVolumes(this.settings.masterVol, this.settings.sfxVol, this.settings.musicVol);
     setMusicVolume(this.settings.musicVol);
+    // Load per-mode stats
+    this.modeStats = loadModeStats();
+    // Load tutorial state
+    this.tutorialShown = loadTutorialSeen();
   }
 
   buildEnvironment() {
@@ -483,7 +505,7 @@ export class GameSystem extends createSystem({}) {
       } else {
         sfxCardPlace();
       }
-      this.refreshCardPositions();
+      this.refreshCardPositions(true);
       this.checkAchievements();
       if (gs.won) this.handleWin();
       else if (canAutoComplete(gs)) { this.phase = 'autocomplete'; this.autoCompleteTimer = 0; }
@@ -676,7 +698,7 @@ export class GameSystem extends createSystem({}) {
     }
   }
 
-  refreshCardPositions() {
+  refreshCardPositions(withBounce = false) {
     const gs = this.gs!;
     const positions = this.getPilePositions();
     const theme = THEMES[this.settings.themeIndex];
@@ -716,9 +738,12 @@ export class GameSystem extends createSystem({}) {
     }
   }
 
-  animateCard(group: Group, target: Vector3) {
+  animateCard(group: Group, target: Vector3, bounce = false) {
     this.anims = this.anims.filter(a => a.mesh !== group);
     this.anims.push({ mesh: group, targetPos: target, speed: 8 });
+    if (bounce) {
+      this.bounceAnims.push({ mesh: group, startTime: performance.now(), originalY: target.y });
+    }
   }
 
   doUndo() {
@@ -802,6 +827,18 @@ export class GameSystem extends createSystem({}) {
     // Win celebration particles
     const center = new Vector3(0, TABLE_Y + 0.2, -1.0);
     this.particles?.emitWinCelebration(center);
+
+    // Per-mode stats
+    if (!this.modeStats[this.mode]) {
+      this.modeStats[this.mode] = { played: 0, won: 0, bestScore: 0, bestTime: 0 };
+    }
+    this.modeStats[this.mode].played++;
+    this.modeStats[this.mode].won++;
+    if (gs.score > this.modeStats[this.mode].bestScore) this.modeStats[this.mode].bestScore = gs.score;
+    if (this.modeStats[this.mode].bestTime === 0 || gs.elapsed < this.modeStats[this.mode].bestTime) {
+      this.modeStats[this.mode].bestTime = gs.elapsed;
+    }
+    saveModeStats(this.modeStats);
   }
 
   handleLoss() {
@@ -813,6 +850,13 @@ export class GameSystem extends createSystem({}) {
     this.stats.totalMoves += gs.moves;
     this.stats.cardsToFoundation += foundationTotal(gs);
     saveStats(this.stats);
+
+    // Per-mode stats
+    if (!this.modeStats[this.mode]) {
+      this.modeStats[this.mode] = { played: 0, won: 0, bestScore: 0, bestTime: 0 };
+    }
+    this.modeStats[this.mode].played++;
+    saveModeStats(this.modeStats);
   }
 
   checkAchievements() {
@@ -842,10 +886,22 @@ export class GameSystem extends createSystem({}) {
   /** Hover detection - highlight card under cursor */
   updateHover() {
     if (this.phase !== 'playing') return;
-    this.raycaster.setFromCamera(this.mouse, this.camera);
-    const cardObjects: Object3D[] = [];
-    this.cardMeshes.forEach(cm => cardObjects.push(cm.mesh));
-    const hits = this.raycaster.intersectObjects(cardObjects, false);
+
+    // Use XR ray if available, otherwise mouse
+    let hits: ReturnType<Raycaster['intersectObjects']>;
+    const inXR = !!(this.world as any).input?.xr?.gamepads?.right;
+
+    if (inXR) {
+      this.updateXRRay();
+      const cardObjects: Object3D[] = [];
+      this.cardMeshes.forEach(cm => cardObjects.push(cm.mesh));
+      hits = this.xrRaycaster.intersectObjects(cardObjects, false);
+    } else {
+      this.raycaster.setFromCamera(this.mouse, this.camera);
+      const cardObjects: Object3D[] = [];
+      this.cardMeshes.forEach(cm => cardObjects.push(cm.mesh));
+      hits = this.raycaster.intersectObjects(cardObjects, false);
+    }
 
     let newHover: number | null = null;
     if (hits.length > 0) {
@@ -881,6 +937,79 @@ export class GameSystem extends createSystem({}) {
         }
       }
       this.hoveredCardId = newHover;
+    }
+  }
+
+  /** Update XR raycaster from right controller ray space */
+  updateXRRay() {
+    const raySpace = (this.world as any).playerSpaceEntities?.raySpaces?.right?.object3D;
+    if (!raySpace) return;
+    raySpace.getWorldPosition(this.xrRayOrigin);
+    const forward = new Vector3(0, 0, -1);
+    forward.applyQuaternion(raySpace.getWorldQuaternion(new Quaternion()));
+    this.xrRayDir.copy(forward);
+    this.xrRaycaster.set(this.xrRayOrigin, this.xrRayDir);
+  }
+
+  /** Handle XR controller input each frame */
+  handleXRInput() {
+    const right = (this.world as any).input?.xr?.gamepads?.right;
+    if (!right) return;
+
+    const triggerDown = right.getButtonDown(InputComponent.Trigger);
+    const triggerPressed = right.getButtonPressed(InputComponent.Trigger);
+
+    // Trigger press -> click
+    if (triggerDown && (this.phase === 'playing' || this.phase === 'autocomplete')) {
+      this.handleXRClick();
+    }
+
+    // A button -> undo
+    if (right.getButtonDown(InputComponent.A_Button)) {
+      if (this.phase === 'playing') this.doUndo();
+    }
+
+    // B button -> hint
+    if (right.getButtonDown(InputComponent.B_Button)) {
+      if (this.phase === 'playing') this.doHint();
+    }
+
+    // Thumbstick press -> pause
+    const thumbDown = right.getButtonDown(InputComponent.Thumbstick);
+    if (thumbDown) {
+      if (this.phase === 'playing') this.phase = 'paused';
+      else if (this.phase === 'paused') this.phase = 'playing';
+    }
+  }
+
+  /** Handle XR trigger click - raycast from controller */
+  handleXRClick() {
+    this.updateXRRay();
+    const cardObjects: Object3D[] = [];
+    this.cardMeshes.forEach(cm => cardObjects.push(cm.mesh));
+    const cardHits = this.xrRaycaster.intersectObjects(cardObjects, false);
+    const phHits = this.xrRaycaster.intersectObjects(this.pilePlaceholders, false);
+
+    if (cardHits.length > 0) {
+      const cardId = cardHits[0].object.parent?.userData.cardId as number | undefined;
+      if (cardId !== undefined) {
+        // Double-click detection for XR
+        const now = performance.now();
+        if (cardId === this.lastClickCardId && now - this.lastClickTime < 500) {
+          this.handleDoubleClick(cardId);
+          this.lastClickCardId = -1;
+          this.lastClickTime = 0;
+          return;
+        }
+        this.lastClickCardId = cardId;
+        this.lastClickTime = now;
+        this.handleCardClick(cardId);
+      }
+    } else if (phHits.length > 0) {
+      const ph = phHits[0].object;
+      this.handlePileClick(ph.userData.pileType as PileType, ph.userData.pileIndex as number);
+    } else {
+      this.clearSelection();
     }
   }
 
@@ -921,6 +1050,19 @@ export class GameSystem extends createSystem({}) {
       else { a.mesh.position.add(diff.normalize().multiplyScalar(Math.min(delta * a.speed, dist))); }
     }
 
+    // Bounce animations (card placement feedback)
+    for (let i = this.bounceAnims.length - 1; i >= 0; i--) {
+      const b = this.bounceAnims[i];
+      const elapsed = (performance.now() - b.startTime) / 1000;
+      if (elapsed > 0.3) {
+        b.mesh.position.y = b.originalY;
+        this.bounceAnims.splice(i, 1);
+      } else {
+        const bounce = Math.sin(elapsed * Math.PI / 0.15) * 0.008 * (1 - elapsed / 0.3);
+        b.mesh.position.y = b.originalY + Math.max(0, bounce);
+      }
+    }
+
     // Timer
     if (this.phase === 'playing' && this.gs?.started) {
       this.gs.elapsed += delta;
@@ -955,6 +1097,9 @@ export class GameSystem extends createSystem({}) {
 
     // Hover effect (check every 3 frames)
     this.updateHover();
+
+    // XR controller input
+    this.handleXRInput();
 
     // Particle system update
     this.particles?.update(delta);

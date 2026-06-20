@@ -10,7 +10,7 @@
           "PAUSED"
         ],
         "properties": {
-          "fontsize": "{22}",
+          "fontsize": "22",
           "fontweight": "bold",
           "color": "#00ffff"
         },
@@ -24,12 +24,12 @@
         ],
         "properties": {
           "name": "btn-resume",
-          "fontsize": "{18}",
+          "fontsize": "18",
           "color": "#66ff66",
           "backgroundcolor": "#003300",
-          "padding": "{8}",
-          "borderradius": "{6}",
-          "width": "{220}",
+          "padding": "8",
+          "borderradius": "6",
+          "width": "220",
           "textalign": "center",
           "cursor": "pointer"
         },
@@ -43,12 +43,12 @@
         ],
         "properties": {
           "name": "btn-quit",
-          "fontsize": "{18}",
+          "fontsize": "18",
           "color": "#ff4444",
           "backgroundcolor": "#330000",
-          "padding": "{8}",
-          "borderradius": "{6}",
-          "width": "{220}",
+          "padding": "8",
+          "borderradius": "6",
+          "width": "220",
           "textalign": "center",
           "cursor": "pointer"
         },
@@ -59,11 +59,11 @@
       "name": "root",
       "flexdirection": "column",
       "alignitems": "center",
-      "gap": "{8}",
-      "padding": "{16}",
+      "gap": "8",
+      "padding": "16",
       "backgroundcolor": "#000000cc",
-      "borderradius": "{12}",
-      "width": "{380}"
+      "borderradius": "12",
+      "width": "380"
     },
     "dataUid": "uid-1"
   },
